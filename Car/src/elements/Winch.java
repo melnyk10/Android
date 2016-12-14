@@ -8,6 +8,7 @@ public class Winch {
     private int power;
     private int lengthOfCable;
 
+
     public Winch(String name, int power, int lengthOfCable) {
         this.name = name;
         this.power = power;

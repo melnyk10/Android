@@ -1,20 +1,15 @@
-package elements;
+package wheels;
 
-import interfaces.Player;
+import interfaces.Wheel;
 
 /**
  * Created by forest on 14.12.2016.
  */
-public class Ipod implements Player {
+public class Rosava implements Wheel {
     private String name;
 
-    public Ipod(String name) {
+    public Rosava(String name) {
         this.name = name;
-    }
-
-    @Override
-    public void playMusic() {
-        System.out.println("Plaing music from iPod");
     }
 
     public String getName() {

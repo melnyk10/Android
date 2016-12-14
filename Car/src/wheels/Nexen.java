@@ -1,14 +1,14 @@
-package elements;
+package wheels;
 
 import interfaces.Wheel;
 
 /**
  * Created by forest on 14.12.2016.
  */
-public class Rosava implements Wheel {
+public class Nexen implements Wheel {
     private String name;
 
-    public Rosava(String name) {
+    public Nexen(String name) {
         this.name = name;
     }
 
