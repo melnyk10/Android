@@ -1,18 +1,19 @@
 /**
  * Created by forest on 09.12.2016.
  */
-import Object.*;
+import elements.*;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
-        Audi audi = new Audi("R8", 425);
-        audi.drive();
-//        audi.on();
-//        audi.off();
-        audi.playMusic();
+        List<BaseCar> baseCars = new ArrayList<>();
+        Nexen nexen = new Nexen("Nexen");
+        baseCars.add(new Geep("Toyota", 350, nexen));
 
-        Ford ford = new Ford("SS", 320);
-        ford.drive();
-        ford.checkSpeed();
-        ford.playMusic();
+        for(BaseCar baseCar: baseCars){
+            baseCar.run();
+        }
     }
 }
