@@ -5,10 +5,10 @@ import interfaces.Wheel;
 /**
  * Created by forest on 14.12.2016.
  */
-public class Nexen implements Wheel {
+public class Rosava implements Wheel {
     private String name;
 
-    public Nexen(String name) {
+    public Rosava(String name) {
         this.name = name;
     }
 

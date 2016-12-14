@@ -1,31 +1,31 @@
 /**
  * Created by forest on 09.12.2016.
  */
-import Object.*;
+import elements.*;
+import engine.Audi_A6Turbo;
+import engine.Toyota_4CF;
+
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
+        List<Car> cars = new ArrayList<>();
+        Nexen nexen = new Nexen("Nexen");
+        Rosava rosava = new Rosava("Rosava");
+        Winch winch = new Winch("Forte FPA 500", 250,12);
+        Audi_A6Turbo audi_a6Turbo = new Audi_A6Turbo();
+        Toyota_4CF toyota_4CF = new Toyota_4CF();
+        Ipod ipod = new Ipod("Ipod Audi");
 
 
-        Audi audi = new Audi("R8", 425, "Audi CC v2.0");
-        audi.drive();
-//        audi.on();
-//        audi.off();
-        audi.playMusic();
+        cars.add(new LightCar("Audi R8", 320, nexen, audi_a6Turbo, ipod));
+        cars.add(new Geep("Toyota Land Cruiser", 270, rosava, toyota_4CF, winch));
 
-        System.out.println("-----------------------");
 
-        Chevrolet chevrolet = new Chevrolet("Impala", 220);
-        chevrolet.drive();
-        chevrolet.checkSpeed();
-        chevrolet.nitro_button();
 
-        System.out.println("-----------------------");
-
-        Chevrolet chevrolet1 = new Chevrolet("SS", 320, 1000);
-        chevrolet1.drive();
-        chevrolet1.playMusic();
-        chevrolet1.nitro_button();
-
-        
+        for(Car car : cars){
+            car.run();
+        }
     }
 }
