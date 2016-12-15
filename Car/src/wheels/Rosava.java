@@ -19,4 +19,9 @@ public class Rosava implements Wheel {
     public void setName(String name) {
         this.name = name;
     }
+
+    @Override
+    public String showName() {
+        return name;
+    }
 }

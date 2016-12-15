@@ -18,4 +18,10 @@ public class LightCar extends Car {
     public void playMusic(){
         System.out.println("Playing music from iPod");
     }
+
+    @Override
+    public void run() {
+        super.run();
+        playMusic();
+    }
 }

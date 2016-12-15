@@ -1,7 +1,6 @@
 package elements;
 
 import interfaces.Engine;
-import interfaces.Player;
 import interfaces.Wheel;
 
 /**
@@ -24,6 +23,7 @@ public class Car implements Engine {
 
     public void run() {
         System.out.println("I'm driving in "+getName());
+        System.out.println("Brand of my wheel is "+wheel.showName());
     }
 
     public String getName() {
