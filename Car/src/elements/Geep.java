@@ -14,5 +14,8 @@ public class Geep extends Car {
         this.winch = winch;
     }
 
-
+    @Override
+    public void run() {
+        winch.turnOn();
+    }
 }

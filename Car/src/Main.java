@@ -14,7 +14,7 @@ import java.util.List;
 public class Main {
     public static void main(String[] args) {
         List<Car> cars = new ArrayList<>();
-        
+
         Nexen nexen = new Nexen("Nexen");
         Rosava rosava = new Rosava("Rosava");
         Winch winch = new Winch("Forte FPA 500", 250,12);
