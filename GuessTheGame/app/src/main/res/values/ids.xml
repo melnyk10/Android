@@ -2,18 +2,18 @@
 <resources>
     <!-- copy -->
     <!--це було до верхнього лейаута(верхніх дві кнопки)-->
-    <item type="id" name="btn_top_left">false</item>
+    <item type="id" name="iBtn_top_left">false</item>
     <item type="id" name="textYear_tl">false</item>
     <item type="id" name="linearLayoutTopButtons">false</item>
-    <item type="id" name="btn_top_right">false</item>
+    <item type="id" name="iBtn_top_right">false</item>
     <item type="id" name="textView_btn_top_left">false</item>
     <item type="id" name="textView_btn_top_right">false</item>
 
     <!--це до 2го лейаута(нижні дві кнопки)-->
     <item type="id" name="linearLayoutBottomButtons">false</item>
-    <item type="id" name="btn_bottom_left">false</item>
+    <item type="id" name="iBtn_bottom_left">false</item>
     <item type="id" name="textYear_bl">false</item>
-    <item type="id" name="btn_bottom_right">false</item>
+    <item type="id" name="iBtn_bottom_right">false</item>
     <item type="id" name="textYear_br">false</item>
 
     <item type="id" name="textView_btn_bottom_left">false</item>

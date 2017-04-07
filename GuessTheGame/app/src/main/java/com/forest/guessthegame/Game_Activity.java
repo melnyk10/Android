@@ -19,9 +19,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class GameActivity extends AppCompatActivity implements ViewSwitcher.ViewFactory{
+public class Game_Activity extends AppCompatActivity implements ViewSwitcher.ViewFactory{
 
-    private Button one = null;
+    private Button btn_top_left = null;
     private Button two = null;
     private Button three = null;
     private Button four = null;
@@ -41,7 +41,7 @@ public class GameActivity extends AppCompatActivity implements ViewSwitcher.View
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_fullscreen);
+        setContentView(R.layout.activity_game_activity);
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                  | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -51,13 +51,13 @@ public class GameActivity extends AppCompatActivity implements ViewSwitcher.View
                   | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
-        one = (Button) findViewById(R.id.btn_top_left);
-        two = (Button) findViewById(R.id.btn_top_right);
-        three = (Button) findViewById(R.id.btn_bottom_left);
-        four = (Button) findViewById(R.id.btn_bottom_right);
+        btn_top_left = (Button) findViewById(R.id.iBtn_top_left);
+        two = (Button) findViewById(R.id.iBtn_top_right);
+        three = (Button) findViewById(R.id.iBtn_bottom_left);
+        four = (Button) findViewById(R.id.iBtn_bottom_right);
 
         //стандартний бекраунд
-        //final Drawable standartBackround = one.getBackground();
+        //final Drawable standartBackround = btn_top_left.getBackground();
 
         mBackgroundImage = (ImageSwitcher) findViewById(R.id.gameFrameSwitcher);
         mBackgroundImage.setFactory(this);
@@ -93,7 +93,7 @@ public class GameActivity extends AppCompatActivity implements ViewSwitcher.View
             public void rightAndWrongAnswers(Button button){
                 //if wrong answer
                 if(!(button.getText().toString().equals(game_hashMap.getAnswer()))){
-                    //button.setBackgroundColor(0x80FD0004); //if answer is wrong change color of button to red
+//                    button.setBackgroundColor(0x80FD0004); //if answer is wrong change color of button to red
                     onClick2();
 //                    Intent intent=new Intent(getApplicationContext(), game_over.class);
 //                    startActivity(intent);
@@ -115,30 +115,30 @@ public class GameActivity extends AppCompatActivity implements ViewSwitcher.View
             @Override
             public void onClick(View v) {
                 switch(v.getId()) {
-                    case R.id.btn_bottom_left:
+                    case R.id.iBtn_bottom_left:
                         rightAndWrongAnswers(three);
                         break;
-                    case R.id.btn_bottom_right:
+                    case R.id.iBtn_bottom_right:
                         rightAndWrongAnswers(four);
                         break;
-                    case R.id.btn_top_left:
-                        rightAndWrongAnswers(one);
+                    case R.id.iBtn_top_left:
+                        rightAndWrongAnswers(btn_top_left);
                         break;
-                    case R.id.btn_top_right:
+                    case R.id.iBtn_top_right:
                         rightAndWrongAnswers(two);
                         break;
                 }
             }
         };
 
-        one.setOnClickListener(onClickListener);
+        btn_top_left.setOnClickListener(onClickListener);
         two.setOnClickListener(onClickListener);
         three.setOnClickListener(onClickListener);
         four.setOnClickListener(onClickListener);
     }
 
     public void onClick2() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(GameActivity.this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(Game_Activity.this);
         builder.setTitle("GAME OVER")
                 .setCancelable(false)
                 .setNegativeButton("RESTART",
@@ -204,7 +204,7 @@ public class GameActivity extends AppCompatActivity implements ViewSwitcher.View
         System.out.println("size !!"+game_hashMap.getArrayOfKeyHashMap().size());
 
 
-        one.setText(tView_btn_top_left.getText());
+        btn_top_left.setText(tView_btn_top_left.getText());
         two.setText(tView_btn_top_right.getText());
         three.setText(tView_btn_bottom_left.getText());
         four.setText(tView_btn_bottom_right.getText());
@@ -217,7 +217,7 @@ public class GameActivity extends AppCompatActivity implements ViewSwitcher.View
         tView_btn_bottom_right.setText("");
 
 
-        one.setText(tView_btn_top_left.getText());
+        btn_top_left.setText(tView_btn_top_left.getText());
         two.setText(tView_btn_top_right.getText());
         three.setText(tView_btn_bottom_left.getText());
         four.setText(tView_btn_bottom_right.getText());
@@ -253,6 +253,7 @@ public class GameActivity extends AppCompatActivity implements ViewSwitcher.View
                             | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                             | View.SYSTEM_UI_FLAG_FULLSCREEN
                             | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+
             System.out.println("Size in IF = "+game_hashMap.getArrayOfKeyHashMap().size());
             game_hashMap.setArrayOfKeyHashMap(game_hashMap.copyKeyMapToStringListArray());
             changeImg();

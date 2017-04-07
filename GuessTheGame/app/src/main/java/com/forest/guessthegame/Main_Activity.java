@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
+public class Main_Activity extends AppCompatActivity {
 
     private Button go3thAct = null;
 
@@ -28,8 +28,9 @@ public class MainActivity extends AppCompatActivity {
         go3thAct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), GameActivity.class);
-                startActivity(intent);
+                go3thAct.setBackgroundColor(0x80FD0004); //if answer is wrong change color of button to red
+                Intent intent = new Intent(v.getContext(), Game_Activity.class);
+                //startActivity(intent);
             }
         });
     }
