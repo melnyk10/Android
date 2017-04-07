@@ -23,4 +23,6 @@
 	
 	
 	<item type="id" name="gameFrameSwitcher">false</item>
+	<item type="id" name="btn_goTo3thAct_temp">false</item>
+
 </resources>

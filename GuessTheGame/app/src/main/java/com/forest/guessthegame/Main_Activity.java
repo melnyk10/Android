@@ -25,12 +25,12 @@ public class Main_Activity extends AppCompatActivity {
         go3thAct = (Button) findViewById(R.id.btn_goTo3thAct);
 
 
+
         go3thAct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                go3thAct.setBackgroundColor(0x80FD0004); //if answer is wrong change color of button to red
                 Intent intent = new Intent(v.getContext(), Game_Activity.class);
-                //startActivity(intent);
+                startActivity(intent);
             }
         });
     }

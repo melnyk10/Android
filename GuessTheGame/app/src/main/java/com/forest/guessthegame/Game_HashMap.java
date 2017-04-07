@@ -32,7 +32,7 @@ public class Game_HashMap {
         mapOfAllGame.put("Battlefield 3", "battlefield_3");
         mapOfAllGame.put("The Sims 4", "the_sims_4");
         mapOfAllGame.put("GTA Vice City", "gta_vice_city");
-        mapOfAllGame.put("Overwatch", "overwatch");
+        mapOfAllGame.put("Overwatchgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfgdfg", "overwatch");
         mapOfAllGame.put("The Elder Scrolls V: Skyrim", "the_elder_scrolls_v_skyrim");
         mapOfAllGame.put("Sonic The Hedgehog", "sonic_the_hedgehog");
         mapOfAllGame.put("Super Mario", "super_mario");
@@ -40,7 +40,7 @@ public class Game_HashMap {
         mapOfAllGame.put("Need for Speed Underground 2", "nfs_underground_2");
         mapOfAllGame.put("Dead Space 3", "dead_space_3");
         mapOfAllGame.put("The Last of Us", "the_last_of_us");
-        mapOfAllGame.put("Mass Effect 3", "mass_effect_3");
+        mapOfAllGame.put("Mass Effect 3ahfgdfgdfgdfgdfgsfasfsf ffgfgtfgh", "mass_effect_3");
     }
 
     public void firstStartRightQuestion(){

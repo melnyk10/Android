@@ -22,16 +22,11 @@ import java.util.List;
 public class Game_Activity extends AppCompatActivity implements ViewSwitcher.ViewFactory{
 
     private Button btn_top_left = null;
-    private Button two = null;
-    private Button three = null;
-    private Button four = null;
+    private Button btn_top_right = null;
+    private Button btn_bottom_left = null;
+    private Button btn_bottom_right = null;
 
     private ImageSwitcher mBackgroundImage = null;
-
-    private TextView tView_btn_top_left = null;
-    private TextView tView_btn_top_right = null;
-    private TextView tView_btn_bottom_right = null;
-    private TextView tView_btn_bottom_left = null;
 
     private Game_HashMap game_hashMap = new Game_HashMap();
 
@@ -52,20 +47,15 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         btn_top_left = (Button) findViewById(R.id.iBtn_top_left);
-        two = (Button) findViewById(R.id.iBtn_top_right);
-        three = (Button) findViewById(R.id.iBtn_bottom_left);
-        four = (Button) findViewById(R.id.iBtn_bottom_right);
+        btn_top_right = (Button) findViewById(R.id.iBtn_top_right);
+        btn_bottom_left = (Button) findViewById(R.id.iBtn_bottom_left);
+        btn_bottom_right = (Button) findViewById(R.id.iBtn_bottom_right);
 
         //стандартний бекраунд
         //final Drawable standartBackround = btn_top_left.getBackground();
 
         mBackgroundImage = (ImageSwitcher) findViewById(R.id.gameFrameSwitcher);
         mBackgroundImage.setFactory(this);
-
-        tView_btn_top_left = (TextView) findViewById(R.id.textView_btn_top_left);
-        tView_btn_top_right = (TextView) findViewById(R.id.textView_btn_top_right);
-        tView_btn_bottom_right = (TextView) findViewById(R.id.textView_btn_bottom_right);
-        tView_btn_bottom_left = (TextView) findViewById(R.id.textView_btn_bottom_left);
 
         Animation inAnimation = new AlphaAnimation(0, 1);
         inAnimation.setDuration(2000);
@@ -93,13 +83,14 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
             public void rightAndWrongAnswers(Button button){
                 //if wrong answer
                 if(!(button.getText().toString().equals(game_hashMap.getAnswer()))){
-//                    button.setBackgroundColor(0x80FD0004); //if answer is wrong change color of button to red
+                    button.setBackgroundResource(R.drawable.wrong_btn);//if answer is wrong change color of button to red
                     onClick2();
 //                    Intent intent=new Intent(getApplicationContext(), game_over.class);
 //                    startActivity(intent);
                     //button.setBackground(standartBackround);
 
                 }else if(button.getText().toString().equals(game_hashMap.getAnswer())){
+                    button.setBackgroundResource(R.drawable.correct_btn);
                     //тимчасовий if
                     if(game_hashMap.getArrayOfKeyHashMap().size()<4){
                         reset();
@@ -116,25 +107,25 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
             public void onClick(View v) {
                 switch(v.getId()) {
                     case R.id.iBtn_bottom_left:
-                        rightAndWrongAnswers(three);
+                        rightAndWrongAnswers(btn_bottom_left);
                         break;
                     case R.id.iBtn_bottom_right:
-                        rightAndWrongAnswers(four);
+                        rightAndWrongAnswers(btn_bottom_right);
                         break;
                     case R.id.iBtn_top_left:
                         rightAndWrongAnswers(btn_top_left);
                         break;
                     case R.id.iBtn_top_right:
-                        rightAndWrongAnswers(two);
+                        rightAndWrongAnswers(btn_top_right);
                         break;
                 }
             }
         };
 
         btn_top_left.setOnClickListener(onClickListener);
-        two.setOnClickListener(onClickListener);
-        three.setOnClickListener(onClickListener);
-        four.setOnClickListener(onClickListener);
+        btn_top_right.setOnClickListener(onClickListener);
+        btn_bottom_left.setOnClickListener(onClickListener);
+        btn_bottom_right.setOnClickListener(onClickListener);
     }
 
     public void onClick2() {
@@ -168,59 +159,45 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
         int rand = ((int) (Math.random()*4));
         switch (rand){
             case 0:
-                tView_btn_top_left.setText(game_hashMap.getQuestion_NameOfGame());
+                btn_top_left.setText(game_hashMap.getQuestion_NameOfGame());
                 break;
             case 1:
-                tView_btn_top_right.setText(game_hashMap.getQuestion_NameOfGame());
+                btn_top_right.setText(game_hashMap.getQuestion_NameOfGame());
                 break;
             case 2:
-                tView_btn_bottom_left.setText(game_hashMap.getQuestion_NameOfGame());
+                btn_bottom_left.setText(game_hashMap.getQuestion_NameOfGame());
                 break;
             case 3:
-                tView_btn_bottom_right.setText(game_hashMap.getQuestion_NameOfGame());
+                btn_bottom_right.setText(game_hashMap.getQuestion_NameOfGame());
                 break;
         }
-        System.out.println();
         game_hashMap.getArrayOfKeyHashMap().remove(game_hashMap.getIndexOfArrayOfKey());
     }
 
     public void fillRestTextView(){
-        List<TextView> textViewList = new ArrayList<>();
-        textViewList.add(tView_btn_top_left);
-        textViewList.add(tView_btn_top_right);
-        textViewList.add(tView_btn_bottom_left);
-        textViewList.add(tView_btn_bottom_right);
-
+        List<Button> buttonsList = new ArrayList<>();
+        buttonsList.add(btn_top_left);
+        buttonsList.add(btn_top_right);
+        buttonsList.add(btn_bottom_left);
+        buttonsList.add(btn_bottom_right);
 
         Collections.shuffle(game_hashMap.getArrayOfKeyHashMap());
-        for(TextView tv:textViewList){
-            if(tv.getText().equals("")){
-                tv.setText(game_hashMap.getArrayOfKeyHashMap().get(0));
+        for(Button btn:buttonsList){
+            if(btn.getText().equals("")){
+                btn.setText(game_hashMap.getArrayOfKeyHashMap().get(0));
                 game_hashMap.getArrayOfKeyHashMap().remove(0);
             }
-            System.out.println(tv.getText().toString());
+            System.out.println(btn.getText().toString());
         }
 
         System.out.println("size !!"+game_hashMap.getArrayOfKeyHashMap().size());
-
-
-        btn_top_left.setText(tView_btn_top_left.getText());
-        two.setText(tView_btn_top_right.getText());
-        three.setText(tView_btn_bottom_left.getText());
-        four.setText(tView_btn_bottom_right.getText());
     }
 
     public void setEmptyTextForButton(){
-        tView_btn_top_left.setText("");
-        tView_btn_top_right.setText("");
-        tView_btn_bottom_left.setText("");
-        tView_btn_bottom_right.setText("");
-
-
-        btn_top_left.setText(tView_btn_top_left.getText());
-        two.setText(tView_btn_top_right.getText());
-        three.setText(tView_btn_bottom_left.getText());
-        four.setText(tView_btn_bottom_right.getText());
+        btn_top_left.setText("");
+        btn_top_right.setText("");
+        btn_bottom_left.setText("");
+        btn_bottom_right.setText("");
     }
 
 
