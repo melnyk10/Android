@@ -12,25 +12,25 @@ import android.widget.Button;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Game_Activity extends AppCompatActivity implements ViewSwitcher.ViewFactory{
+public class Game_Activity extends AppCompatActivity implements ViewSwitcher.ViewFactory {
 
     private Button btn_top_left = null;
     private Button btn_top_right = null;
     private Button btn_bottom_left = null;
     private Button btn_bottom_right = null;
 
+    //private
+    List<Button> buttonsList = new ArrayList<>();
+
     private ImageSwitcher mBackgroundImage = null;
 
     private Game_HashMap game_hashMap = new Game_HashMap();
-
-
 
 
     @Override
@@ -39,11 +39,11 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
         setContentView(R.layout.activity_game_activity);
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                 | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                  | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                  | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
-                  | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         btn_top_left = (Button) findViewById(R.id.iBtn_top_left);
@@ -51,8 +51,10 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
         btn_bottom_left = (Button) findViewById(R.id.iBtn_bottom_left);
         btn_bottom_right = (Button) findViewById(R.id.iBtn_bottom_right);
 
-        //стандартний бекраунд
-        //final Drawable standartBackround = btn_top_left.getBackground();
+        buttonsList.add(btn_top_left);
+        buttonsList.add(btn_top_right);
+        buttonsList.add(btn_bottom_left);
+        buttonsList.add(btn_bottom_right);
 
         mBackgroundImage = (ImageSwitcher) findViewById(R.id.gameFrameSwitcher);
         mBackgroundImage.setFactory(this);
@@ -67,32 +69,28 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
 
         game_hashMap.firstStartRightQuestion();
 
-        randomSetTextToTextView();
-
+        randomSetGameNameTOButtonText();
         fillRestTextView();
 
 
         // 3 поля яких міняє картинку
         String mDrawableName = game_hashMap.getMapOfAllGame().get(game_hashMap.getAnswer()); // файл cat1.png в папке drawable
-        int resID = getResources().getIdentifier(mDrawableName , "drawable", getPackageName());
+        int resID = getResources().getIdentifier(mDrawableName, "drawable", getPackageName());
         mBackgroundImage.setImageResource(resID); //картинка при першому запуску
 
 
-        //винести в окремий клас ????
         View.OnClickListener onClickListener = new View.OnClickListener() {
-            public void rightAndWrongAnswers(Button button){
+            public void rightAndWrongAnswers(Button button) {
                 //if wrong answer
-                if(!(button.getText().toString().equals(game_hashMap.getAnswer()))){
+                if (!(button.getText().toString().equals(game_hashMap.getAnswer()))) {
                     button.setBackgroundResource(R.drawable.wrong_btn);//if answer is wrong change color of button to red
                     onClick2();
 //                    Intent intent=new Intent(getApplicationContext(), game_over.class);
 //                    startActivity(intent);
-                    //button.setBackground(standartBackround);
-
-                }else if(button.getText().toString().equals(game_hashMap.getAnswer())){
+                } else if (button.getText().toString().equals(game_hashMap.getAnswer())) {
                     button.setBackgroundResource(R.drawable.correct_btn);
                     //тимчасовий if
-                    if(game_hashMap.getArrayOfKeyHashMap().size()<4){
+                    if (game_hashMap.getArrayOfKeyHashMap().size() < 4) {
                         reset();
                     }
 
@@ -101,11 +99,9 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
             }
 
 
-
-
             @Override
             public void onClick(View v) {
-                switch(v.getId()) {
+                switch (v.getId()) {
                     case R.id.iBtn_bottom_left:
                         rightAndWrongAnswers(btn_bottom_left);
                         break;
@@ -128,6 +124,7 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
         btn_bottom_right.setOnClickListener(onClickListener);
     }
 
+    //тимчасовий метод
     public void onClick2() {
         AlertDialog.Builder builder = new AlertDialog.Builder(Game_Activity.this);
         builder.setTitle("GAME OVER")
@@ -155,84 +152,64 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
     }
 
 
-    private void randomSetTextToTextView(){
-        int rand = ((int) (Math.random()*4));
-        switch (rand){
-            case 0:
-                btn_top_left.setText(game_hashMap.getQuestion_NameOfGame());
-                break;
-            case 1:
-                btn_top_right.setText(game_hashMap.getQuestion_NameOfGame());
-                break;
-            case 2:
-                btn_bottom_left.setText(game_hashMap.getQuestion_NameOfGame());
-                break;
-            case 3:
-                btn_bottom_right.setText(game_hashMap.getQuestion_NameOfGame());
-                break;
-        }
+    private void randomSetGameNameTOButtonText() {
+        int rand = ((int) (Math.random() * 4));
+        buttonsList.get(rand).setText(game_hashMap.getQuestion_NameOfGame());
         game_hashMap.getArrayOfKeyHashMap().remove(game_hashMap.getIndexOfArrayOfKey());
     }
 
-    public void fillRestTextView(){
-        List<Button> buttonsList = new ArrayList<>();
-        buttonsList.add(btn_top_left);
-        buttonsList.add(btn_top_right);
-        buttonsList.add(btn_bottom_left);
-        buttonsList.add(btn_bottom_right);
-
+    public void fillRestTextView() {
         Collections.shuffle(game_hashMap.getArrayOfKeyHashMap());
-        for(Button btn:buttonsList){
-            if(btn.getText().equals("")){
+        for (Button btn : buttonsList) {
+            if (btn.getText().equals("")) {
                 btn.setText(game_hashMap.getArrayOfKeyHashMap().get(0));
                 game_hashMap.getArrayOfKeyHashMap().remove(0);
             }
             System.out.println(btn.getText().toString());
         }
-
-        System.out.println("size !!"+game_hashMap.getArrayOfKeyHashMap().size());
+        System.out.println("size !!" + game_hashMap.getArrayOfKeyHashMap().size());
     }
 
-    public void setEmptyTextForButton(){
+
+    public String returnAnswer() {
+        return game_hashMap.getMapOfAllGame().get(game_hashMap.getAnswer()); // файл cat1.png в папке drawable
+    }
+
+    // метод в якому міняється текст
+    public void changeText() {
+        //всім кномпкам-текстам призначаємо пусті поля
         btn_top_left.setText("");
         btn_top_right.setText("");
         btn_bottom_left.setText("");
         btn_bottom_right.setText("");
-    }
 
-
-    public String returnAnswer(){
-        return game_hashMap.getMapOfAllGame().get(game_hashMap.getAnswer()); // файл cat1.png в папке drawable
-    }
-    public void changeText(){
-        // метод в якому міняється текст
-        setEmptyTextForButton();
         game_hashMap.firstStartRightQuestion();
-        randomSetTextToTextView();
+        randomSetGameNameTOButtonText();
         fillRestTextView();
     }
-    public void changeImg(){
+
+    public void changeImg() {
         changeText();
 
         String temp = returnAnswer();
-        int resID2 = getResources().getIdentifier(temp , "drawable", getPackageName());
+        int resID2 = getResources().getIdentifier(temp, "drawable", getPackageName());
         mBackgroundImage.setImageResource(resID2);
-        Log.e("Change img","in change img method == "+temp);
-        System.out.println("size after press = "+game_hashMap.getArrayOfKeyHashMap().size());
+        Log.e("Change img", "in change img method == " + temp);
+        System.out.println("size after press = " + game_hashMap.getArrayOfKeyHashMap().size());
     }
 
 
-        public void reset(){
-            getWindow().getDecorView().setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                            | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                            | View.SYSTEM_UI_FLAG_FULLSCREEN
-                            | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+    public void reset() {
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
-            System.out.println("Size in IF = "+game_hashMap.getArrayOfKeyHashMap().size());
-            game_hashMap.setArrayOfKeyHashMap(game_hashMap.copyKeyMapToStringListArray());
-            changeImg();
+        System.out.println("Size in IF = " + game_hashMap.getArrayOfKeyHashMap().size());
+        game_hashMap.setArrayOfKeyHashMap(game_hashMap.copyKeyMapToStringListArray());
+        changeImg();
     }
 }
