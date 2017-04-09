@@ -15,12 +15,20 @@
         android:layout_height="fill_parent"
         android:layout_centerInParent="true"/>
 
+    <TextSwitcher
+        android:id="@+id/iScore"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_below="@+id/linearLayoutTopButtons"
+        />
+
 
     <LinearLayout
         android:gravity="top"
         android:id="@id/linearLayoutTopButtons"
         android:layout_width="fill_parent"
-        android:layout_height="60.0dip"
+        android:layout_height="50.0dip"
         android:baselineAligned="false"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
@@ -43,6 +51,7 @@
             android:alpha="0.75"
             android:ellipsize="end"
             android:maxLines="1"
+
             />
 
     </RelativeLayout>
@@ -72,7 +81,7 @@
         android:gravity="bottom"
         android:id="@id/linearLayoutBottomButtons"
         android:layout_width="wrap_content"
-        android:layout_height="60.0dip"
+        android:layout_height="50.0dip"
         android:baselineAligned="false"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"

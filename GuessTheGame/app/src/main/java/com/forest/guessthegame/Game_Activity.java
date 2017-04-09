@@ -1,10 +1,15 @@
 package com.forest.guessthegame;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
@@ -12,6 +17,8 @@ import android.widget.Button;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextSwitcher;
+import android.widget.TextView;
 import android.widget.ViewSwitcher;
 
 import java.util.ArrayList;
@@ -24,6 +31,10 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
     private Button btn_top_right = null;
     private Button btn_bottom_left = null;
     private Button btn_bottom_right = null;
+
+    private TextSwitcher score_textSwithcer = null;
+
+    private int score = 0;
 
     //private
     List<Button> buttonsList = new ArrayList<>();
@@ -46,10 +57,33 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
+        final Animation inAnimation = new AlphaAnimation(0, 1);
+        inAnimation.setDuration(2000);
+        final Animation outAnimation = new AlphaAnimation(1, 0);
+        outAnimation.setDuration(2000);
+
         btn_top_left = (Button) findViewById(R.id.iBtn_top_left);
         btn_top_right = (Button) findViewById(R.id.iBtn_top_right);
         btn_bottom_left = (Button) findViewById(R.id.iBtn_bottom_left);
         btn_bottom_right = (Button) findViewById(R.id.iBtn_bottom_right);
+
+
+        score_textSwithcer = (TextSwitcher) findViewById(R.id.iScore);
+        score_textSwithcer.setInAnimation(inAnimation);
+        score_textSwithcer.setOutAnimation(outAnimation);
+        score_textSwithcer.setFactory(new ViewSwitcher.ViewFactory() {
+            @Override
+            public View makeView() {
+                TextView textView = new TextView(Game_Activity.this);
+                textView.setGravity(Gravity.CENTER_HORIZONTAL);
+                textView.setShadowLayer(2,1,1,Color.BLACK);
+                textView.setTextSize(20);
+                textView.setTextColor(Color.WHITE);
+                return textView;
+            }
+        });
+
+
 
         buttonsList.add(btn_top_left);
         buttonsList.add(btn_top_right);
@@ -59,10 +93,8 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
         mBackgroundImage = (ImageSwitcher) findViewById(R.id.gameFrameSwitcher);
         mBackgroundImage.setFactory(this);
 
-        Animation inAnimation = new AlphaAnimation(0, 1);
-        inAnimation.setDuration(2000);
-        Animation outAnimation = new AlphaAnimation(1, 0);
-        outAnimation.setDuration(2000);
+
+
 
         mBackgroundImage.setInAnimation(inAnimation);
         mBackgroundImage.setOutAnimation(outAnimation);
@@ -83,17 +115,14 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
             public void rightAndWrongAnswers(Button button) {
                 //if wrong answer
                 if (!(button.getText().toString().equals(game_hashMap.getAnswer()))) {
-                    button.setBackgroundResource(R.drawable.wrong_btn);//if answer is wrong change color of button to red
                     onClick2();
-//                    Intent intent=new Intent(getApplicationContext(), game_over.class);
-//                    startActivity(intent);
                 } else if (button.getText().toString().equals(game_hashMap.getAnswer())) {
-                    button.setBackgroundResource(R.drawable.correct_btn);
+                    score+=25;
+                    score_textSwithcer.setText(String.valueOf(score));
                     //тимчасовий if
                     if (game_hashMap.getArrayOfKeyHashMap().size() < 4) {
                         reset();
                     }
-
                     changeImg();
                 }
             }
@@ -118,6 +147,7 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
             }
         };
 
+
         btn_top_left.setOnClickListener(onClickListener);
         btn_top_right.setOnClickListener(onClickListener);
         btn_bottom_left.setOnClickListener(onClickListener);
@@ -139,7 +169,6 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
         AlertDialog alert = builder.create();
         alert.show();
     }
-
 
     @Override
     public View makeView() {
@@ -207,6 +236,8 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+
+        score_textSwithcer.setText(String.valueOf(0));
 
         System.out.println("Size in IF = " + game_hashMap.getArrayOfKeyHashMap().size());
         game_hashMap.setArrayOfKeyHashMap(game_hashMap.copyKeyMapToStringListArray());
