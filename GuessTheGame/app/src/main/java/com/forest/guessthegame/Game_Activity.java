@@ -5,6 +5,7 @@ import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -115,7 +116,10 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
             public void rightAndWrongAnswers(Button button) {
                 //if wrong answer
                 if (!(button.getText().toString().equals(game_hashMap.getAnswer()))) {
-                    onClick2();
+                    button.setBackgroundResource(R.drawable.wrong_btn);
+                    Intent game_over_intent = new Intent(Game_Activity.this, Game_over_activity.class);
+                    startActivity(game_over_intent);
+//                    onClick2();
                 } else if (button.getText().toString().equals(game_hashMap.getAnswer())) {
                     score+=25;
                     score_textSwithcer.setText(String.valueOf(score));

@@ -9,9 +9,10 @@
 
     <!--copy-->
     <color name="LightGray">#ffeeeeee</color>
-	<color name="Black">#ff222222</color>
-	<color name="White">#FFFFFF</color>
-	<color name="Transparent">#809F9F9F</color>
+    <color name="Black">#ff222222</color>
+    <color name="White">#FFFFFF</color>
+    <color name="Transparent">#809F9F9F</color>
+    <color name="Transparent2">#80000000</color>
 
 
 </resources>

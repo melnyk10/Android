@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/Black"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.forest.guessthegame.Game_over_activity">
+
+
+
+
+
+        <TextView
+            android:id="@+id/iGame_over_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="GAME OVER"
+            android:textAppearance="@style/button_text"
+            android:textSize="40dp"
+            android:layout_marginTop="50dp" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/score_point_game_over_act"
+            android:layout_below="@+id/iGame_over_text"
+            android:layout_centerHorizontal="true"
+            >
+            <TextView
+                android:id="@+id/iYour_score_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+
+                android:text="your score:"
+                android:textSize="30dp"
+                android:textAppearance="@style/button_text"
+                />
+            <TextView
+                android:id="@+id/iScore_go"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/iYour_score_text"
+                android:layout_gravity="center"
+                android:textAppearance="@style/button_text"
+                android:text="0"
+                android:textSize="50dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/iScore_go"
+                android:layout_centerHorizontal="true"
+                android:textAppearance="@style/button_text"
+                android:text="point"
+                android:textSize="30dp"
+                />
+    </RelativeLayout>
+
+</RelativeLayout>

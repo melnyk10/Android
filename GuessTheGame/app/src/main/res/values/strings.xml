@@ -19,4 +19,6 @@
     <string name="bottom_left">2</string>
     <string name="bottom_right">3</string>
 
+    <string name="title_activity_game_over_activity">Game_over_activity</string>
+
 </resources>
