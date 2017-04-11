@@ -2,7 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/Black"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.forest.guessthegame.Game_over_activity">
@@ -32,13 +31,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-
                 android:text="your score:"
                 android:textSize="30dp"
                 android:textAppearance="@style/button_text"
                 />
             <TextView
-                android:id="@+id/iScore_go"
+                android:id="@+id/iScore_game_over"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -50,14 +48,34 @@
                 android:textSize="50dp"
                 />
             <TextView
+                android:id="@+id/point_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/iScore_go"
+                android:layout_below="@+id/iScore_game_over"
                 android:layout_centerHorizontal="true"
                 android:textAppearance="@style/button_text"
                 android:text="point"
                 android:textSize="30dp"
                 />
     </RelativeLayout>
+    <Button
+        android:id="@+id/iBtn_resetq"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Reset"
+        android:layout_below="@id/iGame_over_text"/>
+    <ImageButton
+        android:id="@+id/imgBtn_restart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@id/iGame_over_text"
+        android:layout_below="@id/iGame_over_text"/>
+    <ImageButton
+        android:id="@+id/imgBtn_go_main_activity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/iGame_over_text"
+        android:layout_below="@id/iGame_over_text"
+        />
 
 </RelativeLayout>

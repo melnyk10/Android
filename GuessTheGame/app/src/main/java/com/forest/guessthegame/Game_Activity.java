@@ -3,6 +3,7 @@ package com.forest.guessthegame;
 import android.animation.ArgbEvaluator;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -27,6 +28,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Game_Activity extends AppCompatActivity implements ViewSwitcher.ViewFactory {
+
 
     private Button btn_top_left = null;
     private Button btn_top_right = null;
@@ -56,7 +58,7 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
                         | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        //getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         final Animation inAnimation = new AlphaAnimation(0, 1);
         inAnimation.setDuration(2000);
@@ -117,9 +119,10 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
                 //if wrong answer
                 if (!(button.getText().toString().equals(game_hashMap.getAnswer()))) {
                     button.setBackgroundResource(R.drawable.wrong_btn);
+
                     Intent game_over_intent = new Intent(Game_Activity.this, Game_over_activity.class);
+                    game_over_intent.putExtra("score", String.valueOf(score));
                     startActivity(game_over_intent);
-//                    onClick2();
                 } else if (button.getText().toString().equals(game_hashMap.getAnswer())) {
                     score+=25;
                     score_textSwithcer.setText(String.valueOf(score));
@@ -158,21 +161,6 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
         btn_bottom_right.setOnClickListener(onClickListener);
     }
 
-    //тимчасовий метод
-    public void onClick2() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(Game_Activity.this);
-        builder.setTitle("GAME OVER")
-                .setCancelable(false)
-                .setNegativeButton("RESTART",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int id) {
-                                reset();
-                                dialog.cancel();
-                            }
-                        });
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
 
     @Override
     public View makeView() {
