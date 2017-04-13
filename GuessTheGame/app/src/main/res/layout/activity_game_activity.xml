@@ -43,6 +43,7 @@
         <Button
             android:id="@id/iBtn_top_left"
             android:tag="@string/top_left"
+            android:textColor="@color/White"
             android:layout_marginRight="2.0dip"
             android:background="@drawable/grey_button"
             android:layout_width="match_parent"
@@ -64,6 +65,7 @@
             <Button
                 android:id="@id/iBtn_top_right"
                 android:tag="@string/top_right"
+                android:textColor="@color/White"
                 android:layout_marginLeft="2.0dip"
                 android:background="@drawable/grey_button"
                 android:layout_width="match_parent"
@@ -95,6 +97,7 @@
             <Button
                 android:id="@id/iBtn_bottom_left"
                 android:tag="@string/bottom_left"
+                android:textColor="@color/White"
                 android:layout_marginRight="2.0dip"
                 android:background="@drawable/grey_button"
                 android:layout_width="match_parent"
@@ -115,6 +118,7 @@
             <Button
                 android:id="@id/iBtn_bottom_right"
                 android:tag="@string/bottom_right"
+                android:textColor="@color/White"
                 android:layout_marginLeft="2.0dip"
                 android:background="@drawable/grey_button"
                 android:layout_width="match_parent"

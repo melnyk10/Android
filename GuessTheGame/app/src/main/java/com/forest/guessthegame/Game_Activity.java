@@ -27,7 +27,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Game_Activity extends AppCompatActivity implements ViewSwitcher.ViewFactory {
+public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory {
 
 
     private Button btn_top_left = null;
@@ -39,8 +39,7 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
 
     private int score = 0;
 
-    //private
-    List<Button> buttonsList = new ArrayList<>();
+    private List<Button> buttonsList = new ArrayList<>();
 
     private ImageSwitcher mBackgroundImage = null;
 
@@ -61,9 +60,9 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
         //getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         final Animation inAnimation = new AlphaAnimation(0, 1);
-        inAnimation.setDuration(2000);
+        inAnimation.setDuration(700);
         final Animation outAnimation = new AlphaAnimation(1, 0);
-        outAnimation.setDuration(2000);
+        outAnimation.setDuration(700);
 
         btn_top_left = (Button) findViewById(R.id.iBtn_top_left);
         btn_top_right = (Button) findViewById(R.id.iBtn_top_right);
@@ -95,8 +94,6 @@ public class Game_Activity extends AppCompatActivity implements ViewSwitcher.Vie
 
         mBackgroundImage = (ImageSwitcher) findViewById(R.id.gameFrameSwitcher);
         mBackgroundImage.setFactory(this);
-
-
 
 
         mBackgroundImage.setInAnimation(inAnimation);

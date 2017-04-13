@@ -58,12 +58,7 @@
                 android:textSize="30dp"
                 />
     </RelativeLayout>
-    <Button
-        android:id="@+id/iBtn_resetq"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reset"
-        android:layout_below="@id/iGame_over_text"/>
+
     <ImageButton
         android:id="@+id/imgBtn_restart"
         android:layout_width="wrap_content"
