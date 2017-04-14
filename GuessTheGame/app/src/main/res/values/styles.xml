@@ -34,6 +34,19 @@
         <item name="android:shadowRadius">0.5</item>
     </style>
 
+    <style name="text_4_sliding_drawer">
+        <item name="android:textSize">13.0sp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/MiddleGray</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:shadowColor">#ffffffff</item>
+        <item name="android:shadowDx">0.9</item>
+        <item name="android:shadowDy">1.0</item>
+        <item name="android:shadowRadius">0.5</item>
+    </style>
+
+
     <style name="button_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -57,6 +70,7 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:backgroundDimEnabled">false</item>
     </style>
+
     <style name="MyAppTheme" parent="AppTheme">
         <item name="android:windowNoTitle" >true</item>
         <item name="android:windowFullscreen" >true</item>

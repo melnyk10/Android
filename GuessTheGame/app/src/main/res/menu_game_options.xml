@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout android:layout_width="wrap_content"
+ android:layout_height="wrap_content"
+  xmlns:android="http://schemas.android.com/apk/res/android">
+  
+    <TableRow 
+	android:gravity="center"
+	android:layout_width="wrap_content"
+	android:layout_height="wrap_content"
+	android:layout_margin="10.0dip">
+        <ImageButton
+			android:id="@id/gOptButtonContinue"
+			android:background="@drawable/m_butt_play"
+			android:layout_width="52.0dip"
+			android:layout_height="52.0dip"
+			android:contentDescription="@string/continue_game" />
+        <TextView android:textAppearance="?android:textAppearanceLarge"
+		android:ellipsize="end" 
+		android:layout_gravity="center_vertical"
+		android:id="@id/textGameOptionContinue"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="10.0dip"
+		android:text="@string/continue_game"
+		android:singleLine="true" style="@style/text_reg" />
+    </TableRow>
+
+    <TableRow
+		android:gravity="center"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="10.0dip" />
+        <ImageButton 
+		android:id="@id/gOptButtonStartNew"
+		android:background="@drawable/m_butt_reload"
+		android:layout_width="52.0dip"
+		android:layout_height="52.0dip"
+		android:contentDescription="@string/start_new_game" />
+        <TextView android:textAppearance="?android:textAppearanceLarge" 
+		android:ellipsize="end" android:layout_gravity="center_vertical"
+		android:id="@id/textNewGameOption" 
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginLeft="10.0dip" 
+		android:text="@string/start_new_game" />
+    <TableRow
+		android:gravity="center"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_margin="10.0dip">
+        <ImageButton
+			android:id="@id/gOptButtonOut"
+			android:background="@drawable/m_butt_end"
+			android:layout_width="52.0dip"
+			android:layout_height="52.0dip"
+			android:contentDescription="@string/out_of_game" />
+        <TextView
+			android:textAppearance="?android:textAppearanceLarge"
+			android:ellipsize="end"
+			android:layout_gravity="center_vertical"
+			android:id="@id/textGameOverDrawer"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginLeft="10.0dip"
+			android:text="@string/out_of_game"
+			android:singleLine="true" style="@style/text_reg" />
+    </TableRow>
+</TableLayout>

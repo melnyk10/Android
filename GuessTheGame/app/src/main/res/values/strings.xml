@@ -21,4 +21,14 @@
 
     <string name="title_activity_game_over_activity">Game_over_activity</string>
 
+    <string name="tips">Hints</string>
+    <string name="restart_game">Restart Game</string>
+    <string name="resume_game">Resume Game</string>
+    <string name="quit_game">Quit Game</string>
+    <string name="info">Information</string>
+
+    <string name="continue_game">Resume Game</string>
+    <string name="start_new_game">Restart Game</string>
+    <string name="out_of_game">Quit Game</string>
+
 </resources>

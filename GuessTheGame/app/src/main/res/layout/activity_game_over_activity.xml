@@ -20,6 +20,7 @@
             android:textSize="40dp"
             android:layout_marginTop="50dp" />
         <RelativeLayout
+            android:id="@+id/relative_layout_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/score_point_game_over_act"
@@ -61,16 +62,18 @@
 
     <ImageButton
         android:id="@+id/imgBtn_restart"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/iGame_over_text"
-        android:layout_below="@id/iGame_over_text"/>
+        android:layout_width="65.0dip"
+        android:layout_height="65.0dip"
+        android:layout_toLeftOf="@id/relative_layout_score"
+        android:layout_below="@id/iGame_over_text"
+        android:background="@drawable/restart_img_btn"/>
     <ImageButton
         android:id="@+id/imgBtn_go_main_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@id/iGame_over_text"
+        android:layout_width="65.0dip"
+        android:layout_height="65.0dip"
+        android:layout_toRightOf="@id/relative_layout_score"
         android:layout_below="@id/iGame_over_text"
+        android:background="@drawable/quit_game2"
         />
 
 </RelativeLayout>

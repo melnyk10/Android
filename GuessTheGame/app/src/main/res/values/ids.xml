@@ -25,4 +25,39 @@
 	<item type="id" name="gameFrameSwitcher">false</item>
 	<item type="id" name="btn_goTo3thAct_temp">false</item>
 
+    <item type="id" name="gameOptionsSlidingDrawer">false</item>
+    <item type="id" name="handle_layout">false</item>
+    <item type="id" name="content">false</item>
+    <item type="id" name="handle_button">false</item>
+    <item type="id" name="RelativeLayoutTips">false</item>
+    <item type="id" name="txtDrawerScore">false</item>
+    <item type="id" name="linearLayoutTips">false</item>
+    <item type="id" name="textViewTips">false</item>
+    <item type="id" name="imageButton50_50">false</item>
+    <item type="id" name="textViewDescription1">false</item>
+    <item type="id" name="ImageButtonNextFrame">false</item>
+    <item type="id" name="textViewDescription2">false</item>
+    <item type="id" name="textViewTime">false</item>
+    <item type="id" name="includeMenu">false</item>
+    <item type="id" name="MenuButtonSoundOnOff">false</item>
+
+    <item type="id" name="textGameOptionContinue">false</item>
+    <item type="id" name="gOptButtonContinue">false</item>
+    <item type="id" name="gOptButtonStartNew">false</item>
+    <item type="id" name="textNewGameOption">false</item>
+    <item type="id" name="gOptButtonOut">false</item>
+    <item type="id" name="textGameOverDrawer">false</item>
+
+    <item type="id" name="game_options_relative_layout">false</item>
+    <item type="id" name="game_options_linear_layout">false</item>
+    <item type="id" name="btn_resume_game">false</item>
+    <item type="id" name="text_view_description1">false</item>
+    <item type="id" name="btn_restart_game">false</item>
+    <item type="id" name="text_view_description2">false</item>
+    <item type="id" name="imgBtn_quit_game">false</item>
+    <item type="id" name="text_view_description3">false</item>
+
+
+
+
 </resources>

@@ -13,5 +13,9 @@
     <color name="White">#FFFFFF</color>
     <color name="Transparent">#80000000</color>
 
+    <color name="TrGray">#b0000000</color>
+    <color name="MiddleGray">#ff555555</color>
+
+
 
 </resources>
