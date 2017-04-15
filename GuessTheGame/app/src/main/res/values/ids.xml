@@ -50,11 +50,11 @@
 
     <item type="id" name="game_options_relative_layout">false</item>
     <item type="id" name="game_options_linear_layout">false</item>
-    <item type="id" name="btn_resume_game">false</item>
+    <item type="id" name="iImgBtn_resume_game">false</item>
     <item type="id" name="text_view_description1">false</item>
-    <item type="id" name="btn_restart_game">false</item>
+    <item type="id" name="iImgBtn_restart_game">false</item>
     <item type="id" name="text_view_description2">false</item>
-    <item type="id" name="imgBtn_quit_game">false</item>
+    <item type="id" name="iImgBtn_quit_game">false</item>
     <item type="id" name="text_view_description3">false</item>
 
 

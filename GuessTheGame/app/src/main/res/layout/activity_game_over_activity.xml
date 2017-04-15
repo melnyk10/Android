@@ -62,18 +62,27 @@
 
     <ImageButton
         android:id="@+id/imgBtn_restart"
-        android:layout_width="65.0dip"
-        android:layout_height="65.0dip"
+        android:layout_width="50.0dip"
+        android:layout_height="50.0dip"
         android:layout_toLeftOf="@id/relative_layout_score"
         android:layout_below="@id/iGame_over_text"
-        android:background="@drawable/restart_img_btn"/>
+        android:background="@drawable/restart_normal_white"
+        android:shadowColor = "@color/Black"
+        android:shadowDx="0.9"
+        android:shadowDy="1.0"
+        android:shadowRadius="1"/>
+
     <ImageButton
         android:id="@+id/imgBtn_go_main_activity"
-        android:layout_width="65.0dip"
-        android:layout_height="65.0dip"
+        android:layout_width="50.0dip"
+        android:layout_height="50.0dip"
         android:layout_toRightOf="@id/relative_layout_score"
         android:layout_below="@id/iGame_over_text"
-        android:background="@drawable/quit_game2"
+        android:background="@drawable/butt_tip_50"
+    android:shadowColor = "@color/Black"
+    android:shadowDx="0.9"
+    android:shadowDy="1.0"
+    android:shadowRadius="0.5"
         />
 
 </RelativeLayout>
