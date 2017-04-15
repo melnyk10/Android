@@ -100,6 +100,14 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
 
         mBackgroundImage = (ImageSwitcher) findViewById(R.id.gameFrameSwitcher);
         mBackgroundImage.setFactory(this);
+        mBackgroundImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(slidingDrawer.isOpened()) {
+                    slidingDrawer.close();
+                }
+            }
+        });
 
 
         mBackgroundImage.setInAnimation(inAnimation);
@@ -159,7 +167,6 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
                         rightAndWrongAnswers(btn_top_right);
                         break;
                     case R.id.iImgBtn_resume_game:
-                        
                         slidingDrawer.close();
                         break;
                     case R.id.iImgBtn_restart_game:
@@ -185,6 +192,7 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
         imgBtn_quit.setOnClickListener(onClickListener);
 
     }
+
 
     @Override
     public View makeView() {

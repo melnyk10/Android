@@ -11,6 +11,7 @@
     <ImageSwitcher
         android:id="@id/gameFrameSwitcher"
         android:background="@color/Black"
+        android:layout_alignParentTop="true"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_centerInParent="true"/>
@@ -146,11 +147,11 @@
 
         <FrameLayout
             android:id="@id/handle_layout"
-            android:layout_width="wrap_content"
+            android:layout_width="40dp"
             android:layout_height="fill_parent">
 
             <ImageView
-                android:layout_gravity="center_vertical"
+                android:layout_gravity="right|center_vertical"
                 android:id="@id/handle_button"
                 android:background="@drawable/drawer_handle"
                 android:layout_width="30.0dip"
