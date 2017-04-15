@@ -66,6 +66,7 @@
         android:layout_height="50.0dip"
         android:layout_toLeftOf="@id/relative_layout_score"
         android:layout_below="@id/iGame_over_text"
+        android:layout_marginRight="5dp"
         android:background="@drawable/restart_normal_white"
         android:shadowColor = "@color/Black"
         android:shadowDx="0.9"
@@ -78,11 +79,31 @@
         android:layout_height="50.0dip"
         android:layout_toRightOf="@id/relative_layout_score"
         android:layout_below="@id/iGame_over_text"
+        android:layout_marginLeft="5dp"
         android:background="@drawable/butt_tip_50"
     android:shadowColor = "@color/Black"
     android:shadowDx="0.9"
     android:shadowDy="1.0"
     android:shadowRadius="0.5"
+        />
+    <TextView
+        android:id="@+id/iBest_score_text"
+        android:text="best score: "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relative_layout_score"
+        android:textAppearance="@style/button_text"
+        android:layout_centerHorizontal="true"
+        />
+    <TextView
+        android:id="@+id/iHightScore"
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/relative_layout_score"
+        android:layout_toRightOf="@id/iBest_score_text"
+        android:textAppearance="@style/button_text"
+        android:layout_centerHorizontal="true"
         />
 
 </RelativeLayout>

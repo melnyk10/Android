@@ -1,7 +1,9 @@
 package com.forest.guessthegame;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -37,9 +39,11 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
 
     private SlidingDrawer slidingDrawer = null;
 
-    private TextSwitcher score_textSwithcer = null;
+    private TextSwitcher score_textSwitcher = null;
 
+    public static final String HIGH_SCORE = "highScore";
     private int score = 0;
+    private int highScore;
 
     private List<Button> buttonsList = new ArrayList<>();
 
@@ -77,10 +81,10 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
 
         slidingDrawer = (SlidingDrawer) findViewById(R.id.gameOptionsSlidingDrawer);
 
-        score_textSwithcer = (TextSwitcher) findViewById(R.id.iScore);
-        score_textSwithcer.setInAnimation(inAnimation);
-        score_textSwithcer.setOutAnimation(outAnimation);
-        score_textSwithcer.setFactory(new ViewSwitcher.ViewFactory() {
+        score_textSwitcher = (TextSwitcher) findViewById(R.id.iScore);
+        score_textSwitcher.setInAnimation(inAnimation);
+        score_textSwitcher.setOutAnimation(outAnimation);
+        score_textSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
             @Override
             public View makeView() {
                 TextView textView = new TextView(Game_Activity.this);
@@ -125,6 +129,10 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
         mBackgroundImage.setImageResource(resID); //картинка при першому запуску
 
 
+        final SharedPreferences prefs = this.getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
+        highScore = prefs.getInt("score", 0);
+
+
         View.OnClickListener onClickListener = new View.OnClickListener() {
             public void rightAndWrongAnswers(Button button) {
                 //if wrong answer
@@ -133,20 +141,30 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
                     if (slidingDrawer.isOpened()) {
                         slidingDrawer.close();
                     }
+
+                    if (highScore > score) {
+//            tvHighScore.setText(String.valueOf(highScore));
+                    } else {
+                        highScore = score;
+//            tvHighScore.setText(String.valueOf(highScore));
+                        prefs.edit().putInt("score", highScore).apply();
+                        Log.e("HifhScore", highScore+"");
+                    }
+
                     Intent game_over_intent = new Intent(Game_Activity.this, Game_over_activity.class);
                     game_over_intent.putExtra("score", String.valueOf(score));
                     startActivity(game_over_intent);
                 } else if (button.getText().toString().equals(game_hashMap.getAnswer())) {
                     score += 25;
-                    score_textSwithcer.setText(String.valueOf(score));
-                    if (slidingDrawer.isOpened()) {
-                        slidingDrawer.close();
-                    }
+                    score_textSwitcher.setText(String.valueOf(score));
                     //тимчасовий if
                     if (game_hashMap.getArrayOfKeyHashMap().size() < 4) {
                         reset();
                     }
                     changeImg();
+                    if (slidingDrawer.isOpened()) {
+                        slidingDrawer.close();
+                    }
                 }
             }
 
@@ -181,6 +199,10 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
                 }
             }
         };
+
+
+
+
 
 
         btn_top_left.setOnClickListener(onClickListener);
@@ -262,7 +284,7 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         score = 0;
-        score_textSwithcer.setText(String.valueOf(0));
+        score_textSwitcher.setText(String.valueOf(0));
 
         System.out.println("Size in IF = " + game_hashMap.getArrayOfKeyHashMap().size());
         game_hashMap.setArrayOfKeyHashMap(game_hashMap.copyKeyMapToStringListArray());
