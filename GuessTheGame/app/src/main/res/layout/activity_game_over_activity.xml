@@ -11,7 +11,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
-            android:text="GAME OVER"
+            android:text="@string/game_over"
             android:textAppearance="@style/button_text"
             android:textSize="40dp"
             android:layout_marginTop="50dp" />
@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
-                android:text="your score:"
+                android:text="@string/your_score"
                 android:textSize="30dp"
                 android:textAppearance="@style/button_text"
                 />
@@ -51,7 +51,7 @@
                 android:layout_below="@+id/iScore_game_over"
                 android:layout_centerHorizontal="true"
                 android:textAppearance="@style/button_text"
-                android:text="point"
+                android:text="@string/point"
                 android:textSize="30dp"
                 />
     </RelativeLayout>
@@ -91,7 +91,7 @@
         >
         <TextView
             android:id="@id/iBest_score_text"
-            android:text="best score: "
+            android:text="@string/best_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/button_text"

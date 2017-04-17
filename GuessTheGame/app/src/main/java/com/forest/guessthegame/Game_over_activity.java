@@ -44,12 +44,10 @@ public class Game_over_activity extends Activity {
             public void onClick(View v) {
                 switch (v.getId()) {
                     case R.id.iImgBtn_restart:
-                        Intent restart_int = new Intent(Game_over_activity.this, Game_Activity.class);
-                        startActivity(restart_int);
+                        startActivity(new Intent(Game_over_activity.this, Game_Activity.class));
                         break;
                     case R.id.iImgBtn_go_main_activity:
-                        Intent goMainAct = new Intent(Game_over_activity.this, Main_Activity.class);
-                        startActivity(goMainAct);
+                        startActivity(new Intent(Game_over_activity.this, Main_Activity.class));
                         break;
                 }
             }

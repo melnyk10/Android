@@ -13,9 +13,9 @@ import java.util.Map;
 
 public class Game_HashMap {
     private static Map<String, String> mapOfAllGame = new HashMap<>();
+    private List<String> arrayOfKeyHashMap = copyKeyMapToStringListArray();
     private String question_NameOfGame = null;
     private String answer = null;
-    private List<String> arrayOfKeyHashMap = copyKeyMapToStringListArray();
     private int indexOfArrayOfKey = 0;
 
     static {
@@ -44,12 +44,11 @@ public class Game_HashMap {
     }
 
     public void firstStartRightQuestion(){
-        System.out.println(arrayOfKeyHashMap.size()+" size !!!");
         indexOfArrayOfKey = randomNameOfGame();
         question_NameOfGame = arrayOfKeyHashMap.get(indexOfArrayOfKey);
         //randomSetTextToTextView();
         answer = question_NameOfGame;
-        Log.e("Answer", "anser = "+answer);
+        Log.e("Answer", "answer = "+answer);
 
 
     }

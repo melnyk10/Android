@@ -27,30 +27,30 @@ import java.util.List;
 
 public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory {
 
+    private Game_HashMap game_hashMap = new Game_HashMap();
 
     private Button btn_top_left = null;
     private Button btn_top_right = null;
     private Button btn_bottom_left = null;
-    private Button btn_bottom_right = null;
 
+    private Button btn_bottom_right = null;
     private ImageButton imgBtn_resume = null;
     private ImageButton imgBtn_restart = null;
+
     private ImageButton imgBtn_quit = null;
 
     private SlidingDrawer slidingDrawer = null;
-
     private TextSwitcher score_textSwitcher = null;
-    private TextView highScore_textView = null;
 
+    private TextView highScore_textView = null;
     public static final String HIGH_SCORE = "highScore";
     private int score = 0;
+
     private int highScore;
 
     private List<Button> buttonsList = new ArrayList<>();
 
     private ImageSwitcher mBackgroundImage = null;
-
-    private Game_HashMap game_hashMap = new Game_HashMap();
 
 
     @Override
@@ -115,26 +115,22 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
                 }
             }
         });
-
-
         mBackgroundImage.setInAnimation(inAnimation);
         mBackgroundImage.setOutAnimation(outAnimation);
 
         game_hashMap.firstStartRightQuestion();
-
         randomSetGameNameTOButtonText();
         fillRestTextView();
 
 
         // 3 поля яких міняє картинку
-        String mDrawableName = game_hashMap.getMapOfAllGame().get(game_hashMap.getAnswer()); // файл cat1.png в папке drawable
+        String mDrawableName = game_hashMap.getMapOfAllGame().get(game_hashMap.getAnswer());
         int resID = getResources().getIdentifier(mDrawableName, "drawable", getPackageName());
         mBackgroundImage.setImageResource(resID); //картинка при першому запуску
 
 
         final SharedPreferences prefs = this.getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
         highScore = prefs.getInt("high_score", 0);
-
         highScore_textView.setText(String.valueOf(highScore));
 
 
@@ -170,6 +166,16 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
                 } else if (button.getText().toString().equals(game_hashMap.getAnswer())) {
                     score += 25;
                     score_textSwitcher.setText(String.valueOf(score));
+
+                    if (highScore > score) {
+                        highScore_textView.setText(String.valueOf(highScore));
+                    } else {
+                        highScore = score;
+                        highScore_textView.setText(String.valueOf(highScore));
+                        prefs.edit().putInt("high_score", highScore).apply();
+                        Log.e("HifhScore", highScore+"");
+                    }
+
                     //тимчасовий if
                     if (game_hashMap.getArrayOfKeyHashMap().size() < 4) {
                         reset();
@@ -255,7 +261,6 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
             }
             System.out.println(btn.getText().toString());
         }
-        System.out.println("size !!" + game_hashMap.getArrayOfKeyHashMap().size());
     }
 
 
@@ -282,8 +287,6 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
         String temp = returnAnswer();
         int resID2 = getResources().getIdentifier(temp, "drawable", getPackageName());
         mBackgroundImage.setImageResource(resID2);
-        Log.e("Change img", "in change img method == " + temp);
-        System.out.println("size after press = " + game_hashMap.getArrayOfKeyHashMap().size());
     }
 
 
@@ -299,7 +302,6 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
         score = 0;
         score_textSwitcher.setText(String.valueOf(0));
 
-        System.out.println("Size in IF = " + game_hashMap.getArrayOfKeyHashMap().size());
         game_hashMap.setArrayOfKeyHashMap(game_hashMap.copyKeyMapToStringListArray());
         changeImg();
     }

@@ -11,10 +11,10 @@
     <ImageSwitcher
         android:id="@id/iImage_game_switcher"
         android:background="@color/Black"
-        android:layout_alignParentTop="true"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_centerInParent="true"/>
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
     <TextSwitcher
         android:id="@id/iScore"
@@ -138,7 +138,7 @@
         >
         <TextView
             android:id="@id/iBest_score_text_gameAct"
-            android:text="best score: "
+            android:text="@string/best_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="@style/button_text"
@@ -177,7 +177,7 @@
                 android:layout_width="30.0dip"
                 android:layout_height="wrap_content"
                 android:src="@drawable/qs_game_view_hint_arrow_open"
-                android:contentDescription="@string/tips" />
+                 />
         </FrameLayout>
 
         <!--<RelativeLayout-->
