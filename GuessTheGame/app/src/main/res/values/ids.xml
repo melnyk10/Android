@@ -1,54 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- copy -->
-    <!--це було до верхнього лейаута(верхніх дві кнопки)-->
+
+	<!--activity_game_activity-->
+	<item type="id" name="iImage_game_switcher">false</item>
+	<item type="id" name="iScore">false</item>
+    <item type="id" name="iLinearLayout_top_buttons">false</item>
+    <item type="id" name="iRelativeLayout_btn_top_left">false</item>
     <item type="id" name="iBtn_top_left">false</item>
-    <item type="id" name="textYear_tl">false</item>
-    <item type="id" name="linearLayoutTopButtons">false</item>
+    <item type="id" name="iRelativeLayout_btn_top_right">false</item>
+    <item type="id" name="iLinearLayout_bottom_buttons">false</item>
     <item type="id" name="iBtn_top_right">false</item>
-    <item type="id" name="textView_btn_top_left">false</item>
-    <item type="id" name="textView_btn_top_right">false</item>
-
-    <!--це до 2го лейаута(нижні дві кнопки)-->
-    <item type="id" name="linearLayoutBottomButtons">false</item>
+    <item type="id" name="iRelativeLayout_btn_bottom_left">false</item>
     <item type="id" name="iBtn_bottom_left">false</item>
-    <item type="id" name="textYear_bl">false</item>
+    <item type="id" name="iRelativeLayout_btn_bottom_right">false</item>
     <item type="id" name="iBtn_bottom_right">false</item>
-    <item type="id" name="textYear_br">false</item>
-
-    <item type="id" name="textView_btn_bottom_left">false</item>
-    <item type="id" name="textView_btn_bottom_right">false</item>
-    <item type="id" name="iBtn_restart">false</item>
-
-	
-	
-	<item type="id" name="gameFrameSwitcher">false</item>
-	<item type="id" name="btn_goTo3thAct_temp">false</item>
-
+    <item type="id" name="iLinearLayout_highScore">false</item>
+    <item type="id" name="iBest_score_text_gameAct">false</item>
+    <item type="id" name="iHighScore_game_activity">false</item>
+    <!--Sliding Drawer-->
     <item type="id" name="gameOptionsSlidingDrawer">false</item>
     <item type="id" name="handle_layout">false</item>
-    <item type="id" name="content">false</item>
     <item type="id" name="handle_button">false</item>
-    <item type="id" name="RelativeLayoutTips">false</item>
-    <item type="id" name="txtDrawerScore">false</item>
-    <item type="id" name="linearLayoutTips">false</item>
-    <item type="id" name="textViewTips">false</item>
-    <item type="id" name="imageButton50_50">false</item>
-    <item type="id" name="textViewDescription1">false</item>
-    <item type="id" name="ImageButtonNextFrame">false</item>
-    <item type="id" name="textViewDescription2">false</item>
-    <item type="id" name="textViewTime">false</item>
-    <item type="id" name="includeMenu">false</item>
-    <item type="id" name="MenuButtonSoundOnOff">false</item>
-
-    <item type="id" name="textGameOptionContinue">false</item>
-    <item type="id" name="gOptButtonContinue">false</item>
-    <item type="id" name="gOptButtonStartNew">false</item>
-    <item type="id" name="textNewGameOption">false</item>
-    <item type="id" name="gOptButtonOut">false</item>
-    <item type="id" name="textGameOverDrawer">false</item>
-
-    <item type="id" name="game_options_relative_layout">false</item>
     <item type="id" name="game_options_linear_layout">false</item>
     <item type="id" name="iImgBtn_resume_game">false</item>
     <item type="id" name="text_view_description1">false</item>
@@ -56,6 +28,11 @@
     <item type="id" name="text_view_description2">false</item>
     <item type="id" name="iImgBtn_quit_game">false</item>
     <item type="id" name="text_view_description3">false</item>
+
+
+    <!--activity_game_over_activity-->
+    
+
 
 
 

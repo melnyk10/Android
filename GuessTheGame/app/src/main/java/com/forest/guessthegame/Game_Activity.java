@@ -40,6 +40,7 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
     private SlidingDrawer slidingDrawer = null;
 
     private TextSwitcher score_textSwitcher = null;
+    private TextView highScore_textView = null;
 
     public static final String HIGH_SCORE = "highScore";
     private int score = 0;
@@ -79,6 +80,8 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
         imgBtn_restart = (ImageButton) findViewById(R.id.iImgBtn_restart_game);
         imgBtn_quit = (ImageButton) findViewById(R.id.iImgBtn_quit_game);
 
+        highScore_textView = (TextView) findViewById(R.id.iHighScore_game_activity);
+
         slidingDrawer = (SlidingDrawer) findViewById(R.id.gameOptionsSlidingDrawer);
 
         score_textSwitcher = (TextSwitcher) findViewById(R.id.iScore);
@@ -102,7 +105,7 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
         buttonsList.add(btn_bottom_left);
         buttonsList.add(btn_bottom_right);
 
-        mBackgroundImage = (ImageSwitcher) findViewById(R.id.gameFrameSwitcher);
+        mBackgroundImage = (ImageSwitcher) findViewById(R.id.iImage_game_switcher);
         mBackgroundImage.setFactory(this);
         mBackgroundImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,7 +133,10 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
 
 
         final SharedPreferences prefs = this.getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
-        highScore = prefs.getInt("score", 0);
+        highScore = prefs.getInt("high_score", 0);
+
+        highScore_textView.setText(String.valueOf(highScore));
+
 
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -141,18 +147,25 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
                     if (slidingDrawer.isOpened()) {
                         slidingDrawer.close();
                     }
+                    for(Button btn:buttonsList){
+                        if(btn.getText().equals(game_hashMap.getAnswer())){
+                            btn.setBackgroundResource(R.drawable.correct_btn);
+                        }
+                    }
+
 
                     if (highScore > score) {
-//            tvHighScore.setText(String.valueOf(highScore));
+                        highScore_textView.setText(String.valueOf(highScore));
                     } else {
                         highScore = score;
-//            tvHighScore.setText(String.valueOf(highScore));
-                        prefs.edit().putInt("score", highScore).apply();
+                        highScore_textView.setText(String.valueOf(highScore));
+                        prefs.edit().putInt("high_score", highScore).apply();
                         Log.e("HifhScore", highScore+"");
                     }
 
                     Intent game_over_intent = new Intent(Game_Activity.this, Game_over_activity.class);
                     game_over_intent.putExtra("score", String.valueOf(score));
+                    game_over_intent.putExtra("high_score", String.valueOf(highScore));
                     startActivity(game_over_intent);
                 } else if (button.getText().toString().equals(game_hashMap.getAnswer())) {
                     score += 25;
