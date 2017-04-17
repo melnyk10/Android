@@ -82,7 +82,7 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
 
         highScore_textView = (TextView) findViewById(R.id.iHighScore_game_activity);
 
-        slidingDrawer = (SlidingDrawer) findViewById(R.id.gameOptionsSlidingDrawer);
+        slidingDrawer = (SlidingDrawer) findViewById(R.id.iGameOptionsSlidingDrawer);
 
         score_textSwitcher = (TextSwitcher) findViewById(R.id.iScore);
         score_textSwitcher.setInAnimation(inAnimation);

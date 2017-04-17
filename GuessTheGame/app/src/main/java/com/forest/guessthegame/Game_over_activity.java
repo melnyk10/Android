@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
@@ -28,9 +27,9 @@ public class Game_over_activity extends Activity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         score = (TextView) findViewById(R.id.iScore_game_over);
-        highScore = (TextView) findViewById(R.id.iHightScore);
-        img_btn_restart = (ImageButton) findViewById(R.id.imgBtn_restart);
-        img_btn_goMainAct = (ImageButton) findViewById(R.id.imgBtn_go_main_activity);
+        highScore = (TextView) findViewById(R.id.iHighScore_game_over_activity);
+        img_btn_restart = (ImageButton) findViewById(R.id.iImgBtn_restart);
+        img_btn_goMainAct = (ImageButton) findViewById(R.id.iImgBtn_go_main_activity);
 
         Intent score_intent = getIntent();
         if(score_intent.hasExtra("score")){
@@ -44,11 +43,11 @@ public class Game_over_activity extends Activity {
             @Override
             public void onClick(View v) {
                 switch (v.getId()) {
-                    case R.id.imgBtn_restart:
+                    case R.id.iImgBtn_restart:
                         Intent restart_int = new Intent(Game_over_activity.this, Game_Activity.class);
                         startActivity(restart_int);
                         break;
-                    case R.id.imgBtn_go_main_activity:
+                    case R.id.iImgBtn_go_main_activity:
                         Intent goMainAct = new Intent(Game_over_activity.this, Main_Activity.class);
                         startActivity(goMainAct);
                         break;

@@ -18,23 +18,28 @@
     <item type="id" name="iBest_score_text_gameAct">false</item>
     <item type="id" name="iHighScore_game_activity">false</item>
     <!--Sliding Drawer-->
-    <item type="id" name="gameOptionsSlidingDrawer">false</item>
-    <item type="id" name="handle_layout">false</item>
-    <item type="id" name="handle_button">false</item>
-    <item type="id" name="game_options_linear_layout">false</item>
+    <item type="id" name="iGameOptionsSlidingDrawer">false</item>
+    <item type="id" name="iHandle_layout">false</item>
+    <item type="id" name="iHandle_button">false</item>
+    <item type="id" name="iGame_options_linear_layout">false</item>
     <item type="id" name="iImgBtn_resume_game">false</item>
-    <item type="id" name="text_view_description1">false</item>
+    <item type="id" name="iText_view_description1">false</item>
     <item type="id" name="iImgBtn_restart_game">false</item>
-    <item type="id" name="text_view_description2">false</item>
+    <item type="id" name="iText_view_description2">false</item>
     <item type="id" name="iImgBtn_quit_game">false</item>
-    <item type="id" name="text_view_description3">false</item>
+    <item type="id" name="iText_view_description3">false</item>
 
 
     <!--activity_game_over_activity-->
-    
-
-
-
-
+    <item type="id" name="iGame_over_text">false</item>
+    <item type="id" name="iRelative_layout_score">false</item>
+    <item type="id" name="iYour_score_text">false</item>
+    <item type="id" name="iScore_game_over">false</item>
+    <item type="id" name="iPoint_text">false</item>
+    <item type="id" name="iImgBtn_restart">false</item>
+    <item type="id" name="iImgBtn_go_main_activity">false</item>
+    <item type="id" name="iLinearLayout_best_score_text">false</item>
+    <item type="id" name="iBest_score_text">false</item>
+    <item type="id" name="iHighScore_game_over_activity">false</item>
 
 </resources>
