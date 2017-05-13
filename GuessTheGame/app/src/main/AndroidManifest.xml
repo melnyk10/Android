@@ -14,19 +14,20 @@
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Game_Activity"
-            android:noHistory = "true"
+            android:noHistory="true"
             android:screenOrientation="landscape" />
         <activity
             android:name=".Game_over_activity"
+            android:noHistory="true"
             android:screenOrientation="landscape"
-            android:noHistory = "true"
             android:theme="@style/Theme.Transparent" />
-
+        <activity android:name=".Info_app"></activity>
     </application>
 
 </manifest>

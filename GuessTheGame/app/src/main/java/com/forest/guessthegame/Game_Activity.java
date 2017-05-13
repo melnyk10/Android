@@ -107,14 +107,12 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
 
         mBackgroundImage = (ImageSwitcher) findViewById(R.id.iImage_game_switcher);
         mBackgroundImage.setFactory(this);
-        mBackgroundImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(slidingDrawer.isOpened()) {
-                    slidingDrawer.close();
-                }
-            }
-        });
+        mBackgroundImage.setOnClickListener((v)->{
+                    if(slidingDrawer.isOpened()) {
+                        slidingDrawer.close();
+                    }
+                });
+
         mBackgroundImage.setInAnimation(inAnimation);
         mBackgroundImage.setOutAnimation(outAnimation);
 

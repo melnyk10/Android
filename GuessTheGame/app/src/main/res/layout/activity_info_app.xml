@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backround_main"
+    tools:context="com.forest.guessthegame.Info_app">
+
+
+    <ImageView
+        android:id="@+id/iGuess_game_text"
+        android:layout_width="280dp"
+        android:layout_height="60dp"
+        android:background="@drawable/guess_game_text"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        />
+    <RelativeLayout
+        android:layout_below="@+id/iGuess_game_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+
+        <RelativeLayout
+            android:id="@+id/linearLayout_rate"
+            android:layout_width="match_parent"
+            android:layout_height="70dp">
+
+            <Button
+                android:id="@+id/iBtn_rate_app"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                android:text="Rate this app"
+                />
+
+            <TextView
+                android:layout_toRightOf="@+id/iBtn_rate_app"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:text="Are you ready to check your game knowledge?"
+                />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_below="@+id/linearLayout_rate"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            >
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                android:text="feedback"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_centerVertical="true"
+                />
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</RelativeLayout>
