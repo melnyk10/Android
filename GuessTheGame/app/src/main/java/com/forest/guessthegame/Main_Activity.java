@@ -44,32 +44,25 @@ public class Main_Activity extends Activity {
         btn_soundSwitcher = (ImageButton) findViewById(R.id.iImgBtn_sound_switch);
         blinkTextView = (TextView) findViewById(R.id.iBlinling_text);
 
-        View.OnClickListener onClickListener = new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.iBtn_start_game:
-                        startActivity(new Intent(v.getContext(), Game_Activity.class));
-                        break;
+        View.OnClickListener onClickListener = v -> {
+            switch (v.getId()) {
+                case R.id.iBtn_start_game:
+                    startActivity(new Intent(v.getContext(), Game_Activity.class));
+                    break;
 //                    case R.id.iBtn_about:
 //                        break;
-                    case R.id.iImgBtn_changeLanguage:
-                        break;
-                    case R.id.iImgBtn_info_about_game:
-                        startActivity(new Intent(v.getContext(), Info_app.class));
-                        break;
-                    case R.id.iImgBtn_sound_switch:
-                        break;
-                }
-
+                case R.id.iImgBtn_changeLanguage:
+                    break;
+                case R.id.iImgBtn_info_about_game:
+                    startActivity(new Intent(v.getContext(), Info_app.class));
+                    break;
+                case R.id.iImgBtn_sound_switch:
+                    break;
             }
         };
 
 
-
-
         blinkText(blinkTextView);
-
 
         btn_startGame.setOnClickListener(onClickListener);
 //        btn_about.setOnClickListener(onClickListener);

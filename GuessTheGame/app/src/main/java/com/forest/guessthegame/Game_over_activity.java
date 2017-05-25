@@ -39,17 +39,14 @@ public class Game_over_activity extends Activity {
         }
 
 
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.iImgBtn_restart:
-                        startActivity(new Intent(Game_over_activity.this, Game_Activity.class));
-                        break;
-                    case R.id.iImgBtn_go_main_activity:
-                        startActivity(new Intent(Game_over_activity.this, Main_Activity.class));
-                        break;
-                }
+        View.OnClickListener onClickListener = v -> {
+            switch (v.getId()) {
+                case R.id.iImgBtn_restart:
+                    startActivity(new Intent(Game_over_activity.this, Game_Activity.class));
+                    break;
+                case R.id.iImgBtn_go_main_activity:
+                    startActivity(new Intent(Game_over_activity.this, Main_Activity.class));
+                    break;
             }
         };
         img_btn_restart.setOnClickListener(onClickListener);

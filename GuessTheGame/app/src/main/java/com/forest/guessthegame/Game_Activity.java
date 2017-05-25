@@ -87,16 +87,13 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
         score_textSwitcher = (TextSwitcher) findViewById(R.id.iScore);
         score_textSwitcher.setInAnimation(inAnimation);
         score_textSwitcher.setOutAnimation(outAnimation);
-        score_textSwitcher.setFactory(new ViewSwitcher.ViewFactory() {
-            @Override
-            public View makeView() {
-                TextView textView = new TextView(Game_Activity.this);
-                textView.setGravity(Gravity.CENTER_HORIZONTAL);
-                textView.setShadowLayer(2, 1, 1, Color.BLACK);
-                textView.setTextSize(20);
-                textView.setTextColor(Color.WHITE);
-                return textView;
-            }
+        score_textSwitcher.setFactory(() -> {
+            TextView textView = new TextView(Game_Activity.this);
+            textView.setGravity(Gravity.CENTER_HORIZONTAL);
+            textView.setShadowLayer(2, 1, 1, Color.BLACK);
+            textView.setTextSize(20);
+            textView.setTextColor(Color.WHITE);
+            return textView;
         });
 
 
@@ -252,6 +249,11 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
 
     public void fillRestTextView() {
         Collections.shuffle(game_hashMap.getArrayOfKeyHashMap());
+        // провірити чи працює лямбда
+//        buttonsList.stream().filter(b->b.equals(""))
+//                .forEach(b->{b.setText(game_hashMap.getArrayOfKeyHashMap().get(0));
+//                             game_hashMap.getArrayOfKeyHashMap().remove(0);
+//                });
         for (Button btn : buttonsList) {
             if (btn.getText().equals("")) {
                 btn.setText(game_hashMap.getArrayOfKeyHashMap().get(0));
