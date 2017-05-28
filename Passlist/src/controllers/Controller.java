@@ -9,12 +9,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.*;
 import objects.Person;
 
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {
@@ -44,13 +42,47 @@ public class Controller implements Initializable {
     @FXML
     private ListView<String> iListView;
 
+    final Clipboard clipboard = Clipboard.getSystemClipboard();
+    final ClipboardContent content = new ClipboardContent();
 
-    public void doSome(ActionEvent e){
-        System.out.println(iFind_field);
-        try {
-            btn_find.setText("Hello");
 
-        }catch (Exception ex){}
+    public void doSome(ActionEvent e) {
+        Object source = e.getSource();
+
+        if (!(source instanceof Button)) return;
+
+        Button btn = (Button) source;
+
+        //String selectPerson = iListView.getSelectionModel().getSelectedItem();
+
+        switch (btn.getId()) {
+            case "btn_find":
+                break;
+            case "btn_add":
+                break;
+            case "btn_update":
+                break;
+            case "btn_remove":
+                break;
+            case "btn_copyLog":
+                content.putString(iLogin_field.getText());
+                clipboard.setContent(content);
+                break;
+            case "btn_copyPass":
+                content.putString(iPass_field.getText());
+                clipboard.setContent(content);
+                break;
+            case "btn_copySQ":
+                content.putString(iPass_field.getText());
+                clipboard.setContent(content);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void findAdress(){
+
     }
 
     @Override
@@ -62,5 +94,14 @@ public class Controller implements Initializable {
         ObservableList<String> temp = FXCollections.observableArrayList();
         collectionsListOfSites.getPersonList().stream().forEach(person -> temp.add(person.getAddress()));
         iListView.setItems(temp);
+        iListView.setOnMouseClicked(event -> {
+            for (Person p : collectionsListOfSites.getPersonList()) {
+                if (p.getAddress().equals(iListView.getSelectionModel().getSelectedItem())) {
+                    iLogin_field.setText(p.getLogin());
+                    iPass_field.setText(p.getPassword());
+                }
+            }
+        });
+
     }
 }
