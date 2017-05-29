@@ -2,8 +2,10 @@ package controllers;
 
 import interfaces.impls.CollectionsListOfSites;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -45,6 +47,7 @@ public class Controller implements Initializable {
     final Clipboard clipboard = Clipboard.getSystemClipboard();
     final ClipboardContent content = new ClipboardContent();
 
+    private ObservableList<String> temp;
 
     public void doSome(ActionEvent e) {
         Object source = e.getSource();
@@ -57,6 +60,15 @@ public class Controller implements Initializable {
 
         switch (btn.getId()) {
             case "btn_find":
+//                for(Person p:collectionsListOfSites.getPersonList()){
+//                    if(p.getAddress().contains(iFind_field.getText())){
+//                        System.out.println(p.getLogin()+" "+p.getPassword());
+//                        System.out.println(iListView.getSelectionModel());
+//                        //iLogin_field.setText(p.getLogin());
+//                        //iPass_field.setText(p.getPassword());
+//                    }
+//                }
+                findAdress();
                 break;
             case "btn_add":
                 break;
@@ -81,9 +93,6 @@ public class Controller implements Initializable {
         }
     }
 
-    private void findAdress(){
-
-    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -91,9 +100,15 @@ public class Controller implements Initializable {
         collectionsListOfSites.add(new Person("fb.com", "tom", "123456"));
         collectionsListOfSites.add(new Person("youtube.com", "bob", "159"));
 
-        ObservableList<String> temp = FXCollections.observableArrayList();
+        initListeners();
+        temp = FXCollections.observableArrayList();
         collectionsListOfSites.getPersonList().stream().forEach(person -> temp.add(person.getAddress()));
         iListView.setItems(temp);
+
+
+    }
+
+    private void initListeners() {
         iListView.setOnMouseClicked(event -> {
             for (Person p : collectionsListOfSites.getPersonList()) {
                 if (p.getAddress().equals(iListView.getSelectionModel().getSelectedItem())) {
@@ -101,7 +116,28 @@ public class Controller implements Initializable {
                     iPass_field.setText(p.getPassword());
                 }
             }
-        });
 
+            if (event.getClickCount() == 2) {
+                System.out.println("working");
+            }
+        });
+    }
+
+    private void findAdress() {
+            //if(iListView.getItems().contains(iFind_field.getText())){
+//                System.out.println(iListView.getItems());
+        ObservableList<String> temp2 = FXCollections.observableArrayList();
+        for(String s:iListView.getItems()){
+            if(s.contains(iFind_field.getText())){
+                temp2.add(s);
+            }
+        }
+        iListView.setItems(temp2);
+
+
+        if(iFind_field.getText().equals("")) {
+            iListView.setItems(temp);
+        }
+        //}
     }
 }

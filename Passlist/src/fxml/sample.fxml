@@ -23,7 +23,7 @@
                <HBox.margin>
                   <Insets left="5.0" />
                </HBox.margin></TextField>
-                <Button fx:id="btn_find" mnemonicParsing="false" onAction="#doSome" text="Find" />
+                <Button fx:id="btn_find" defaultButton="true" mnemonicParsing="false" onAction="#doSome" text="Find" />
 
                 <Button fx:id="btn_add" mnemonicParsing="false" onAction="#doSome" text="add" />
 
@@ -58,13 +58,13 @@
                             <children>
                                 <TextField editable="false" prefHeight="25.0" prefWidth="70.0" text="Password:" GridPane.rowIndex="1" />
                                 <TextField editable="false" prefHeight="25.0" prefWidth="65.0" text="Login:" />
-                                <TextField fx:id="iLogin_field" GridPane.columnIndex="1" />
-                                <TextField fx:id="iPass_field" prefHeight="25.0" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                <Button fx:id="btn_copyLog" onAction="#doSome" mnemonicParsing="false" text="copy Log" GridPane.columnIndex="2" />
-                                <Button fx:id="btn_copyPass" onAction="#doSome" mnemonicParsing="false" text="copy Pass" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                                <TextField fx:id="iLogin_field" editable="false" GridPane.columnIndex="1" />
+                                <TextField fx:id="iPass_field" editable="false" prefHeight="25.0" prefWidth="149.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Button fx:id="btn_copyLog" mnemonicParsing="false" onAction="#doSome" text="copy Log" GridPane.columnIndex="2" />
+                                <Button fx:id="btn_copyPass" mnemonicParsing="false" onAction="#doSome" text="copy Pass" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                                 <TextField editable="false" layoutX="10.0" layoutY="24.0" prefHeight="25.0" prefWidth="65.0" text="Secret Question:" GridPane.rowIndex="2" />
-                                <TextField fx:id="iSevretQ" layoutX="78.0" layoutY="24.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                                <Button fx:id="btn_copySQ" onAction="#doSome" layoutX="290.0" layoutY="77.0" mnemonicParsing="false" text="copy SQ" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                <TextField fx:id="iSevretQ" editable="false" layoutX="78.0" layoutY="24.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Button fx:id="btn_copySQ" layoutX="290.0" layoutY="77.0" mnemonicParsing="false" onAction="#doSome" text="copy SQ" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                             </children>
                             <opaqueInsets>
                                 <Insets />
