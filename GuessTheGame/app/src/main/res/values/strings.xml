@@ -28,6 +28,8 @@
     <string name="start_game">Start Game</string>
     <string name="about">About</string>
     <string name="blink_text">ARE YOU REAL GAMER?</string>
+    <string name="game_knowledge">Are you ready to check your game knowledge?</string>
+    <string name="feedback">Get all the game stills right! It may not always be easy but it\'s 100% fun!</string>
 
 
 </resources>

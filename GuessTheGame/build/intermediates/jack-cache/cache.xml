@@ -2,6 +2,66 @@
 <items version="2" >
 
     <item
+        jar="C:\Users\forest\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.2.0\support-annotations-25.2.0.jar"
+        revision="25.0.2"
+        sha1="4a5a82a027706397fff621b22fd6fa796e91d7c5">
+        <dex dex="D:\Programing\git\Java\GuessTheGame\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\support-annotations-25.2.0-4bff27fe2fcdaeccd95620bffddc285b47714bb1.jar" />
+    </item>
+    <item
+        jar="C:\Users\forest\.android\build-cache\aa7aa4b46ff452b995e877e6392eb9b0c9838872\output\jars\classes.jar"
+        revision="25.0.2"
+        sha1="fa0446a14ed5dd3725047d6399ffea771a564b30">
+        <dex dex="D:\Programing\git\Java\GuessTheGame\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-0216faf7617523cfaa29a403a5cd84fdbcf9f3d9.jar" />
+    </item>
+    <item
+        jar="C:\Users\forest\.android\build-cache\197bfd11fd05e49249e8a957c8261ddb702753e1\output\jars\classes.jar"
+        revision="25.0.2"
+        sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
+        <dex dex="D:\Programing\git\Java\GuessTheGame\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-fe5781e760caf4ce30d4269915784410366dd62a.jar" />
+    </item>
+    <item
+        jar="C:\Users\forest\AppData\Local\Android\Sdk\platforms\android-25\android.jar"
+        revision="25.0.2"
+        sha1="712a0312fe844a21a1b3812fa960c363a1578984">
+        <dex dex="D:\Programing\git\Java\GuessTheGame\app\build\intermediates\transforms\preJackRuntimeLibraries\debug\jars\8000\40\android-802a3961464496b070da84427f51e1c283b3dad9.jar" />
+    </item>
+    <item
+        jar="C:\Users\forest\.android\build-cache\a8204fcabd2dee60cac0a603ac641e2db30ee1d9\output\jars\classes.jar"
+        revision="25.0.2"
+        sha1="67eb33110dbacb46a48175b08ae0c96761d2c17d">
+        <dex dex="D:\Programing\git\Java\GuessTheGame\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-c0cf085e3d276bb3a7dc5f18f346b02781783401.jar" />
+    </item>
+    <item
+        jar="C:\Users\forest\.android\build-cache\40b38787149e1276457cf4e48944480a99f5fb01\output\jars\classes.jar"
+        revision="25.0.2"
+        sha1="ee394a892dd21c03a528139c1e8d4e0e1264ac84">
+        <dex dex="D:\Programing\git\Java\GuessTheGame\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-b9c3bf105313aab4afd8207c22b2e220343a067a.jar" />
+    </item>
+    <item
+        jar="C:\Users\forest\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="D:\Programing\git\Java\GuessTheGame\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\constraint-layout-solver-1.0.2-ef58ba3200e1b4fd7884e5929be5dc704ec918a4.jar" />
+    </item>
+    <item
+        jar="C:\Users\forest\.android\build-cache\8d735428ad84409d8358a3a32d371e9f66fadf44\output\jars\classes.jar"
+        revision="25.0.2"
+        sha1="702d339bc0a81d21354cd7e2cf2b67225fa4a16c">
+        <dex dex="D:\Programing\git\Java\GuessTheGame\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-3815e23ffb249f244a075d1454a2b78d27b5087f.jar" />
+    </item>
+    <item
+        jar="C:\Users\forest\.android\build-cache\fb92d033d6ff3709270bfd81baf9a6ed070d7661\output\jars\classes.jar"
+        revision="25.0.2"
+        sha1="810f41e5b7fd99f196ebeabe865ba2c54e7e76dc">
+        <dex dex="D:\Programing\git\Java\GuessTheGame\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-6c8327a68f347edc9a5b931b327bde9e6419f0e5.jar" />
+    </item>
+    <item
+        jar="C:\Users\forest\.android\build-cache\f20d20a1ce49d9fb9faecf1cb38bbdaa8a83bd27\output\jars\classes.jar"
+        revision="25.0.2"
+        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
+        <dex dex="D:\Programing\git\Java\GuessTheGame\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-4b4839052ee03ea46d7d13bd29035174acb3e93c.jar" />
+    </item>
+    <item
         jar="C:\Users\forest\.android\build-cache\9909e9a65c5d4952d3c5ad705919b62e8d7c3946\output\jars\classes.jar"
         revision="25.0.2"
         sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
@@ -14,28 +74,16 @@
         <dex dex="D:\Programing\git\Java\GuessTheGame\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-cf5016216d643025b50a33a8e0f3a5e36a48934c.jar" />
     </item>
     <item
-        jar="C:\Users\forest\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.2.0\support-annotations-25.2.0.jar"
+        jar="C:\Users\forest\AppData\Local\Android\Sdk\platforms\android-25\optional\org.apache.http.legacy.jar"
         revision="25.0.2"
-        sha1="4a5a82a027706397fff621b22fd6fa796e91d7c5">
-        <dex dex="D:\Programing\git\Java\GuessTheGame\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\support-annotations-25.2.0-4bff27fe2fcdaeccd95620bffddc285b47714bb1.jar" />
-    </item>
-    <item
-        jar="C:\Users\forest\.android\build-cache\197bfd11fd05e49249e8a957c8261ddb702753e1\output\jars\classes.jar"
-        revision="25.0.2"
-        sha1="e820b7be8c035dd522da4bc822e8a76c8e27921a">
-        <dex dex="D:\Programing\git\Java\GuessTheGame\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-fe5781e760caf4ce30d4269915784410366dd62a.jar" />
+        sha1="5f0541a4298daa0590b22cfbde43f85e2a675545">
+        <dex dex="D:\Programing\git\Java\GuessTheGame\app\build\intermediates\transforms\preJackRuntimeLibraries\debug\jars\8000\40\org.apache.http.legacy-83e9cc93c4f6fceedd42430a3f86af5b975a2459.jar" />
     </item>
     <item
         jar="C:\Users\forest\.android\build-cache\f4b696018885baa75347aed98f8363ed2a683e61\output\jars\classes.jar"
         revision="25.0.2"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
         <dex dex="D:\Programing\git\Java\GuessTheGame\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-b8e67172da7d8a97914601ed3602051cca7851cb.jar" />
-    </item>
-    <item
-        jar="C:\Users\forest\.android\build-cache\f20d20a1ce49d9fb9faecf1cb38bbdaa8a83bd27\output\jars\classes.jar"
-        revision="25.0.2"
-        sha1="cb454b52545859ed2f24a6c01366805b0fa04b22">
-        <dex dex="D:\Programing\git\Java\GuessTheGame\app\build\intermediates\transforms\preJackPackagedLibraries\debug\jars\8000\1f\classes-4b4839052ee03ea46d7d13bd29035174acb3e93c.jar" />
     </item>
 
 </items>

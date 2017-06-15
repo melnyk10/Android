@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/MyAppTheme">
         <activity
-            android:name=".Main_Activity"
+            android:name=".activity.Main_Activity"
             android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,15 +19,18 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Game_Activity"
+            android:name=".activity.Game_Activity"
             android:noHistory="true"
             android:screenOrientation="landscape" />
         <activity
-            android:name=".Game_over_activity"
+            android:name=".activity.Game_over_activity"
             android:noHistory="true"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.Transparent" />
-        <activity android:name=".Info_app"></activity>
+        <activity
+            android:name=".activity.Info_app_Activity"
+            android:screenOrientation="landscape" />
+
     </application>
 
 </manifest>

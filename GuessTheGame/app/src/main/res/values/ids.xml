@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-	<!--activity_game_activity-->
+	<!--game_activity-->
 	<item type="id" name="iImage_game_switcher">false</item>
 	<item type="id" name="iScore">false</item>
     <item type="id" name="iLinearLayout_top_buttons">false</item>
@@ -17,6 +17,9 @@
     <item type="id" name="iLinearLayout_highScore">false</item>
     <item type="id" name="iBest_score_text_gameAct">false</item>
     <item type="id" name="iHighScore_game_activity">false</item>
+    <!--game_activity_2_temp-->
+    <item type="id" name="relativeLayout_quit_btn">false</item>
+
     <!--Sliding Drawer-->
     <item type="id" name="iGameOptionsSlidingDrawer">false</item>
     <item type="id" name="iHandle_layout">false</item>
@@ -30,7 +33,7 @@
     <item type="id" name="iText_view_description3">false</item>
 
 
-    <!--activity_game_over_activity-->
+    <!--game_over_activity-->
     <item type="id" name="iGame_over_text">false</item>
     <item type="id" name="iRelative_layout_score">false</item>
     <item type="id" name="iYour_score_text">false</item>
@@ -43,7 +46,7 @@
     <item type="id" name="iHighScore_game_over_activity">false</item>
 
 
-    <!--activity_main-->
+    <!--main_activity-->
     <item type="id" name="iRelativeLayout_top_bar">false</item>
     <item type="id" name="iImgBtn_changeLanguage">false</item>
     <item type="id" name="iImgBtn_info_about_game">false</item>
@@ -52,5 +55,8 @@
     <item type="id" name="iBlinling_text">false</item>
     <item type="id" name="iBtn_start_game">false</item>
 
+    <!--info_app_activity-->
+    <item type="id" name="linearLayout_rate">false</item>
+    <item type="id" name="iBtn_feedback">false</item>
 
 </resources>

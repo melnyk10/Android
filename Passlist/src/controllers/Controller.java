@@ -15,6 +15,7 @@ import javafx.scene.input.*;
 import objects.Person;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 public class Controller implements Initializable {

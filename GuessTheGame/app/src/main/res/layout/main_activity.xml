@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@drawable/backround_main"
+    tools:context="com.forest.guessthegame.activity.Main_Activity">
+
+    <RelativeLayout
+        android:id="@id/iRelativeLayout_top_bar"
+        android:layout_width="match_parent"
+        android:layout_height="65dp"
+        android:layout_alignParentTop="true"
+        >
+
+        <ImageButton
+            android:id="@id/iImgBtn_changeLanguage"
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip"
+            android:layout_toLeftOf="@+id/iImgBtn_info_about_game"
+            android:layout_marginRight="7dp"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/btn_change_language_usa"
+            />
+
+        <ImageButton
+            android:id="@id/iImgBtn_info_about_game"
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/btn_info"
+            />
+        <ImageButton
+            android:id="@id/iImgBtn_sound_switch"
+            android:layout_width="40.0dip"
+            android:layout_height="40.0dip"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="5dp"
+            android:background="@drawable/btn_sound_off_on"
+            />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        >
+        <ImageView
+            android:id="@id/iGuess_game_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/guess_game_text"
+            android:layout_centerHorizontal="true"
+            />
+        <TextView
+            android:id="@id/iBlinling_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/blink_text"
+            android:textSize="40dp"
+            android:layout_below="@id/iGuess_game_text"
+            android:layout_centerHorizontal="true"
+            />
+        <Button
+            android:id="@id/iBtn_start_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start_game"
+            android:textColor="@color/White"
+            android:textAppearance="@style/button_text"
+            android:background="@drawable/start_game_btn"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/iBlinling_text"/>
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentBottom="true"
+        >
+        <!--<Button-->
+            <!--android:id="@+id/iBtn_about"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="@string/about"-->
+            <!--android:layout_gravity="bottom"-->
+            <!--android:background="@drawable/btn_about"-->
+            <!--/>-->
+    </LinearLayout>
+</RelativeLayout>

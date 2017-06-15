@@ -7,10 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by forest on 05.04.2017.
- */
-
 public class Game_HashMap {
     private static Map<String, String> mapOfAllGame = new HashMap<>();
     private List<String> arrayOfKeyHashMap = copyKeyMapToStringListArray();
@@ -49,8 +45,6 @@ public class Game_HashMap {
         //randomSetTextToTextView();
         answer = question_NameOfGame;
         Log.e("Answer", "answer = "+answer);
-
-
     }
 
     public ArrayList<String> copyKeyMapToStringListArray(){
