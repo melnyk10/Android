@@ -42,7 +42,6 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
 
     private ImageButton imgBtn_quit = null;
 
-    //private SlidingDrawer slidingDrawer = null;
     private TextSwitcher score_textSwitcher = null;
 
     private TextView highScore_textView = null;
@@ -54,6 +53,10 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
     private List<Button> buttonsList = new ArrayList<>();
 
     private ImageSwitcher mBackgroundImage = null;
+
+
+    Intent game_over_intent = null;
+    SharedPreferences prefs = null;
 
 
     @Override
@@ -84,8 +87,6 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
         imgBtn_quit = (ImageButton) findViewById(R.id.iImgBtn_quit_game);
 
         highScore_textView = (TextView) findViewById(R.id.iHighScore_game_activity);
-
-        slidingDrawer = (SlidingDrawer) findViewById(R.id.iGameOptionsSlidingDrawer);
 
         score_textSwitcher = (TextSwitcher) findViewById(R.id.iScore);
         score_textSwitcher.setInAnimation(inAnimation);
@@ -122,102 +123,73 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
         mBackgroundImage.setImageResource(resID); //картинка при першому запуску
 
 
-        final SharedPreferences prefs = this.getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
+        prefs = this.getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
         highScore = prefs.getInt("high_score", 0);
         highScore_textView.setText(String.valueOf(highScore));
 
 
+        game_over_intent = new Intent(Game_Activity.this, Game_over_activity.class);
+    }
 
-        View.OnClickListener onClickListener = new View.OnClickListener() {
-            public void rightAndWrongAnswers(Button button) {
-                //if wrong answer
-                if (!(button.getText().toString().equals(game_hashMap.getAnswer()))) {
-                    button.setBackgroundResource(R.drawable.wrong_btn);
-                    for(Button btn:buttonsList){
-                        if(btn.getText().equals(game_hashMap.getAnswer())){
-                            btn.setBackgroundResource(R.drawable.correct_btn);
-                        }
-                    }
+    public void btnClick(View v){
+        switch (v.getId()) {
+            case R.id.iBtn_bottom_left:
+                rightAndWrongAnswers(btn_bottom_left);
+                break;
+            case R.id.iBtn_bottom_right:
+                rightAndWrongAnswers(btn_bottom_right);
+                break;
+            case R.id.iBtn_top_left:
+                rightAndWrongAnswers(btn_top_left);
+                break;
+            case R.id.iBtn_top_right:
+                rightAndWrongAnswers(btn_top_right);
+                break;
+            case R.id.iImgBtn_restart_game:
+                reset();
+                break;
+            case R.id.iImgBtn_quit_game:
+                game_over_intent.putExtra("score", String.valueOf(score));
+                game_over_intent.putExtra("high_score", String.valueOf(highScore));
+                startActivity(game_over_intent);
+                break;
+        }
+    }
 
-
-                    if (highScore > score) {
-                        highScore_textView.setText(String.valueOf(highScore));
-                    } else {
-                        highScore = score;
-                        highScore_textView.setText(String.valueOf(highScore));
-                        prefs.edit().putInt("high_score", highScore).apply();
-                        Log.e("HighScore", highScore+"");
-                    }
-
-                    Intent game_over_intent = new Intent(Game_Activity.this, Game_over_activity.class);
-                    game_over_intent.putExtra("score", String.valueOf(score));
-                    game_over_intent.putExtra("high_score", String.valueOf(highScore));
-                    startActivity(game_over_intent);
-
-                } else if (button.getText().toString().equals(game_hashMap.getAnswer())) {
-                    score += 25;
-                    score_textSwitcher.setText(String.valueOf(score));
-
-                    if (highScore > score) {
-                        highScore_textView.setText(String.valueOf(highScore));
-                    } else {
-                        highScore = score;
-                        highScore_textView.setText(String.valueOf(highScore));
-                        prefs.edit().putInt("high_score", highScore).apply();
-                        Log.e("HifhScore", highScore+"");
-                    }
-
-                    //тимчасовий if
-                    if (game_hashMap.getArrayOfKeyHashMap().size() < 4) {
-                        reset();
-                    }
-                    changeImg();
+    private void rightAndWrongAnswers(Button button) {
+        //if wrong answer
+        if (!(button.getText().toString().equals(game_hashMap.getAnswer()))) {
+            button.setBackgroundResource(R.drawable.wrong_btn);
+            for(Button btn:buttonsList){
+                if(btn.getText().equals(game_hashMap.getAnswer())){
+                    btn.setBackgroundResource(R.drawable.correct_btn);
                 }
             }
 
 
-            @Override
-            public void onClick(View v) {
-                switch (v.getId()) {
-                    case R.id.iBtn_bottom_left:
-                        rightAndWrongAnswers(btn_bottom_left);
-                        break;
-                    case R.id.iBtn_bottom_right:
-                        rightAndWrongAnswers(btn_bottom_right);
-                        break;
-                    case R.id.iBtn_top_left:
-                        rightAndWrongAnswers(btn_top_left);
-                        break;
-                    case R.id.iBtn_top_right:
-                        rightAndWrongAnswers(btn_top_right);
-                        break;
-                    case R.id.iImgBtn_resume_game:
-                        break;
-                    case R.id.iImgBtn_restart_game:
-                        reset();
-                        break;
-                    case R.id.iImgBtn_quit_game:
-                        Intent game_over_intent = new Intent(Game_Activity.this, Game_over_activity.class);
-                        game_over_intent.putExtra("score", String.valueOf(score));
-                        startActivity(game_over_intent);
-                        break;
-                }
+            if (highScore > score) {
+                highScore_textView.setText(String.valueOf(highScore));
+            } else {
+                highScore = score;
+                highScore_textView.setText(String.valueOf(highScore));
+                prefs.edit().putInt("high_score", highScore).apply();
+                Log.e("HighScore", highScore+"");
             }
-        };
 
+            game_over_intent.putExtra("score", String.valueOf(score));
+            game_over_intent.putExtra("high_score", String.valueOf(highScore));
+            startActivity(game_over_intent);
 
+        } else if (button.getText().toString().equals(game_hashMap.getAnswer())) {
+            score += 25;
+            score_textSwitcher.setText(String.valueOf(score));
 
-
-
-
-        btn_top_left.setOnClickListener(onClickListener);
-        btn_top_right.setOnClickListener(onClickListener);
-        btn_bottom_left.setOnClickListener(onClickListener);
-        btn_bottom_right.setOnClickListener(onClickListener);
-        imgBtn_resume.setOnClickListener(onClickListener);
-        imgBtn_restart.setOnClickListener(onClickListener);
-        imgBtn_quit.setOnClickListener(onClickListener);
-
+            //тимчасовий if
+            if (game_hashMap.getArrayOfKeyHashMap().size() < 4) {
+                reset();
+            }
+            changeImg();
+        }
     }
 
 
