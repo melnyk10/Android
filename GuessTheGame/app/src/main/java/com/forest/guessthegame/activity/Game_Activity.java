@@ -42,7 +42,7 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
 
     private ImageButton imgBtn_quit = null;
 
-    private SlidingDrawer slidingDrawer = null;
+    //private SlidingDrawer slidingDrawer = null;
     private TextSwitcher score_textSwitcher = null;
 
     private TextView highScore_textView = null;
@@ -107,11 +107,6 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
 
         mBackgroundImage = (ImageSwitcher) findViewById(R.id.iImage_game_switcher);
         mBackgroundImage.setFactory(this);
-        mBackgroundImage.setOnClickListener((v)->{
-                    if(slidingDrawer.isOpened()) {
-                        slidingDrawer.close();
-                    }
-                });
 
         mBackgroundImage.setInAnimation(inAnimation);
         mBackgroundImage.setOutAnimation(outAnimation);
@@ -138,9 +133,6 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
                 //if wrong answer
                 if (!(button.getText().toString().equals(game_hashMap.getAnswer()))) {
                     button.setBackgroundResource(R.drawable.wrong_btn);
-                    if (slidingDrawer.isOpened()) {
-                        slidingDrawer.close();
-                    }
                     for(Button btn:buttonsList){
                         if(btn.getText().equals(game_hashMap.getAnswer())){
                             btn.setBackgroundResource(R.drawable.correct_btn);
@@ -180,9 +172,6 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
                         reset();
                     }
                     changeImg();
-                    if (slidingDrawer.isOpened()) {
-                        slidingDrawer.close();
-                    }
                 }
             }
 
@@ -203,11 +192,9 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
                         rightAndWrongAnswers(btn_top_right);
                         break;
                     case R.id.iImgBtn_resume_game:
-                        slidingDrawer.close();
                         break;
                     case R.id.iImgBtn_restart_game:
                         reset();
-                        slidingDrawer.close();
                         break;
                     case R.id.iImgBtn_quit_game:
                         Intent game_over_intent = new Intent(Game_Activity.this, Game_over_activity.class);
