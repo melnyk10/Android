@@ -161,6 +161,7 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
                     game_over_intent.putExtra("score", String.valueOf(score));
                     game_over_intent.putExtra("high_score", String.valueOf(highScore));
                     startActivity(game_over_intent);
+
                 } else if (button.getText().toString().equals(game_hashMap.getAnswer())) {
                     score += 25;
                     score_textSwitcher.setText(String.valueOf(score));
