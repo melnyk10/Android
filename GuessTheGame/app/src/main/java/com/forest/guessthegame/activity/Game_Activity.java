@@ -16,7 +16,6 @@ import android.widget.ImageButton;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.SlidingDrawer;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
@@ -35,34 +34,34 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
     private Button btn_top_left = null;
     private Button btn_top_right = null;
     private Button btn_bottom_left = null;
-
     private Button btn_bottom_right = null;
-    private ImageButton imgBtn_resume = null;
-    private ImageButton imgBtn_restart = null;
 
+    private ImageSwitcher mBackgroundImage = null;
+
+    private ImageButton imgBtn_restart = null;
     private ImageButton imgBtn_quit = null;
 
     private TextSwitcher score_textSwitcher = null;
 
     private TextView highScore_textView = null;
-    public static final String HIGH_SCORE = "highScore";
-    private int score = 0;
 
+    public static final String HIGH_SCORE = "high_score";
+    public static final String SCORE = "score";
+
+    private int score = 0;
     private int highScore;
 
     private List<Button> buttonsList = new ArrayList<>();
 
-    private ImageSwitcher mBackgroundImage = null;
+    private Intent game_over_intent = null;
 
-
-    Intent game_over_intent = null;
-    SharedPreferences prefs = null;
+    private SharedPreferences prefs = null;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.game_activity2);
+        setContentView(R.layout.game_activity);
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -82,11 +81,13 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
         btn_bottom_left = (Button) findViewById(R.id.iBtn_bottom_left);
         btn_bottom_right = (Button) findViewById(R.id.iBtn_bottom_right);
 
-        imgBtn_resume = (ImageButton) findViewById(R.id.iImgBtn_resume_game);
         imgBtn_restart = (ImageButton) findViewById(R.id.iImgBtn_restart_game);
         imgBtn_quit = (ImageButton) findViewById(R.id.iImgBtn_quit_game);
 
         highScore_textView = (TextView) findViewById(R.id.iHighScore_game_activity);
+
+        mBackgroundImage = (ImageSwitcher) findViewById(R.id.iImage_game_switcher);
+        mBackgroundImage.setFactory(this);
 
         score_textSwitcher = (TextSwitcher) findViewById(R.id.iScore);
         score_textSwitcher.setInAnimation(inAnimation);
@@ -106,29 +107,19 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
         buttonsList.add(btn_bottom_left);
         buttonsList.add(btn_bottom_right);
 
-        mBackgroundImage = (ImageSwitcher) findViewById(R.id.iImage_game_switcher);
-        mBackgroundImage.setFactory(this);
-
         mBackgroundImage.setInAnimation(inAnimation);
         mBackgroundImage.setOutAnimation(outAnimation);
 
-        game_hashMap.firstStartRightQuestion();
-        randomSetGameNameTOButtonText();
-        fillRestTextView();
-
-
-        // 3 поля яких міняє картинку
-        String mDrawableName = game_hashMap.getMapOfAllGame().get(game_hashMap.getAnswer());
-        int resID = getResources().getIdentifier(mDrawableName, "drawable", getPackageName());
-        mBackgroundImage.setImageResource(resID); //картинка при першому запуску
-
 
         prefs = this.getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
-        highScore = prefs.getInt("high_score", 0);
+        highScore = prefs.getInt(HIGH_SCORE, 0);
         highScore_textView.setText(String.valueOf(highScore));
 
 
         game_over_intent = new Intent(Game_Activity.this, Game_over_activity.class);
+
+        changeImg();
+
     }
 
     public void btnClick(View v){
@@ -149,8 +140,8 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
                 reset();
                 break;
             case R.id.iImgBtn_quit_game:
-                game_over_intent.putExtra("score", String.valueOf(score));
-                game_over_intent.putExtra("high_score", String.valueOf(highScore));
+                game_over_intent.putExtra(SCORE, String.valueOf(score));
+                game_over_intent.putExtra(HIGH_SCORE, String.valueOf(highScore));
                 startActivity(game_over_intent);
                 break;
         }
@@ -160,6 +151,7 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
         //if wrong answer
         if (!(button.getText().toString().equals(game_hashMap.getAnswer()))) {
             button.setBackgroundResource(R.drawable.wrong_btn);
+
             for(Button btn:buttonsList){
                 if(btn.getText().equals(game_hashMap.getAnswer())){
                     btn.setBackgroundResource(R.drawable.correct_btn);
@@ -172,23 +164,26 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
             } else {
                 highScore = score;
                 highScore_textView.setText(String.valueOf(highScore));
-                prefs.edit().putInt("high_score", highScore).apply();
+                prefs.edit().putInt(HIGH_SCORE, highScore).apply();
                 Log.e("HighScore", highScore+"");
             }
 
-            game_over_intent.putExtra("score", String.valueOf(score));
-            game_over_intent.putExtra("high_score", String.valueOf(highScore));
+            game_over_intent.putExtra(SCORE, String.valueOf(score));
+            game_over_intent.putExtra(HIGH_SCORE, String.valueOf(highScore));
             startActivity(game_over_intent);
 
         } else if (button.getText().toString().equals(game_hashMap.getAnswer())) {
             score += 25;
             score_textSwitcher.setText(String.valueOf(score));
 
+            changeImg();
+
             //тимчасовий if
             if (game_hashMap.getArrayOfKeyHashMap().size() < 4) {
                 reset();
             }
-            changeImg();
+
+
         }
     }
 
@@ -210,7 +205,7 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
         game_hashMap.getArrayOfKeyHashMap().remove(game_hashMap.getIndexOfArrayOfKey());
     }
 
-    public void fillRestTextView() {
+    private void fillRestTextView() {
         Collections.shuffle(game_hashMap.getArrayOfKeyHashMap());
         for (Button btn : buttonsList) {
             if (btn.getText().equals("")) {
@@ -222,13 +217,11 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
     }
 
 
-    public String returnAnswer() {
-        return game_hashMap.getMapOfAllGame().get(game_hashMap.getAnswer()); // файл cat1.png в папке drawable
+    private String returnAnswer() {
+        return game_hashMap.getMapOfAllGame().get(game_hashMap.getAnswer());
     }
 
-    // метод в якому міняється текст
-    public void changeText() {
-        //всім кномпкам-текстам призначаємо пусті поля
+    private void changeText() {
         btn_top_left.setText("");
         btn_top_right.setText("");
         btn_bottom_left.setText("");
@@ -239,16 +232,15 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
         fillRestTextView();
     }
 
-    public void changeImg() {
+    private void changeImg() {
         changeText();
 
-        String temp = returnAnswer();
-        int resID2 = getResources().getIdentifier(temp, "drawable", getPackageName());
+        String picName = returnAnswer();
+        int resID2 = getResources().getIdentifier(picName, "drawable", getPackageName());
         mBackgroundImage.setImageResource(resID2);
     }
 
-
-    public void reset() {
+    private void reset() {
         getWindow().getDecorView().setSystemUiVisibility(
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
                         | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
@@ -262,5 +254,9 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
 
         game_hashMap.setArrayOfKeyHashMap(game_hashMap.copyKeyMapToStringListArray());
         changeImg();
+    }
+
+    private void youSure(){
+        //when pressed btn reset or quick ask "U sure motherfucker ?"
     }
 }

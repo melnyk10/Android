@@ -16,13 +16,102 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
-    <TextSwitcher
-        android:id="@id/iScore"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_below="@+id/iLinearLayout_top_buttons"
-        />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="65dp">
+
+        <LinearLayout
+            android:id="@id/iLinearLayout_highScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            >
+            <TextView
+                android:id="@id/iBest_score_text_gameAct"
+                android:text="@string/best_score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/button_text"
+                />
+            <TextView
+                android:id="@id/iHighScore_game_activity"
+                android:text="0"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/iBest_score_text_gameAct"
+                android:textAppearance="@style/button_text"
+                />
+        </LinearLayout>
+
+        <TextSwitcher
+            android:id="@id/iScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            />
+
+        <RelativeLayout
+            android:id="@+id/relativeLayout_restart_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/relativeLayout_quit_btn"
+            android:layout_marginRight="5dp"
+            >
+
+            <ImageButton
+                android:id="@id/iImgBtn_restart_game"
+                android:layout_width="50.0dip"
+                android:layout_height="50.0dip"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="5.0dip"
+                android:layout_marginRight="5.0dip"
+                android:background="@drawable/btn_restart_b"
+
+                android:onClick="btnClick" />
+        <TextView
+            android:id="@id/iText_view_description2"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iImgBtn_restart_game"
+            android:text="@string/restart_game" style="@style/text_4_sliding_drawer" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@id/relativeLayout_quit_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="5dp"
+            >
+
+            <ImageButton
+                android:id="@id/iImgBtn_quit_game"
+                android:layout_width="50.0dip"
+                android:layout_height="50.0dip"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/btn_quit_b"
+                android:contentDescription="@string/quit_game"
+                android:onClick="btnClick" />
+        <TextView
+            android:id="@id/iText_view_description3"
+            android:textAppearance="?android:textAppearanceSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/iImgBtn_quit_game"
+            android:text="@string/quit_game" style="@style/text_4_sliding_drawer" />
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+
 
 
     <LinearLayout
@@ -31,30 +120,30 @@
         android:layout_width="fill_parent"
         android:layout_height="50.0dip"
         android:baselineAligned="false"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_above="@id/iLinearLayout_bottom_buttons"
         android:splitMotionEvents="false">
 
-    <RelativeLayout
-        android:id="@id/iRelativeLayout_btn_top_left"
-        android:layout_width="0.0dip"
-        android:layout_height="wrap_content"
-        android:layout_weight="1.0">
-
-        <Button
-            android:id="@id/iBtn_top_left"
-            android:tag="@string/top_left"
-            android:textColor="@color/White"
-            android:layout_marginRight="2.0dip"
-            android:background="@drawable/grey_button"
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:id="@id/iRelativeLayout_btn_top_left"
+            android:layout_width="0.0dip"
             android:layout_height="wrap_content"
-            android:textAppearance="@style/button_text"
-            android:ellipsize="end"
-            android:maxLines="1"
-            />
+            android:layout_weight="1.0">
 
-    </RelativeLayout>
+            <Button
+                android:id="@id/iBtn_top_left"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="2.0dip"
+                android:background="@drawable/grey_button"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:onClick="btnClick"
+                android:tag="@string/top_left"
+                android:textAppearance="@style/button_text"
+                android:textColor="@color/White" />
+
+        </RelativeLayout>
 
         <RelativeLayout
             android:id="@id/iRelativeLayout_btn_top_right"
@@ -64,16 +153,16 @@
 
             <Button
                 android:id="@id/iBtn_top_right"
-                android:tag="@string/top_right"
-                android:textColor="@color/White"
-                android:layout_marginLeft="2.0dip"
-                android:background="@drawable/grey_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/button_text"
+                android:layout_marginLeft="2.0dip"
+                android:background="@drawable/grey_button"
                 android:ellipsize="end"
                 android:maxLines="1"
-                />
+                android:onClick="btnClick"
+                android:tag="@string/top_right"
+                android:textAppearance="@style/button_text"
+                android:textColor="@color/White" />
 
         </RelativeLayout>
     </LinearLayout>
@@ -96,16 +185,16 @@
 
             <Button
                 android:id="@id/iBtn_bottom_left"
-                android:tag="@string/bottom_left"
-                android:textColor="@color/White"
-                android:layout_marginRight="2.0dip"
-                android:background="@drawable/grey_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/button_text"
+                android:layout_marginRight="2.0dip"
+                android:background="@drawable/grey_button"
                 android:ellipsize="end"
                 android:maxLines="1"
-                />
+                android:onClick="btnClick"
+                android:tag="@string/bottom_left"
+                android:textAppearance="@style/button_text"
+                android:textColor="@color/White" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -116,148 +205,18 @@
 
             <Button
                 android:id="@id/iBtn_bottom_right"
-                android:tag="@string/bottom_right"
-                android:textColor="@color/White"
-                android:layout_marginLeft="2.0dip"
-                android:background="@drawable/grey_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/button_text"
+                android:layout_marginLeft="2.0dip"
+                android:background="@drawable/grey_button"
                 android:ellipsize="end"
                 android:maxLines="1"
-                />
+                android:onClick="btnClick"
+                android:tag="@string/bottom_right"
+                android:textAppearance="@style/button_text"
+                android:textColor="@color/White" />
 
         </RelativeLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@id/iLinearLayout_highScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/iLinearLayout_top_buttons"
-        >
-        <TextView
-            android:id="@id/iBest_score_text_gameAct"
-            android:text="@string/best_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="@style/button_text"
-            />
-        <TextView
-            android:id="@id/iHighScore_game_activity"
-            android:text="0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/iBest_score_text_gameAct"
-            android:textAppearance="@style/button_text"
-            />
-    </LinearLayout>
-
-    <SlidingDrawer
-        android:id="@id/iGameOptionsSlidingDrawer"
-        android:gravity="center"
-        android:layout_alignParentRight="true"
-        android:orientation="horizontal"
-        android:layout_width="110.0dip"
-        android:layout_height="match_parent"
-        android:handle="@id/iHandle_layout"
-        android:content="@id/iGame_options_linear_layout"
-        android:layout_above="@+id/iLinearLayout_bottom_buttons"
-        android:layout_below="@+id/iLinearLayout_top_buttons">
-
-        <FrameLayout
-            android:id="@id/iHandle_layout"
-            android:layout_width="40dp"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@id/iHandle_button"
-                android:layout_gravity="right|center_vertical"
-                android:background="@drawable/drawer_handle"
-                android:layout_width="30.0dip"
-                android:layout_height="wrap_content"
-                android:src="@drawable/qs_game_view_hint_arrow_open"
-                 />
-        </FrameLayout>
-
-        <!--<RelativeLayout-->
-            <!--android:id="@id/game_options_relative_layout"-->
-            <!--android:gravity="center|right"-->
-            <!--android:layout_gravity="center_vertical"-->
-            <!--android:background="@drawable/hint_background"-->
-            <!--android:padding="5.0dip"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_alignParentRight="true">-->
-
-            <LinearLayout
-                android:id="@id/iGame_options_linear_layout"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_centerInParent="true"
-                android:gravity="center"
-                android:background="@drawable/hint_background"
-                android:layout_alignParentRight="true"
-                >
-
-                <ImageButton
-                    android:id="@id/iImgBtn_resume_game"
-                    android:background="@drawable/btn_resume_b"
-                    android:gravity="center"
-                    android:layout_width="50.0dip"
-                    android:layout_height="50.0dip"
-                    android:layout_marginLeft="3.0dip"
-                    android:layout_marginTop="3.0dip"
-                    android:layout_marginRight="3.0dip"
-                    />
-                <TextView
-                    android:id="@id/iText_view_description1"
-                    android:textAppearance="?android:textAppearanceSmall"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/resume_game" style="@style/text_4_sliding_drawer" />
-
-                <ImageButton
-                    android:id="@id/iImgBtn_restart_game"
-                    android:layout_gravity="center"
-                    android:background="@drawable/btn_restart_b"
-                    android:layout_width="50.0dip"
-                    android:layout_height="50.0dip"
-                    android:layout_marginLeft="5.0dip"
-                    android:layout_marginRight="5.0dip"
-                     />
-                <TextView
-                    android:id="@id/iText_view_description2"
-                    android:textAppearance="?android:textAppearanceSmall"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/restart_game" style="@style/text_4_sliding_drawer" />
-
-                <ImageButton
-                    android:id="@id/iImgBtn_quit_game"
-                    android:layout_gravity="center"
-                    android:background="@drawable/btn_quit_b"
-                    android:layout_width="50.0dip"
-                    android:layout_height="50.0dip"
-                    android:layout_marginLeft="5.0dip"
-                    android:layout_marginTop="5.0dip"
-                    android:layout_marginRight="5.0dip"
-                    android:contentDescription="@string/quit_game" />
-                <TextView
-                    android:id="@id/iText_view_description3"
-                    android:textAppearance="?android:textAppearanceSmall"
-                    android:gravity="center"
-                    android:layout_gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/quit_game" style="@style/text_4_sliding_drawer" />
-            </LinearLayout>
-        <!--</RelativeLayout>-->
-
-    </SlidingDrawer>
 </RelativeLayout>
