@@ -2,10 +2,7 @@ package com.forest.guessthegame.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -22,7 +19,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
-import android.widget.ViewSwitcher;
 
 import com.forest.guessthegame.Game_HashMap;
 import com.forest.guessthegame.R;
@@ -207,18 +203,6 @@ public class Game_Activity extends Activity{
         }
     }
 
-
-//    @Override
-//    public View makeView() {
-//        ImageView imageView = new ImageView(this);
-//        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-//        imageView.setLayoutParams(new ImageSwitcher.LayoutParams(
-//                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-//        imageView.setBackgroundColor(0xFF000000);
-//        return imageView;
-//    }
-
-
     private void randomSetGameNameTOButtonText() {
         int rand = ((int) (Math.random() * 4));
         buttonsList.get(rand).setText(game_hashMap.getQuestion_NameOfGame());
@@ -235,7 +219,6 @@ public class Game_Activity extends Activity{
             System.out.println(btn.getText().toString());
         }
     }
-
 
     private String returnAnswer() {
         return game_hashMap.getMapOfAllGame().get(game_hashMap.getAnswer());

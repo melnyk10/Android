@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import com.forest.guessthegame.R;
 
+import static com.forest.guessthegame.activity.Game_Activity.HIGH_SCORE;
+import static com.forest.guessthegame.activity.Game_Activity.SCORE;
+
 public class Game_over_activity extends Activity {
 
     private TextView score = null;
@@ -34,10 +37,10 @@ public class Game_over_activity extends Activity {
         img_btn_goMainAct = (ImageButton) findViewById(R.id.iImgBtn_go_main_activity);
 
         Intent score_intent = getIntent();
-        if(score_intent.hasExtra("score")){
-            score.setText(score_intent.getExtras().getString("score"));
-        }if(score_intent.hasExtra("high_score")){
-            highScore.setText(score_intent.getExtras().getString("high_score"));
+        if(score_intent.hasExtra(SCORE)){
+            score.setText(score_intent.getExtras().getString(SCORE));
+        }if(score_intent.hasExtra(HIGH_SCORE)){
+            highScore.setText(score_intent.getExtras().getString(HIGH_SCORE));
         }
 
 
@@ -54,4 +57,5 @@ public class Game_over_activity extends Activity {
         img_btn_restart.setOnClickListener(onClickListener);
         img_btn_goMainAct.setOnClickListener(onClickListener);
     }
+    
 }
