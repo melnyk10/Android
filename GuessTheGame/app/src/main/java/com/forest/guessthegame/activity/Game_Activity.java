@@ -1,7 +1,11 @@
 package com.forest.guessthegame.activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -27,7 +31,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory {
+public class Game_Activity extends Activity{
 
     private Game_HashMap game_hashMap = new Game_HashMap();
 
@@ -56,6 +60,10 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
     private Intent game_over_intent = null;
 
     private SharedPreferences prefs = null;
+
+    AlertDialog.Builder builder = null;
+
+
 
 
     @Override
@@ -87,7 +95,14 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
         highScore_textView = (TextView) findViewById(R.id.iHighScore_game_activity);
 
         mBackgroundImage = (ImageSwitcher) findViewById(R.id.iImage_game_switcher);
-        mBackgroundImage.setFactory(this);
+        mBackgroundImage.setFactory(()->{
+            ImageView imageView = new ImageView(this);
+            imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+            imageView.setLayoutParams(new ImageSwitcher.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+            imageView.setBackgroundColor(0xFF000000);
+            return imageView;
+        });
 
         score_textSwitcher = (TextSwitcher) findViewById(R.id.iScore);
         score_textSwitcher.setInAnimation(inAnimation);
@@ -118,11 +133,18 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
 
         game_over_intent = new Intent(Game_Activity.this, Game_over_activity.class);
 
+        builder = new AlertDialog.Builder(Game_Activity.this);
+
+
         changeImg();
 
     }
 
     public void btnClick(View v){
+
+
+
+
         switch (v.getId()) {
             case R.id.iBtn_bottom_left:
                 rightAndWrongAnswers(btn_bottom_left);
@@ -137,13 +159,11 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
                 rightAndWrongAnswers(btn_top_right);
                 break;
             case R.id.iImgBtn_restart_game:
-                reset();
+                // забрати спливаючі кнопки блеать
+                youSure(v);
                 break;
             case R.id.iImgBtn_quit_game:
-                game_over_intent.putExtra(SCORE, String.valueOf(score));
-                game_over_intent.putExtra(HIGH_SCORE, String.valueOf(highScore));
-                startActivity(game_over_intent);
-                break;
+                youSure(v);
         }
     }
 
@@ -188,15 +208,15 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
     }
 
 
-    @Override
-    public View makeView() {
-        ImageView imageView = new ImageView(this);
-        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        imageView.setLayoutParams(new ImageSwitcher.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
-        imageView.setBackgroundColor(0xFF000000);
-        return imageView;
-    }
+//    @Override
+//    public View makeView() {
+//        ImageView imageView = new ImageView(this);
+//        imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+//        imageView.setLayoutParams(new ImageSwitcher.LayoutParams(
+//                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT));
+//        imageView.setBackgroundColor(0xFF000000);
+//        return imageView;
+//    }
 
 
     private void randomSetGameNameTOButtonText() {
@@ -256,7 +276,24 @@ public class Game_Activity extends Activity implements ViewSwitcher.ViewFactory 
         changeImg();
     }
 
-    private void youSure(){
-        //when pressed btn reset or quick ask "U sure motherfucker ?"
+    private void youSure(View v){
+        String question = (v.getId()==R.id.iImgBtn_restart_game) ? "Restart game?" : "Quit game?";
+            builder.setMessage(question)
+                    .setPositiveButton("yes", (dialog, id) -> {
+                        // FIRE ZE MISSILES!
+                        if(v.getId() == R.id.iImgBtn_restart_game){
+                            reset();
+                        }
+                        else if(v.getId() == R.id.iImgBtn_quit_game){
+                            game_over_intent.putExtra(SCORE, String.valueOf(score));
+                            game_over_intent.putExtra(HIGH_SCORE, String.valueOf(highScore));
+                            startActivity(game_over_intent);
+                        }
+                    })
+                    .setNegativeButton("no", (dialog, id) -> {
+                        // User cancelled the dialog
+                    });
+        AlertDialog alert = builder.create();
+        alert.show();
     }
 }
