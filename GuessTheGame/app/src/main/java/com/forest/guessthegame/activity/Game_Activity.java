@@ -175,14 +175,7 @@ public class Game_Activity extends Activity{
             }
 
 
-            if (highScore > score) {
-                highScore_textView.setText(String.valueOf(highScore));
-            } else {
-                highScore = score;
-                highScore_textView.setText(String.valueOf(highScore));
-                prefs.edit().putInt(HIGH_SCORE, highScore).apply();
-                Log.e("HighScore", highScore+"");
-            }
+            highScore_condition();
 
             game_over_intent.putExtra(SCORE, String.valueOf(score));
             game_over_intent.putExtra(HIGH_SCORE, String.valueOf(highScore));
@@ -265,9 +258,11 @@ public class Game_Activity extends Activity{
                     .setPositiveButton("yes", (dialog, id) -> {
                         // FIRE ZE MISSILES!
                         if(v.getId() == R.id.iImgBtn_restart_game){
-                            reset();
+                            highScore_condition();
+                            reset();// якщо ресет то очки не зараховуються ?
                         }
                         else if(v.getId() == R.id.iImgBtn_quit_game){
+                            highScore_condition();
                             game_over_intent.putExtra(SCORE, String.valueOf(score));
                             game_over_intent.putExtra(HIGH_SCORE, String.valueOf(highScore));
                             startActivity(game_over_intent);
@@ -278,5 +273,16 @@ public class Game_Activity extends Activity{
                     });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    private void highScore_condition(){
+        if (highScore > score) {
+            highScore_textView.setText(String.valueOf(highScore));
+        } else {
+            highScore = score;
+            highScore_textView.setText(String.valueOf(highScore));
+            prefs.edit().putInt(HIGH_SCORE, highScore).apply();
+            Log.e("HighScore", highScore+"");
+        }
     }
 }

@@ -57,5 +57,5 @@ public class Game_over_activity extends Activity {
         img_btn_restart.setOnClickListener(onClickListener);
         img_btn_goMainAct.setOnClickListener(onClickListener);
     }
-    
+
 }
