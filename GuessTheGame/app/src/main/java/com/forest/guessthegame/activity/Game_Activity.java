@@ -137,10 +137,6 @@ public class Game_Activity extends Activity{
     }
 
     public void btnClick(View v){
-
-
-
-
         switch (v.getId()) {
             case R.id.iBtn_bottom_left:
                 rightAndWrongAnswers(btn_bottom_left);
