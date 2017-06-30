@@ -17,7 +17,6 @@ import com.forest.guessthegame.R;
 public class Main_Activity extends Activity {
 
     private Button btn_startGame = null;
-    private Button btn_about = null;
     private ImageButton btn_changeLanguage = null;
     private ImageButton btn_aboutApp = null;
     private ImageButton btn_soundSwitcher = null;
@@ -42,7 +41,6 @@ public class Main_Activity extends Activity {
 
 
         btn_startGame = (Button) findViewById(R.id.iBtn_start_game);
-//        btn_about = (Button) findViewById(R.id.iBtn_about);
         btn_changeLanguage = (ImageButton) findViewById(R.id.iImgBtn_changeLanguage);
         btn_aboutApp = (ImageButton) findViewById(R.id.iImgBtn_info_about_game);
         btn_soundSwitcher = (ImageButton) findViewById(R.id.iImgBtn_sound_switch);
@@ -53,8 +51,6 @@ public class Main_Activity extends Activity {
                 case R.id.iBtn_start_game:
                     startActivity(new Intent(v.getContext(), Game_Activity.class));
                     break;
-//                    case R.id.iBtn_about:
-//                        break;
                 case R.id.iImgBtn_changeLanguage:
                     break;
                 case R.id.iImgBtn_info_about_game:
@@ -69,7 +65,6 @@ public class Main_Activity extends Activity {
         blinkText(blinkTextView);
 
         btn_startGame.setOnClickListener(onClickListener);
-//        btn_about.setOnClickListener(onClickListener);
         btn_changeLanguage.setOnClickListener(onClickListener);
         btn_aboutApp.setOnClickListener(onClickListener);
         btn_soundSwitcher.setOnClickListener(onClickListener);

@@ -84,13 +84,6 @@
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
         >
-        <!--<Button-->
-            <!--android:id="@+id/iBtn_about"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="@string/about"-->
-            <!--android:layout_gravity="bottom"-->
-            <!--android:background="@drawable/btn_about"-->
-            <!--/>-->
+
     </LinearLayout>
 </RelativeLayout>

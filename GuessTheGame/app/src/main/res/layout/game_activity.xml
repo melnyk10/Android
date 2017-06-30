@@ -71,7 +71,7 @@
             android:layout_height="50.0dip"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/btn_quit_b"
+            android:background="@drawable/btn_quit_red"
             android:contentDescription="@string/quit_game"
             android:layout_marginRight="10dp"
             android:onClick="btnClick" />
