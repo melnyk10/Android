@@ -60,8 +60,6 @@ public class Game_Activity extends Activity{
     AlertDialog.Builder builder = null;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -136,6 +134,7 @@ public class Game_Activity extends Activity{
 
     }
 
+
     public void btnClick(View v){
         switch (v.getId()) {
             case R.id.iBtn_bottom_left:
@@ -170,7 +169,6 @@ public class Game_Activity extends Activity{
                 }
             }
 
-
             highScore_condition();
 
             game_over_intent.putExtra(SCORE, String.valueOf(score));
@@ -192,24 +190,23 @@ public class Game_Activity extends Activity{
         }
     }
 
-    private void randomSetGameNameTOButtonText() {
+    private void fillTextView() {
+        //pic random btn for answer
         int rand = ((int) (Math.random() * 4));
         buttonsList.get(rand).setText(game_hashMap.getQuestion_NameOfGame());
         game_hashMap.getArrayOfKeyHashMap().remove(game_hashMap.getIndexOfArrayOfKey());
-    }
 
-    private void fillRestTextView() {
+        //pic random img and remove from HashMap. they not repeat them self
         Collections.shuffle(game_hashMap.getArrayOfKeyHashMap());
         for (Button btn : buttonsList) {
             if (btn.getText().equals("")) {
                 btn.setText(game_hashMap.getArrayOfKeyHashMap().get(0));
                 game_hashMap.getArrayOfKeyHashMap().remove(0);
             }
-            System.out.println(btn.getText().toString());
         }
     }
 
-    private String returnAnswer() {
+    private String returnNameOfGame() {
         return game_hashMap.getMapOfAllGame().get(game_hashMap.getAnswer());
     }
 
@@ -220,14 +217,14 @@ public class Game_Activity extends Activity{
         btn_bottom_right.setText("");
 
         game_hashMap.firstStartRightQuestion();
-        randomSetGameNameTOButtonText();
-        fillRestTextView();
+        //randomSetGameNameTOButtonText();
+        fillTextView();
     }
 
     private void changeImg() {
         changeText();
 
-        String picName = returnAnswer();
+        String picName = returnNameOfGame();
         int resID2 = getResources().getIdentifier(picName, "drawable", getPackageName());
         mBackgroundImage.setImageResource(resID2);
     }
@@ -245,6 +242,7 @@ public class Game_Activity extends Activity{
         score_textSwitcher.setText(String.valueOf(0));
 
         game_hashMap.setArrayOfKeyHashMap(game_hashMap.copyKeyMapToStringListArray());
+
         changeImg();
     }
 
@@ -252,7 +250,6 @@ public class Game_Activity extends Activity{
         String question = (v.getId()==R.id.iImgBtn_restart_game) ? "Restart game?" : "Quit game?";
             builder.setMessage(question)
                     .setPositiveButton("yes", (dialog, id) -> {
-                        // FIRE ZE MISSILES!
                         if(v.getId() == R.id.iImgBtn_restart_game){
                             highScore_condition();
                             reset();// якщо ресет то очки не зараховуються ?

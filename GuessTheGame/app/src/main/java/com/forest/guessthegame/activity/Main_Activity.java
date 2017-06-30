@@ -39,6 +39,8 @@ public class Main_Activity extends Activity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
+
+
         btn_startGame = (Button) findViewById(R.id.iBtn_start_game);
 //        btn_about = (Button) findViewById(R.id.iBtn_about);
         btn_changeLanguage = (ImageButton) findViewById(R.id.iImgBtn_changeLanguage);

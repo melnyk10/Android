@@ -61,7 +61,7 @@
             android:layout_height="50.0dip"
             android:layout_centerVertical="true"
             android:layout_marginRight="13.0dip"
-            android:background="@drawable/btn_restart_b"
+            android:background="@drawable/btn_restart_green"
             android:layout_toLeftOf="@id/iImgBtn_quit_game"
             android:onClick="btnClick" />
 
