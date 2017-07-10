@@ -20,60 +20,41 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="65dp">
+        android:layout_height="65dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp">
 
-        <LinearLayout
-            android:id="@id/iLinearLayout_highScore"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"
-            >
-            <TextView
-                android:id="@id/iBest_score_text_gameAct"
-                android:text="@string/best_score"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="@style/button_text"
-                />
-            <TextView
-                android:id="@id/iHighScore_game_activity"
-                android:text="0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toRightOf="@id/iBest_score_text_gameAct"
-                android:textAppearance="@style/button_text"
-                />
-        </LinearLayout>
 
         <TextSwitcher
-            android:id="@id/iScore"
+            android:id="@id/iTS_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
+            android:background="@drawable/small_points"
             />
 
 
         <ImageButton
             android:id="@id/iImgBtn_restart_game"
-            android:layout_width="50.0dip"
-            android:layout_height="50.0dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginRight="13.0dip"
+            android:layout_marginRight="18.0dip"
             android:background="@drawable/btn_restart_green"
             android:layout_toLeftOf="@id/iImgBtn_quit_game"
             android:onClick="btnClick" />
 
         <ImageButton
             android:id="@id/iImgBtn_quit_game"
-            android:layout_width="50.0dip"
-            android:layout_height="50.0dip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
             android:background="@drawable/btn_quit_red"
             android:contentDescription="@string/quit_game"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="15dp"
             android:onClick="btnClick" />
 
     </RelativeLayout>
@@ -81,15 +62,19 @@
 
 
 
+
+
+
     <LinearLayout
         android:id="@id/iLinearLayout_top_buttons"
         android:gravity="top"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="50.0dip"
         android:baselineAligned="false"
         android:layout_centerHorizontal="true"
         android:layout_above="@id/iLinearLayout_bottom_buttons"
-        android:splitMotionEvents="false">
+        android:splitMotionEvents="false"
+        android:layout_marginBottom="15dp">
 
         <RelativeLayout
             android:id="@id/iRelativeLayout_btn_top_left"
@@ -99,37 +84,39 @@
 
             <Button
                 android:id="@id/iBtn_top_left"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="320dp"
+                android:layout_height="match_parent"
                 android:layout_marginRight="2.0dip"
                 android:background="@drawable/grey_button"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:onClick="btnClick"
-                android:tag="@string/top_left"
                 android:textAppearance="@style/button_text"
-                android:textColor="@color/White" />
+                android:textColor="@color/Purple"
+                android:layout_centerHorizontal="true"/>
 
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@id/iRelativeLayout_btn_top_right"
             android:layout_width="0.0dip"
-            android:layout_height="wrap_content"
-            android:layout_weight="1.0">
+            android:layout_height="match_parent"
+            android:layout_weight="1.0"
+            android:layout_marginLeft="20dp">
+
 
             <Button
                 android:id="@id/iBtn_top_right"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="320dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="2.0dip"
                 android:background="@drawable/grey_button"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:onClick="btnClick"
-                android:tag="@string/top_right"
                 android:textAppearance="@style/button_text"
-                android:textColor="@color/White" />
+                android:textColor="@color/Purple"
+                android:layout_centerHorizontal="true"/>
 
         </RelativeLayout>
     </LinearLayout>
@@ -142,7 +129,8 @@
         android:baselineAligned="false"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:splitMotionEvents="false">
+        android:splitMotionEvents="false"
+        android:layout_marginBottom="20dp">
 
         <RelativeLayout
             android:id="@id/iRelativeLayout_btn_bottom_left"
@@ -152,36 +140,39 @@
 
             <Button
                 android:id="@id/iBtn_bottom_left"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="320dp"
+                android:layout_height="match_parent"
                 android:layout_marginRight="2.0dip"
                 android:background="@drawable/grey_button"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:onClick="btnClick"
-                android:tag="@string/bottom_left"
                 android:textAppearance="@style/button_text"
-                android:textColor="@color/White" />
+                android:textColor="@color/Purple"
+                android:layout_centerHorizontal="true"
+                />
         </RelativeLayout>
 
         <RelativeLayout
             android:id="@id/iRelativeLayout_btn_bottom_right"
             android:layout_width="0.0dip"
             android:layout_height="wrap_content"
-            android:layout_weight="1.0">
+            android:layout_weight="1.0"
+            android:layout_marginLeft="20dp">
 
             <Button
                 android:id="@id/iBtn_bottom_right"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="320dp"
+                android:layout_height="match_parent"
                 android:layout_marginLeft="2.0dip"
                 android:background="@drawable/grey_button"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:onClick="btnClick"
-                android:tag="@string/bottom_right"
                 android:textAppearance="@style/button_text"
-                android:textColor="@color/White" />
+                android:textColor="@color/Purple"
+                android:layout_centerHorizontal="true"
+                />
 
         </RelativeLayout>
     </LinearLayout>

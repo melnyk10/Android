@@ -9,7 +9,7 @@
 
 
     <ImageView
-        android:id="@+id/iGuess_game_text"
+        android:id="@id/iGuess_game_text"
         android:layout_width="280dp"
         android:layout_height="60dp"
         android:background="@drawable/guess_game_text"
@@ -27,7 +27,7 @@
         android:layout_marginBottom="32dp" />
 
     <RelativeLayout
-        android:layout_below="@+id/iGuess_game_text"
+        android:layout_below="@id/iGuess_game_text"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
@@ -44,7 +44,7 @@
             android:layout_weight="1.0">
 
             <Button
-                android:id="@+id/iBtn_rate_app"
+                android:id="@id/iBtn_rate_app"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
@@ -72,7 +72,7 @@
 
 
         <LinearLayout
-            android:id="@+id/linearLayout_feedback"
+            android:id="@id/linearLayout_feedback"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_below="@id/linearLayout_rate">

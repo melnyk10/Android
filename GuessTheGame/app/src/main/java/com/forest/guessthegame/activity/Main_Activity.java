@@ -21,8 +21,6 @@ public class Main_Activity extends Activity {
     private ImageButton btn_aboutApp = null;
     private ImageButton btn_soundSwitcher = null;
 
-    private TextView blinkTextView = null;
-
      ObjectAnimator textColorAnim = null;
 
 
@@ -41,10 +39,9 @@ public class Main_Activity extends Activity {
 
 
         btn_startGame = (Button) findViewById(R.id.iBtn_start_game);
-        btn_changeLanguage = (ImageButton) findViewById(R.id.iImgBtn_changeLanguage);
+        //btn_changeLanguage = (ImageButton) findViewById(R.id.iImgBtn_changeLanguage);
         btn_aboutApp = (ImageButton) findViewById(R.id.iImgBtn_info_about_game);
         btn_soundSwitcher = (ImageButton) findViewById(R.id.iImgBtn_sound_switch);
-        blinkTextView = (TextView) findViewById(R.id.iBlinling_text);
 
         View.OnClickListener onClickListener = v -> {
             switch (v.getId()) {
@@ -62,20 +59,11 @@ public class Main_Activity extends Activity {
         };
 
 
-        blinkText(blinkTextView);
 
         btn_startGame.setOnClickListener(onClickListener);
-        btn_changeLanguage.setOnClickListener(onClickListener);
+//        btn_changeLanguage.setOnClickListener(onClickListener);
         btn_aboutApp.setOnClickListener(onClickListener);
         btn_soundSwitcher.setOnClickListener(onClickListener);
 
-    }
-    private void blinkText(TextView blinkTextView){
-        textColorAnim = ObjectAnimator.ofInt(blinkTextView, "textColor", Color.WHITE, 0xCC8F2828);
-        textColorAnim.setDuration(1000);
-        textColorAnim.setEvaluator(new ArgbEvaluator());
-        textColorAnim.setRepeatCount(ValueAnimator.INFINITE);
-        textColorAnim.setRepeatMode(ValueAnimator.REVERSE);
-        textColorAnim.start();
     }
 }

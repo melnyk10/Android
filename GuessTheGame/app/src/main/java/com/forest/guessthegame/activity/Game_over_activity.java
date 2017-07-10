@@ -32,15 +32,15 @@ public class Game_over_activity extends Activity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         score = (TextView) findViewById(R.id.iScore_game_over);
-        highScore = (TextView) findViewById(R.id.iHighScore_game_over_activity);
+        highScore = (TextView) findViewById(R.id.iBest_score_text);
         img_btn_restart = (ImageButton) findViewById(R.id.iImgBtn_restart);
         img_btn_goMainAct = (ImageButton) findViewById(R.id.iImgBtn_go_main_activity);
 
         Intent score_intent = getIntent();
         if(score_intent.hasExtra(SCORE)){
-            score.setText(score_intent.getExtras().getString(SCORE));
+            score.setText(score_intent.getExtras().getString(SCORE)+" points"); //тимчасова заглушка (змінна мови)
         }if(score_intent.hasExtra(HIGH_SCORE)){
-            highScore.setText(score_intent.getExtras().getString(HIGH_SCORE));
+            highScore.setText("best score: "+score_intent.getExtras().getString(HIGH_SCORE));
         }
 
 

@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -41,9 +42,9 @@ public class Game_Activity extends Activity{
     private ImageButton imgBtn_restart = null;
     private ImageButton imgBtn_quit = null;
 
-    private TextSwitcher score_textSwitcher = null;
+    private TextSwitcher iTS_score = null;
 
-    private TextView highScore_textView = null;
+    //private TextView highScore_textView = null;
 
     public static final String HIGH_SCORE = "high_score";
     public static final String SCORE = "score";
@@ -86,7 +87,7 @@ public class Game_Activity extends Activity{
         imgBtn_restart = (ImageButton) findViewById(R.id.iImgBtn_restart_game);
         imgBtn_quit = (ImageButton) findViewById(R.id.iImgBtn_quit_game);
 
-        highScore_textView = (TextView) findViewById(R.id.iHighScore_game_activity);
+        //highScore_textView = (TextView) findViewById(R.id.iHighScore_game_activity);
 
         mBackgroundImage = (ImageSwitcher) findViewById(R.id.iImage_game_switcher);
         mBackgroundImage.setFactory(()->{
@@ -98,12 +99,14 @@ public class Game_Activity extends Activity{
             return imageView;
         });
 
-        score_textSwitcher = (TextSwitcher) findViewById(R.id.iScore);
-        score_textSwitcher.setInAnimation(inAnimation);
-        score_textSwitcher.setOutAnimation(outAnimation);
-        score_textSwitcher.setFactory(() -> {
+        iTS_score = (TextSwitcher) findViewById(R.id.iTS_score);
+        iTS_score.setInAnimation(inAnimation);
+        iTS_score.setOutAnimation(outAnimation);
+        iTS_score.setFactory(() -> {
             TextView textView = new TextView(Game_Activity.this);
-            textView.setGravity(Gravity.CENTER_HORIZONTAL);
+            Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/ubuntu_r.ttf");
+            textView.setTypeface(custom_font);
+            textView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
             textView.setShadowLayer(2, 1, 1, Color.BLACK);
             textView.setTextSize(20);
             textView.setTextColor(Color.WHITE);
@@ -122,7 +125,7 @@ public class Game_Activity extends Activity{
 
         prefs = this.getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
         highScore = prefs.getInt(HIGH_SCORE, 0);
-        highScore_textView.setText(String.valueOf(highScore));
+        //highScore_textView.setText(String.valueOf(highScore));
 
 
         game_over_intent = new Intent(Game_Activity.this, Game_over_activity.class);
@@ -177,7 +180,7 @@ public class Game_Activity extends Activity{
 
         } else if (button.getText().toString().equals(game_hashMap.getAnswer())) {
             score += 25;
-            score_textSwitcher.setText(String.valueOf(score));
+            iTS_score.setText(String.valueOf(score));
 
             changeImg();
 
@@ -239,7 +242,7 @@ public class Game_Activity extends Activity{
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         score = 0;
-        score_textSwitcher.setText(String.valueOf(0));
+        iTS_score.setText(String.valueOf(0));
 
         game_hashMap.setArrayOfKeyHashMap(game_hashMap.copyKeyMapToStringListArray());
 
@@ -270,10 +273,10 @@ public class Game_Activity extends Activity{
 
     private void highScore_condition(){
         if (highScore > score) {
-            highScore_textView.setText(String.valueOf(highScore));
+            //highScore_textView.setText(String.valueOf(highScore));
         } else {
             highScore = score;
-            highScore_textView.setText(String.valueOf(highScore));
+            //highScore_textView.setText(String.valueOf(highScore));
             prefs.edit().putInt(HIGH_SCORE, highScore).apply();
             Log.e("HighScore", highScore+"");
         }

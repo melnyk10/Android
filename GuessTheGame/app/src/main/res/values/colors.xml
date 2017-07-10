@@ -10,10 +10,16 @@
 
     <color name="Black">#ff222222</color>
     <color name="White">#FFFFFF</color>
+    <color name="TransparentWhite">#CCFFFFFF</color>
     <color name="Transparent">#80000000</color>
-    <color name="Transparent_grey_for_button">#CC5F5F5F</color>
+    <color name="Transparent_grey">#CC5F5F5F</color>
+    <color name="Transparent_green">#CC1b7307</color>
+    <color name="Transparent_red">#CCef4444</color>
+    <color name="dark_red">#992f2f</color>
+    <color name="dark_green">#0f4204</color>
     <color name="Transparent_lightGrey_for_button">#CC7e7e7e</color>
     <color name="MiddleGray">#ff555555</color>
+    <color name="Purple">#29227b</color>
 
 
 

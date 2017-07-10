@@ -3,7 +3,7 @@
 
 	<!--game_activity-->
 	<item type="id" name="iImage_game_switcher">false</item>
-	<item type="id" name="iScore">false</item>
+	<item type="id" name="iTS_score">false</item>
     <item type="id" name="iLinearLayout_top_buttons">false</item>
     <item type="id" name="iRelativeLayout_btn_top_left">false</item>
     <item type="id" name="iBtn_top_left">false</item>
@@ -17,20 +17,8 @@
     <item type="id" name="iLinearLayout_highScore">false</item>
     <item type="id" name="iBest_score_text_gameAct">false</item>
     <item type="id" name="iHighScore_game_activity">false</item>
-    <!--game_activity_2_temp-->
-    <item type="id" name="relativeLayout_quit_btn">false</item>
-
-    <!--Sliding Drawer-->
-    <item type="id" name="iGameOptionsSlidingDrawer">false</item>
-    <item type="id" name="iHandle_layout">false</item>
-    <item type="id" name="iHandle_button">false</item>
-    <item type="id" name="iGame_options_linear_layout">false</item>
-    <item type="id" name="iImgBtn_resume_game">false</item>
-    <item type="id" name="iText_view_description1">false</item>
     <item type="id" name="iImgBtn_restart_game">false</item>
-    <item type="id" name="iText_view_description2">false</item>
     <item type="id" name="iImgBtn_quit_game">false</item>
-    <item type="id" name="iText_view_description3">false</item>
 
 
     <!--game_over_activity-->
@@ -52,11 +40,13 @@
     <item type="id" name="iImgBtn_info_about_game">false</item>
     <item type="id" name="iImgBtn_sound_switch">false</item>
     <item type="id" name="iGuess_game_text">false</item>
-    <item type="id" name="iBlinling_text">false</item>
+    <item type="id" name="iBlinking_text">false</item>
     <item type="id" name="iBtn_start_game">false</item>
 
     <!--info_app_activity-->
+    <item type="id" name="linearLayout_feedback">false</item>
     <item type="id" name="linearLayout_rate">false</item>
     <item type="id" name="iBtn_feedback">false</item>
+    <item type="id" name="iBtn_rate_app">false</item>
 
 </resources>

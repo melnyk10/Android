@@ -4,107 +4,114 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/purple_backround_game_over"
     tools:context="com.forest.guessthegame.activity.Game_over_activity">
 
-        <TextView
-            android:id="@id/iGame_over_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="@string/game_over"
-            android:textAppearance="@style/button_text"
-            android:textSize="40dp"
-            android:layout_marginTop="50dp" />
-        <RelativeLayout
-            android:id="@id/iRelative_layout_score"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/score_point_game_over_act"
-            android:layout_below="@+id/iGame_over_text"
-            android:layout_centerHorizontal="true"
-            >
-            <TextView
-                android:id="@id/iYour_score_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerHorizontal="true"
-                android:text="@string/your_score"
-                android:textSize="30dp"
-                android:textAppearance="@style/button_text"
-                />
-            <TextView
-                android:id="@id/iScore_game_over"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:layout_centerHorizontal="true"
-                android:layout_below="@+id/iYour_score_text"
-                android:layout_gravity="center"
-                android:textAppearance="@style/button_text"
-                android:text="0"
-                android:textSize="50dp"
-                />
-            <TextView
-                android:id="@id/iPoint_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/iScore_game_over"
-                android:layout_centerHorizontal="true"
-                android:textAppearance="@style/button_text"
-                android:text="@string/point"
-                android:textSize="30dp"
-                />
-    </RelativeLayout>
 
-    <ImageButton
-        android:id="@id/iImgBtn_restart"
-        android:layout_width="50.0dip"
-        android:layout_height="50.0dip"
-        android:layout_toLeftOf="@id/iRelative_layout_score"
-        android:layout_below="@id/iGame_over_text"
-        android:layout_marginRight="5dp"
-        android:background="@drawable/btn_restart_w"
-        android:shadowColor = "@color/Black"
-        android:shadowDx="0.9"
-        android:shadowDy="1.0"
-        android:shadowRadius="1"/>
-
-    <ImageButton
-        android:id="@id/iImgBtn_go_main_activity"
-        android:layout_width="50.0dip"
-        android:layout_height="50.0dip"
-        android:layout_toRightOf="@id/iRelative_layout_score"
-        android:layout_below="@id/iGame_over_text"
-        android:layout_marginLeft="5dp"
-        android:background="@drawable/btn_quit_w"
-        android:shadowColor = "@color/Black"
-        android:shadowDx="0.9"
-        android:shadowDy="1.0"
-        android:shadowRadius="0.5"
-        />
-    <LinearLayout
-        android:id="@id/iLinearLayout_best_score_text"
+    <TextView
+        android:id="@id/iGame_over_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/iRelative_layout_score"
         android:layout_centerHorizontal="true"
-        >
+        android:layout_marginTop="50dp"
+        android:text="@string/game_over"
+        android:textAppearance="@style/button_text"
+        android:textColor="@color/White"
+        android:textSize="40dp" />
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
+
+        <TextView
+            android:id="@id/iScore_game_over"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/small_points_bigger"
+            android:gravity="center"
+            android:text="0 points" />
+
         <TextView
             android:id="@id/iBest_score_text"
-            android:text="@string/best_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/iScore_game_over"
+            android:layout_centerHorizontal="true"
+            android:text="best score: 0"
             android:textAppearance="@style/button_text"
+            android:textColor="@color/White"
+
             />
-        <TextView
-            android:id="@id/iHighScore_game_over_activity"
-            android:text="0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/iBest_score_text"
-            android:textAppearance="@style/button_text"
-            />
-    </LinearLayout>
+    </RelativeLayout>
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:gravity="center">
+
+        <LinearLayout
+            android:id="@+id/iLL_bottomBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:id="@+id/iRL_left"
+                android:layout_width="0.0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0">
+
+                <TextView
+                    android:id="@+id/iTV_playAgain"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:text="play again"
+                    android:layout_toLeftOf="@id/iImgBtn_restart"/>
+
+                <ImageButton
+                    android:id="@id/iImgBtn_restart"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/restart_normal_big"
+                    android:layout_alignParentEnd="true"/>
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/iRL_right"
+                android:layout_toRightOf="@id/iRL_left"
+                android:layout_width="0.0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.0">
+
+                <ImageButton
+                    android:id="@id/iImgBtn_go_main_activity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/quit_normal_red_big" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toRightOf="@id/iImgBtn_go_main_activity"
+                    android:text="exit" />
+            </RelativeLayout>
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
 
 
 </RelativeLayout>
