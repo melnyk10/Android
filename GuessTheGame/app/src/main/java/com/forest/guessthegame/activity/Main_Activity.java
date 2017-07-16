@@ -7,10 +7,12 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.forest.guessthegame.R;
 
@@ -48,8 +50,8 @@ public class Main_Activity extends Activity {
                 case R.id.iBtn_start_game:
                     startActivity(new Intent(v.getContext(), Game_Activity.class));
                     break;
-                case R.id.iImgBtn_changeLanguage:
-                    break;
+//                case R.id.iImgBtn_changeLanguage:
+//                    break;
                 case R.id.iImgBtn_info_about_game:
                     startActivity(new Intent(v.getContext(), Info_app_Activity.class));
                     break;
@@ -64,6 +66,10 @@ public class Main_Activity extends Activity {
 //        btn_changeLanguage.setOnClickListener(onClickListener);
         btn_aboutApp.setOnClickListener(onClickListener);
         btn_soundSwitcher.setOnClickListener(onClickListener);
+
+    }
+
+    public void btnOnClick(View v){
 
     }
 }

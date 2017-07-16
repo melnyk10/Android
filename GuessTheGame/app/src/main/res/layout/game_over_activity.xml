@@ -80,9 +80,10 @@
                     android:id="@id/iImgBtn_restart"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/restart_normal_big"
-                    android:layout_alignParentEnd="true"/>
+                    android:background="@drawable/btn_game_over_act_restart"
+                    android:onClick="myOnClick" />
             </RelativeLayout>
 
 
@@ -98,7 +99,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
-                    android:background="@drawable/quit_normal_red_big" />
+                    android:background="@drawable/btn_game_over_act_quit"
+                    android:onClick="myOnClick" />
 
                 <TextView
                     android:layout_width="wrap_content"

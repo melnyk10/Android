@@ -104,8 +104,8 @@ public class Game_Activity extends Activity{
         iTS_score.setOutAnimation(outAnimation);
         iTS_score.setFactory(() -> {
             TextView textView = new TextView(Game_Activity.this);
-            Typeface custom_font = Typeface.createFromAsset(getAssets(),  "fonts/ubuntu_r.ttf");
-            textView.setTypeface(custom_font);
+//            Typeface custom_font = Typeface.createFromAsset(getAssets(), "font/ubuntu_r.ttf");
+//            textView.setTypeface(custom_font);
             textView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
             textView.setShadowLayer(2, 1, 1, Color.BLACK);
             textView.setTextSize(20);
@@ -250,8 +250,9 @@ public class Game_Activity extends Activity{
     }
 
     private void youSure(View v){
-        String question = (v.getId()==R.id.iImgBtn_restart_game) ? "Restart game?" : "Quit game?";
-            builder.setMessage(question)
+        String question = (v.getId()==R.id.iImgBtn_restart_game) ? "restart game?" : "quit game?";
+            builder.setTitle("Are you sure?")
+                    .setMessage("Do you definitely want to "+question)
                     .setPositiveButton("yes", (dialog, id) -> {
                         if(v.getId() == R.id.iImgBtn_restart_game){
                             highScore_condition();
@@ -264,11 +265,8 @@ public class Game_Activity extends Activity{
                             startActivity(game_over_intent);
                         }
                     })
-                    .setNegativeButton("no", (dialog, id) -> {
-                        // User cancelled the dialog
-                    });
-        AlertDialog alert = builder.create();
-        alert.show();
+                    .setNegativeButton("no", null)
+                    .show();
     }
 
     private void highScore_condition(){

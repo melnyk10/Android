@@ -43,19 +43,17 @@ public class Game_over_activity extends Activity {
             highScore.setText("best score: "+score_intent.getExtras().getString(HIGH_SCORE));
         }
 
+    }
 
-        View.OnClickListener onClickListener = v -> {
-            switch (v.getId()) {
-                case R.id.iImgBtn_restart:
-                    startActivity(new Intent(Game_over_activity.this, Game_Activity.class));
-                    break;
-                case R.id.iImgBtn_go_main_activity:
-                    startActivity(new Intent(Game_over_activity.this, Main_Activity.class));
-                    break;
-            }
-        };
-        img_btn_restart.setOnClickListener(onClickListener);
-        img_btn_goMainAct.setOnClickListener(onClickListener);
+    public void myOnClick(View v){
+        switch (v.getId()) {
+            case R.id.iImgBtn_restart:
+                startActivity(new Intent(Game_over_activity.this, Game_Activity.class));
+                break;
+            case R.id.iImgBtn_go_main_activity:
+                startActivity(new Intent(Game_over_activity.this, Main_Activity.class));
+                break;
+        }
     }
 
 }

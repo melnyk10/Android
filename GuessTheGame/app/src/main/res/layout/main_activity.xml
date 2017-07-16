@@ -37,28 +37,37 @@
             />
     </RelativeLayout>
 
-    <ImageView
-        android:id="@id/iGuess_game_text"
+    <!--<ImageView-->
+        <!--android:id="@id/iGuess_game_text"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:background="@drawable/guess_game_text"-->
+        <!--android:layout_below="@+id/iRelativeLayout_top_bar" />-->
+
+    <TextView
         android:layout_width="wrap_content"
-        android:layout_centerHorizontal="true"
         android:layout_height="wrap_content"
-        android:background="@drawable/guess_game_text"
-        android:layout_below="@+id/iRelativeLayout_top_bar" />
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/iRelativeLayout_top_bar"
+        android:text="@string/guessTheGame"
+        android:textSize="65sp"
+        android:textColor="@color/White"
+        />
 
 
 
 
         <Button
             android:id="@id/iBtn_start_game"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="@string/start_game"
             android:textColor="@color/White"
             android:textAppearance="@style/button_text"
             android:background="@drawable/temp_start_btn"
-            android:layout_centerHorizontal="true"
             android:layout_above="@+id/linearLayout"
-            />
+            android:layout_centerHorizontal="true" />
 
 
 
