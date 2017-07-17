@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
     private SQLiteDatabase eventsDB ;
 
-    private MyDownloadTask downloadTask = new MyDownloadTask();
+   // private MyDownloadTask downloadTask = new MyDownloadTask();
 
     List<String> titlesOfNews = new ArrayList<>();
     List<String> contentOfNews = new ArrayList<>();
@@ -39,36 +39,39 @@ public class MainActivity extends AppCompatActivity {
     //int id = 14779881;
     //String url = "https://hacker-news.firebaseio.com/v0/item/"+id+".json?print=pretty";
 
+
+    DownloadTask downloadTask = new DownloadTask();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        listOfNews = (ListView) findViewById(R.id.iLV_news);
+//        listOfNews = (ListView) findViewById(R.id.iLV_news);
+//
+//        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, titlesOfNews);
+//        listOfNews.setAdapter(arrayAdapter);
+//
+//        listOfNews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//
+//                Intent intent = new Intent(getApplicationContext(), ArticleActivity.class);
+//                intent.putExtra("content", contentOfNews.get(i));
+//
+//                startActivity(intent);
+//            }
+//        });
+//
+//        eventsDB = this.openOrCreateDatabase("NewsHacker", MODE_PRIVATE, null);
+//        eventsDB.execSQL("CREATE TABLE IF NOT EXISTS newsHacker (id INTEGER PRIMARY KEY, articleId INTEGER, title VARCHAR, content VARCHAR)");
+//        updateLV();
+//
+//        downloadTask.execute("https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty");
 
-        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, titlesOfNews);
-        listOfNews.setAdapter(arrayAdapter);
 
-        listOfNews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                Intent intent = new Intent(getApplicationContext(), ArticleActivity.class);
-                intent.putExtra("content", contentOfNews.get(i));
-
-                startActivity(intent);
-            }
-        });
-
-        eventsDB = this.openOrCreateDatabase("NewsHacker", MODE_PRIVATE, null);
-        eventsDB.execSQL("CREATE TABLE IF NOT EXISTS newsHacker (id INTEGER PRIMARY KEY, articleId INTEGER, title VARCHAR, content VARCHAR)");
-        updateLV();
 
         downloadTask.execute("https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty");
-
-
-
-
     }
 
     public void myOnClick(View v){
