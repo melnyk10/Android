@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.forest.hackernews.DBservice.SQDataBase;
 import com.forest.hackernews.DownloadTask;
@@ -31,12 +33,28 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     SQDataBase sqDataBase = new SQDataBase(this);
+    ProgressBar progressBar = null;
+    TextView loadingTV = null;
+    DownloadTask downloadTask = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        progressBar = (ProgressBar) findViewById(R.id.iPB_loadNews);
+        loadingTV = (TextView) findViewById(R.id.iTV_loading);
+        progressBar.setMax(100);
+
+        downloadTask = new DownloadTask(this, sqDataBase, progressBar, loadingTV);
+
+
+
+        //downloadTask = new DownloadTask(this, sqDataBase, progressBar, loadingTV);
+
+        sqDataBase.clean();
+
+        downloadTask.execute("https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty");
     }
 }
 

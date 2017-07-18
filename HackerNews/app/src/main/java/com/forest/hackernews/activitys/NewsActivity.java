@@ -30,12 +30,9 @@ public class NewsActivity extends AppCompatActivity {
 
         listOfNews = (ListView) findViewById(R.id.iLV_news);
 
-        //downloadTask.execute("https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty");
 
-
-
-        //titlesOfNews = sqDataBase.getAllTitles();
-        //urlsOfNews = sqDataBase.getAllUrls();
+        titlesOfNews = getIntent().getStringArrayListExtra("list_of_titles");
+        urlsOfNews = getIntent().getStringArrayListExtra("list_of_urls");
 //
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, titlesOfNews);
         listOfNews.setAdapter(arrayAdapter);

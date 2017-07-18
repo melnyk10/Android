@@ -1,10 +1,13 @@
 package com.forest.hackernews;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.forest.hackernews.DBservice.SQDataBase;
+import com.forest.hackernews.activitys.NewsActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,14 +29,16 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
     private Context context;
     SQDataBase db;
     ProgressBar progressBar;
+    TextView progressTV;
 
     private List<String> titlesOfNews_DT = new ArrayList<>();
     private List<String> urlsOfNews = new ArrayList<>();
 
-    public DownloadTask(Context context, SQDataBase db, ProgressBar progressBar) {
+    public DownloadTask(Context context, SQDataBase db, ProgressBar progressBar, TextView progressTV) {
         this.context = context;
         this.db = db;
         this.progressBar = progressBar;
+        this.progressTV = progressTV;
     }
 
     @Override
@@ -91,6 +96,8 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
                     db.addTitleAndUrl(titleOfNews, urlOfNews);
                 }
 
+                publishProgress((int) ((i / (float) 20) * 100));
+
             }
 
             return apiNewsHackers.toString();
@@ -108,9 +115,11 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
     @Override
     protected void onProgressUpdate(Integer... values) {
         super.onProgressUpdate(values);
-        if (this.progressBar != null) {
+        //if (this.progressBar != null) {
+            progressTV.setText("Loading..."+ values[0]);
             progressBar.setProgress(values[0]);
-        }
+
+       // }
     }
 
     @Override
@@ -118,6 +127,14 @@ public class DownloadTask extends AsyncTask<String, Integer, String> {
         super.onPostExecute(s);
         titlesOfNews_DT = db.getAllTitles();
         urlsOfNews = db.getAllUrls();
+
+        Intent goToNews = new Intent(context, NewsActivity.class);
+
+        goToNews.putExtra("list_of_titles", (ArrayList<String>) titlesOfNews_DT);
+        goToNews.putExtra("list_of_urls", (ArrayList<String>) urlsOfNews);
+
+        context.startActivity(goToNews);
+
     }
 
 //    public List<String> getTit(){
