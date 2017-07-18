@@ -24,14 +24,25 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true">
 
-        <Button
+        <!--<Button-->
+            <!--android:id="@id/iBtn_rate_app"-->
+            <!--android:layout_width="205dp"-->
+            <!--android:layout_height="58dp"-->
+            <!--android:onClick="btnOnClick_infoAct"-->
+            <!--android:text="Rate this app"-->
+            <!--android:textColor="@color/White"-->
+            <!--android:background="@drawable/temp_btn_rateapp"-->
+            <!--android:layout_centerHorizontal="true"-->
+            <!--/>-->
+
+        <ImageButton
             android:id="@id/iBtn_rate_app"
             android:layout_width="205dp"
-            android:layout_height="58dp"
+            android:layout_height="70dp"
             android:onClick="btnOnClick_infoAct"
             android:text="Rate this app"
             android:textColor="@color/White"
-            android:background="@drawable/temp_btn_rateapp"
+            android:background="@drawable/temp"
             android:layout_centerHorizontal="true"
             />
 

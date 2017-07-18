@@ -6,13 +6,15 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.forest.guessthegame.R;
 
 public class Info_app_Activity extends Activity {
 
-    private Button btnRateApp = null;
+    //private Button btnRateApp = null;
+    private ImageButton btnRateApp = null;
     private Button btnFeedback= null;
     private String[] arrayOfEmail = {"temp@gmail.com"};
 
@@ -29,7 +31,8 @@ public class Info_app_Activity extends Activity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
 
-        btnRateApp = (Button) findViewById(R.id.iBtn_rate_app);
+        //btnRateApp = (Button) findViewById(R.id.iBtn_rate_app);
+        btnRateApp = (ImageButton) findViewById(R.id.iBtn_rate_app);
         btnFeedback = (Button) findViewById(R.id.iBtn_feedback);
     }
 
