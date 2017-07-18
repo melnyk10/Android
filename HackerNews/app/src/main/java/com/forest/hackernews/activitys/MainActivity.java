@@ -1,7 +1,12 @@
 package com.forest.hackernews.activitys;
 
+import android.content.Context;
+import android.content.Intent;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -9,60 +14,29 @@ import com.forest.hackernews.DBservice.SQDataBase;
 import com.forest.hackernews.DownloadTask;
 import com.forest.hackernews.R;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ListView listOfNews = null;
-
-    List<String> titlesOfNews = new ArrayList<>();
-    List<String> urlsOfNews = new ArrayList<>();
-
-    ArrayAdapter<String> arrayAdapter;
-
     SQDataBase sqDataBase = new SQDataBase(this);
-
-    DownloadTask downloadTask = new DownloadTask(this, sqDataBase);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-        listOfNews = (ListView) findViewById(R.id.iLV_news);
-
-        //downloadTask.execute("https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty");
-
-
-
-        titlesOfNews = sqDataBase.getAllTitles();
-//
-        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, titlesOfNews);
-        listOfNews.setAdapter(arrayAdapter);
-
-//        listOfNews.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//
-//                Intent intent = new Intent(getApplicationContext(), ArticleActivity.class);
-//                intent.putExtra("content", contentOfNews.get(i));
-//
-//                startActivity(intent);
-//            }
-//        });
-//
-//        eventsDB = this.openOrCreateDatabase("NewsHacker", MODE_PRIVATE, null);
-//        eventsDB.execSQL("CREATE TABLE IF NOT EXISTS newsHacker (id INTEGER PRIMARY KEY, articleId INTEGER, title VARCHAR, content VARCHAR)");
-//        updateLV();
-//
-
-
-        //downloadTask.execute("https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty");
-
-        //Log.i("DB", sqDataBase.getAll());
-        sqDataBase.getAll();
     }
 }
 

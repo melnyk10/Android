@@ -2,6 +2,7 @@ package com.forest.hackernews;
 
 import android.content.Context;
 import android.os.AsyncTask;
+import android.widget.ProgressBar;
 
 import com.forest.hackernews.DBservice.SQDataBase;
 
@@ -20,20 +21,19 @@ import java.util.ArrayList;
 
 import java.util.List;
 
-/**
- * Created by forest on 17.07.2017.
- */
 
-public class DownloadTask extends AsyncTask<String, Void, String> {
+public class DownloadTask extends AsyncTask<String, Integer, String> {
     private Context context;
     SQDataBase db;
+    ProgressBar progressBar;
 
     private List<String> titlesOfNews_DT = new ArrayList<>();
     private List<String> urlsOfNews = new ArrayList<>();
 
-    public DownloadTask(Context context, SQDataBase db) {
+    public DownloadTask(Context context, SQDataBase db, ProgressBar progressBar) {
         this.context = context;
         this.db = db;
+        this.progressBar = progressBar;
     }
 
     @Override
@@ -103,6 +103,14 @@ public class DownloadTask extends AsyncTask<String, Void, String> {
         }
 
         return "failed";
+    }
+
+    @Override
+    protected void onProgressUpdate(Integer... values) {
+        super.onProgressUpdate(values);
+        if (this.progressBar != null) {
+            progressBar.setProgress(values[0]);
+        }
     }
 
     @Override
