@@ -1,10 +1,12 @@
-package com.forest.hackernews;
+package com.forest.hackernews.activitys;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+
+import com.forest.hackernews.R;
 
 public class ArticleActivity extends AppCompatActivity {
 

@@ -1,7 +1,9 @@
 package com.forest.hackernews;
 
+import android.content.Context;
 import android.os.AsyncTask;
-import android.util.Log;
+
+import com.forest.hackernews.DBservice.SQDataBase;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,13 +20,22 @@ import java.util.ArrayList;
 
 import java.util.List;
 
-import static android.content.ContentValues.TAG;
-
 /**
  * Created by forest on 17.07.2017.
  */
 
 public class DownloadTask extends AsyncTask<String, Void, String> {
+    private Context context;
+    SQDataBase db;
+
+    private List<String> titlesOfNews_DT = new ArrayList<>();
+    private List<String> urlsOfNews = new ArrayList<>();
+
+    public DownloadTask(Context context, SQDataBase db) {
+        this.context = context;
+        this.db = db;
+    }
+
     @Override
     protected String doInBackground(String... urls) {
         StringBuffer idNews = new StringBuffer();
@@ -47,12 +58,19 @@ public class DownloadTask extends AsyncTask<String, Void, String> {
 
 
             String result = idNews.toString();
-            StringBuffer apiNewsHackers = new StringBuffer();
             JSONArray jsonArray = new JSONArray(result);
 
+            StringBuffer apiNewsHackers = new StringBuffer();
+            JSONObject jsonObject;
             for (int i = 0; i < 20; i++) {
                 url = new URL("https://hacker-news.firebaseio.com/v0/item/" + jsonArray.getString(i) + ".json?print=pretty");
                 httpURLConnection = (HttpURLConnection) url.openConnection();
+
+                //clear stringBuilder
+                apiNewsHackers.setLength(0);
+                apiNewsHackers.trimToSize();
+
+
 
                 input = new BufferedInputStream(httpURLConnection.getInputStream());
                 inputStreamReader = new InputStreamReader(input);
@@ -63,7 +81,16 @@ public class DownloadTask extends AsyncTask<String, Void, String> {
                     apiNewsHackers.append(current);
                     data = inputStreamReader.read();
                 }
-                Log.i(TAG, "doInBackground: "+apiNewsHackers.toString());
+
+                 jsonObject = new JSONObject(apiNewsHackers.toString());
+
+                if (!jsonObject.isNull("title") && !jsonObject.isNull("url")) {
+                    String titleOfNews = jsonObject.getString("title");
+                    String urlOfNews = jsonObject.getString("url");
+
+                    db.addTitleAndUrl(titleOfNews, urlOfNews);
+                }
+
             }
 
             return apiNewsHackers.toString();
@@ -78,5 +105,33 @@ public class DownloadTask extends AsyncTask<String, Void, String> {
         return "failed";
     }
 
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+        titlesOfNews_DT = db.getAllTitles();
+        urlsOfNews = db.getAllUrls();
+    }
+
+//    public List<String> getTit(){
+//        return titlesOfNews_DT;
+//    }
+//
+//    public List<String> getUrls(){
+//        return urlsOfNews;
+//    }
 
 }
+
+/*
+{
+  "by" : "hunglee2",
+  "descendants" : 14,
+  "id" : 14786509,
+  "kids" : [ 14786798, 14786765, 14786791, 14786760, 14786736, 14786719, 14786794, 14786730, 14786761 ],
+  "score" : 34,
+  "time" : 1500278592,
+  "title" : "Archiveteam are backing up SoundCloud",
+  "type" : "story",
+  "url" : "http://archiveteam.org/index.php?title=SoundCloud&utm_content=bufferb94ff&utm_medium=social&utm_source=linkedin.com&utm_campaign=buffer"
+}
+ */
