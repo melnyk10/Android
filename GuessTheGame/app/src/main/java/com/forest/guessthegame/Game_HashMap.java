@@ -41,7 +41,6 @@ public class Game_HashMap {
 
     public void firstStartRightQuestion(){
         indexOfArrayOfKey = randomNameOfGame();
-        //question_NameOfGame = arrayOfKeyHashMap.get(indexOfArrayOfKey);
         answer = arrayOfKeyHashMap.get(indexOfArrayOfKey);
         Log.e("Answer", "answer = "+answer);
     }
@@ -57,12 +56,12 @@ public class Game_HashMap {
     public Map<String, String> getMapOfAllGame() {
         return mapOfAllGame;
     }
-    
+
     public String getAnswer() {
         return answer;
     }
 
-    public List<String> getArrayOfKeyHashMap() {
+    public List<String> getNameListOfKeyHashMap() {
         return arrayOfKeyHashMap;
     }
 

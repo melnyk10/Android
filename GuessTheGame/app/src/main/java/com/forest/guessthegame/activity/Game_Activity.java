@@ -188,7 +188,7 @@ public class Game_Activity extends Activity{
             changeImg();
 
             //тимчасовий if
-            if (game_hashMap.getArrayOfKeyHashMap().size() < 4) {
+            if (game_hashMap.getNameListOfKeyHashMap().size() < 4) {
                 reset();
             }
 
@@ -200,14 +200,14 @@ public class Game_Activity extends Activity{
         //pic random btn for answer
         int rand = ((int) (Math.random() * 4));
         buttonsList.get(rand).setText(game_hashMap.getAnswer());
-        game_hashMap.getArrayOfKeyHashMap().remove(game_hashMap.getIndexOfArrayOfKey());
+        game_hashMap.getNameListOfKeyHashMap().remove(game_hashMap.getIndexOfArrayOfKey());
 
         //pic random img and remove from HashMap. they not repeat them self
-        Collections.shuffle(game_hashMap.getArrayOfKeyHashMap());
+        Collections.shuffle(game_hashMap.getNameListOfKeyHashMap());
         for (Button btn : buttonsList) {
             if (btn.getText().equals("")) {
-                btn.setText(game_hashMap.getArrayOfKeyHashMap().get(0));
-                game_hashMap.getArrayOfKeyHashMap().remove(0);
+                btn.setText(game_hashMap.getNameListOfKeyHashMap().get(0));
+                game_hashMap.getNameListOfKeyHashMap().remove(0);
             }
         }
     }
