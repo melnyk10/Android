@@ -5,7 +5,9 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
@@ -23,6 +25,8 @@ import android.widget.TextView;
 import com.forest.guessthegame.Game_HashMap;
 import com.forest.guessthegame.R;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -223,12 +227,28 @@ public class Game_Activity extends Activity{
         fillTextView();
     }
 
+    private Drawable getDrawableFromAsset(String strName){
+        AssetManager assetManager = getAssets();
+        InputStream istr = null;
+        try {
+            istr = assetManager.open(strName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Drawable d = Drawable.createFromStream(istr, null);
+
+
+        return d;
+    }
+
     private void changeImg() {
         changeText();
 
-        String picName = returnNameOfGame();
-        int resID2 = getResources().getIdentifier(picName, "drawable", getPackageName());
-        mBackgroundImage.setImageResource(resID2);
+        String picName = returnNameOfGame()+".jpg";
+//        int resID2 = getResources().getIdentifier(picName, "drawable", getPackageName());
+//        mBackgroundImage.setImageResource(resID2);
+
+        mBackgroundImage.setImageDrawable(getDrawableFromAsset(picName));
     }
 
     private void reset() {

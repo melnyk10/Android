@@ -55,9 +55,6 @@
         android:textColor="@color/White"
         />
 
-
-
-
         <Button
             android:id="@id/iBtn_start_game"
             android:layout_width="150dp"
