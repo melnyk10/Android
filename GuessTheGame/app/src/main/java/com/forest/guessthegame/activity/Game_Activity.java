@@ -199,7 +199,7 @@ public class Game_Activity extends Activity{
     private void fillTextView() {
         //pic random btn for answer
         int rand = ((int) (Math.random() * 4));
-        buttonsList.get(rand).setText(game_hashMap.getQuestion_NameOfGame());
+        buttonsList.get(rand).setText(game_hashMap.getAnswer());
         game_hashMap.getArrayOfKeyHashMap().remove(game_hashMap.getIndexOfArrayOfKey());
 
         //pic random img and remove from HashMap. they not repeat them self
@@ -244,11 +244,11 @@ public class Game_Activity extends Activity{
     private void changeImg() {
         changeText();
 
-        String picName = returnNameOfGame()+".jpg";
+        String picName = returnNameOfGame();
 //        int resID2 = getResources().getIdentifier(picName, "drawable", getPackageName());
 //        mBackgroundImage.setImageResource(resID2);
 
-        mBackgroundImage.setImageDrawable(getDrawableFromAsset(picName));
+        mBackgroundImage.setImageDrawable(getDrawableFromAsset("pic_of_game/"+picName));
     }
 
     private void reset() {

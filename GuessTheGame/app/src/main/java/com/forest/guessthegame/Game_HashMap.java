@@ -10,40 +10,39 @@ import java.util.Map;
 public class Game_HashMap {
     private static Map<String, String> mapOfAllGame = new HashMap<>();
     private List<String> arrayOfKeyHashMap = copyKeyMapToStringListArray();
-    private String question_NameOfGame = null;
     private String answer = null;
     private int indexOfArrayOfKey = 0;
 
 
     static {
-        mapOfAllGame.put("Earthworm Jim", "earthworm_jim");
-        mapOfAllGame.put("Duck Hunt", "duckhunt");
-        mapOfAllGame.put("Battletoads", "battletoads");
-        mapOfAllGame.put("Pro Evolution Soccer 2017", "pro_evolution_soccer_2017");
-        mapOfAllGame.put("Assassins Creed Unity", "assassins_creed_unity");
-        mapOfAllGame.put("Counter-Strike GO", "counter_strike_go");
-        mapOfAllGame.put("Crysis", "crysis");
-        mapOfAllGame.put("Dark Soul", "dark_soul");
-        mapOfAllGame.put("Fallout 4", "fallout_4");
-        mapOfAllGame.put("GTA San Andreas", "gta_san_andreas");
-        mapOfAllGame.put("Battlefield 3", "battlefield_3");
-        mapOfAllGame.put("The Sims 4", "the_sims_4");
-        mapOfAllGame.put("GTA Vice City", "gta_vice_city");
-        mapOfAllGame.put("Overwatch", "overwatch");
-        mapOfAllGame.put("The Elder Scrolls V: Skyrim", "the_elder_scrolls_v_skyrim");
-        mapOfAllGame.put("Sonic The Hedgehog", "sonic_the_hedgehog");
-        mapOfAllGame.put("Super Mario", "super_mario");
-        mapOfAllGame.put("Crysis", "crysis");
-        mapOfAllGame.put("Need for Speed Underground 2", "nfs_underground_2");
-        mapOfAllGame.put("Dead Space 3", "dead_space_3");
-        mapOfAllGame.put("The Last of Us", "the_last_of_us");
-        mapOfAllGame.put("Mass Effect 3", "mass_effect_3");
+        mapOfAllGame.put("Earthworm Jim", "earthworm_jim.png");
+        mapOfAllGame.put("Duck Hunt", "duckhunt.jpg");
+        mapOfAllGame.put("Battletoads", "battletoads.jpg");
+        mapOfAllGame.put("Pro Evolution Soccer 2017", "pro_evolution_soccer_2017.jpg");
+        mapOfAllGame.put("Assassins Creed Unity", "assassins_creed_unity.jpg");
+        mapOfAllGame.put("Counter-Strike GO", "counter_strike_go.jpg");
+        mapOfAllGame.put("Crysis", "crysis.jpg");
+        mapOfAllGame.put("Dark Soul", "dark_soul.jpg");
+        mapOfAllGame.put("Fallout 4", "fallout_4.jpg");
+        mapOfAllGame.put("GTA San Andreas", "gta_san_andreas.png");
+        mapOfAllGame.put("Battlefield 3", "battlefield_3.jpg");
+        mapOfAllGame.put("The Sims 4", "the_sims_4.jpg");
+        mapOfAllGame.put("GTA Vice City", "gta_vice_city.jpg");
+        mapOfAllGame.put("Overwatch", "overwatch.jpg");
+        mapOfAllGame.put("The Elder Scrolls V: Skyrim", "the_elder_scrolls_v_skyrim.jpg");
+        mapOfAllGame.put("Sonic The Hedgehog", "sonic_the_hedgehog.png");
+        mapOfAllGame.put("Super Mario", "super_mario.png");
+        mapOfAllGame.put("Crysis", "crysis.jpg");
+        mapOfAllGame.put("Need for Speed Underground 2", "nfs_underground_2.jpg");
+        mapOfAllGame.put("Dead Space 3", "dead_space_3.jpg");
+        mapOfAllGame.put("The Last of Us", "the_last_of_us.jpg");
+        mapOfAllGame.put("Mass Effect 3", "mass_effect_3.jpg");
     }
 
     public void firstStartRightQuestion(){
         indexOfArrayOfKey = randomNameOfGame();
-        question_NameOfGame = arrayOfKeyHashMap.get(indexOfArrayOfKey);
-        answer = question_NameOfGame;
+        //question_NameOfGame = arrayOfKeyHashMap.get(indexOfArrayOfKey);
+        answer = arrayOfKeyHashMap.get(indexOfArrayOfKey);
         Log.e("Answer", "answer = "+answer);
     }
 
@@ -58,11 +57,7 @@ public class Game_HashMap {
     public Map<String, String> getMapOfAllGame() {
         return mapOfAllGame;
     }
-
-    public String getQuestion_NameOfGame() {
-        return question_NameOfGame;
-    }
-
+    
     public String getAnswer() {
         return answer;
     }
