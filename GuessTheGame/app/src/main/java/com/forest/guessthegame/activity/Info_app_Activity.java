@@ -2,20 +2,25 @@ package com.forest.guessthegame.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.Toast;
 
 import com.forest.guessthegame.R;
 
 public class Info_app_Activity extends Activity {
 
-    //private Button btnRateApp = null;
-    private ImageButton btnRateApp = null;
-    private Button btnFeedback= null;
-    private String[] arrayOfEmail = {"temp@gmail.com"};
+    static final String gameVersion = "1.0";
+
+    private Button btnRateApp = null;
+    private Button btnFeedback = null;
+    private static final String[] arrayOfEmail = {"temp@gmail.com"};
+    String debugInfo ='\n'+""+'\n'
+            +"Product (and Model): "+ android.os.Build.PRODUCT + " (" + android.os.Build.MODEL+")"+'\n'
+            +"Android version: "+Build.VERSION.RELEASE+", OS API Level: "+android.os.Build.VERSION.SDK_INT+'\n'
+            +"Game version: "+gameVersion;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,16 +36,17 @@ public class Info_app_Activity extends Activity {
 
 
         //btnRateApp = (Button) findViewById(R.id.iBtn_rate_app);
-        btnRateApp = (ImageButton) findViewById(R.id.iBtn_rate_app);
+        btnRateApp = (Button) findViewById(R.id.iBtn_rate_app);
         btnFeedback = (Button) findViewById(R.id.iBtn_feedback);
+
     }
 
-    public void btnOnClick_infoAct(View v){
-        switch (v.getId()){
+    public void btnOnClick_infoAct(View v) {
+        switch (v.getId()) {
             case R.id.iBtn_rate_app:
                 break;
             case R.id.iBtn_feedback:
-                composeEmail(arrayOfEmail, "Feedback", "I'm email body.");
+                composeEmail(arrayOfEmail, "Feedback", debugInfo);
                 break;
         }
     }
@@ -57,4 +63,6 @@ public class Info_app_Activity extends Activity {
             Toast.makeText(Info_app_Activity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
         }
     }
+
 }
+
