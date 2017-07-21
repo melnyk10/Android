@@ -19,7 +19,7 @@ import java.io.InputStream;
 public class Main_Activity extends Activity {
 
     private Button btn_startGame = null;
-    private ImageButton btn_changeLanguage = null;
+    //private ImageButton btn_changeLanguage = null;
     private ImageButton btn_aboutApp = null;
     private ImageButton btn_soundSwitcher = null;
 

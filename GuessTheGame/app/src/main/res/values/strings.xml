@@ -25,6 +25,7 @@
     <string name="game_knowledge">Are you ready to check your game knowledge?</string>
     <string name="feedback">Get all the game stills right! It may not always be easy but it\'s 100% fun!</string>
     <string name="guessTheGame">Guess The Game</string>
+    <string name="versionOfGame">Version of game 1.0</string>
 
 
 </resources>

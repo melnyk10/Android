@@ -57,17 +57,14 @@
 
         <Button
             android:id="@id/iBtn_start_game"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
+            android:layout_width="200dp"
+            android:layout_height="120dp"
             android:text="@string/start_game"
             android:textColor="@color/White"
             android:textAppearance="@style/button_text"
-            android:background="@drawable/temp_start_btn"
+            android:background="@drawable/btn_start_game"
             android:layout_above="@+id/linearLayout"
             android:layout_centerHorizontal="true" />
-
-
-
 
 
     <LinearLayout

@@ -32,7 +32,8 @@
             android:layout_height="wrap_content"
             android:background="@drawable/small_points_bigger"
             android:gravity="center"
-            android:text="0 points" />
+            android:text="0 points"
+            android:textSize="18sp"/>
 
         <TextView
             android:id="@id/iBest_score_text"
@@ -41,10 +42,8 @@
             android:layout_below="@id/iScore_game_over"
             android:layout_centerHorizontal="true"
             android:text="best score: 0"
-            android:textAppearance="@style/button_text"
-            android:textColor="@color/White"
+            android:textColor="@color/White" />
 
-            />
     </RelativeLayout>
 
 
@@ -74,7 +73,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="play again"
-                    android:layout_toLeftOf="@id/iImgBtn_restart"/>
+                    android:layout_toLeftOf="@id/iImgBtn_restart"
+                    android:textSize="25sp"/>
 
                 <ImageButton
                     android:id="@id/iImgBtn_restart"
@@ -107,7 +107,8 @@
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/iImgBtn_go_main_activity"
-                    android:text="exit" />
+                    android:text="exit"
+                    android:textSize="25sp"/>
             </RelativeLayout>
         </LinearLayout>
 
