@@ -6,8 +6,6 @@ package com.forest.guessthegame.dbSQLite;
 
 public interface ManageDB {
     String getEngName(short id);
-    String getRusName(short id);
-    String getUaName(short id);
     String getJpgName(short id);
     short getYear(short id);
 }
