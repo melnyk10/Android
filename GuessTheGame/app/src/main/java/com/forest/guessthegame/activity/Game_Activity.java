@@ -9,6 +9,7 @@ import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -64,6 +65,8 @@ public class Game_Activity extends Activity{
     AlertDialog.Builder builder = null;
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,7 +112,7 @@ public class Game_Activity extends Activity{
             TextView textView = new TextView(Game_Activity.this);
 //            Typeface custom_font = Typeface.createFromAsset(getAssets(), "font/ubuntu_r.ttf");
 //            textView.setTypeface(custom_font);
-            textView.setGravity(Gravity.CENTER_HORIZONTAL | Gravity.CENTER_VERTICAL);
+            textView.setGravity(Gravity.CENTER);
             textView.setShadowLayer(2, 1, 1, Color.BLACK);
             textView.setTextSize(20);
             textView.setTextColor(Color.WHITE);
@@ -175,6 +178,9 @@ public class Game_Activity extends Activity{
                 }
             }
 
+//            buttonsList.stream().filter(btn->btn.getText().equals(game_hashMap.getAnswer()))
+//                    .forEach(btn->btn.setBackgroundResource(R.drawable.correct_btn));
+
             highScore_condition();
 
             game_over_intent.putExtra(SCORE, String.valueOf(score));
@@ -182,8 +188,8 @@ public class Game_Activity extends Activity{
             startActivity(game_over_intent);
 
         } else if (button.getText().toString().equals(game_hashMap.getAnswer())) {
+            timerForRightBtn();
             score += 25;
-            iTS_score.setText(String.valueOf(score));
 
             changeImg();
 
@@ -297,5 +303,19 @@ public class Game_Activity extends Activity{
             prefs.edit().putInt(HIGH_SCORE, highScore).apply();
             Log.e("HighScore", highScore+"");
         }
+    }
+
+    private void timerForRightBtn(){
+        Drawable g = iTS_score.getBackground();
+        new CountDownTimer(1000, 600) {
+            public void onTick(long millisecondsUntilDone) {
+                iTS_score.setText("Right");
+                iTS_score.setBackgroundResource(R.drawable.right);
+            }
+            public void onFinish() {
+                iTS_score.setBackground(g);
+                iTS_score.setText(String.valueOf(score));
+            }
+        }.start();
     }
 }
