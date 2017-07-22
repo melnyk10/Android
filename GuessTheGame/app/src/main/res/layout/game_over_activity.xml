@@ -74,7 +74,7 @@
                     android:layout_centerVertical="true"
                     android:text="play again"
                     android:layout_toLeftOf="@id/iImgBtn_restart"
-                    android:textSize="25sp"/>
+                    android:textSize="20sp"/>
 
                 <ImageButton
                     android:id="@id/iImgBtn_restart"
@@ -108,7 +108,7 @@
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/iImgBtn_go_main_activity"
                     android:text="exit"
-                    android:textSize="25sp"/>
+                    android:textSize="20sp"/>
             </RelativeLayout>
         </LinearLayout>
 

@@ -40,10 +40,10 @@
 
         <ImageButton
             android:id="@id/iImgBtn_restart_game"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
             android:layout_centerVertical="true"
-            android:layout_marginRight="18.0dip"
+            android:layout_marginRight="5dp"
             android:background="@drawable/btn_restart_green"
             android:layout_toLeftOf="@id/iImgBtn_quit_game"
             android:onClick="btnClick" />
