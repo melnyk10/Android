@@ -16,8 +16,9 @@ public class Info_app_Activity extends Activity {
 
     private Button btnRateApp = null;
     private Button btnFeedback = null;
+
     private static final String[] arrayOfEmail = {"temp@gmail.com"};
-    String debugInfo ='\n'+""+'\n'
+    private String debugInfo ='\n'+""+'\n'
             +"Product (and Model): "+ android.os.Build.PRODUCT + " (" + android.os.Build.MODEL+")"+'\n'
             +"Android version: "+Build.VERSION.RELEASE+", OS API Level: "+android.os.Build.VERSION.SDK_INT+'\n'
             +"Game version: "+gameVersion;
@@ -35,7 +36,6 @@ public class Info_app_Activity extends Activity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
 
-        //btnRateApp = (Button) findViewById(R.id.iBtn_rate_app);
         btnRateApp = (Button) findViewById(R.id.iBtn_rate_app);
         btnFeedback = (Button) findViewById(R.id.iBtn_feedback);
 

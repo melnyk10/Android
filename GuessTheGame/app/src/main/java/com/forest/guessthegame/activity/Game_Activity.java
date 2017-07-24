@@ -235,13 +235,13 @@ public class Game_Activity extends Activity{
 
     private Drawable getDrawableFromAsset(String strName){
         AssetManager assetManager = getAssets();
-        InputStream istr = null;
+        InputStream inputStream = null;
         try {
-            istr = assetManager.open(strName);
+            inputStream = assetManager.open(strName);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Drawable d = Drawable.createFromStream(istr, null);
+        Drawable d = Drawable.createFromStream(inputStream, null);
 
 
         return d;

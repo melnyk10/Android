@@ -15,8 +15,6 @@ public class DataBase_SQLite extends SQLiteOpenHelper implements ManageDB {
     private static final String TABLE_GAMES_INFO = "info_about_game";
     private static final String KEY_ID = "id";
     private static final String KEY_ENG_NAME = "eng_name";
-    //private static final String KEY_RUS_NAME = "rus_name";
-    //private static final String KEY_UKR_NAME = "ua_name";
     private static final String KEY_YEAR = "year";
     private static final String KEY_IMG_NAME = "img_name";
 
