@@ -2,6 +2,7 @@ package com.forest.guessthegame.activity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
@@ -36,16 +37,20 @@ public class Game_over_activity extends Activity {
         img_btn_restart = (ImageButton) findViewById(R.id.iImgBtn_restart);
         img_btn_goMainAct = (ImageButton) findViewById(R.id.iImgBtn_go_main_activity);
 
+        Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/ubuntu_m.ttf");
+        highScore.setTypeface(custom_font);
+
         Intent score_intent = getIntent();
-        if(score_intent.hasExtra(SCORE)){
-            score.setText(score_intent.getExtras().getString(SCORE)+" points"); //тимчасова заглушка (змінна мови)
-        }if(score_intent.hasExtra(HIGH_SCORE)){
-            highScore.setText("best score: "+score_intent.getExtras().getString(HIGH_SCORE));
+        if (score_intent.hasExtra(SCORE)) {
+            score.setText(score_intent.getExtras().getString(SCORE) + " points"); //тимчасова заглушка (змінна мови)
+        }
+        if (score_intent.hasExtra(HIGH_SCORE)) {
+            highScore.setText("best score: " + score_intent.getExtras().getString(HIGH_SCORE));
         }
 
     }
 
-    public void myOnClick(View v){
+    public void myOnClick(View v) {
         switch (v.getId()) {
             case R.id.iImgBtn_restart:
                 startActivity(new Intent(Game_over_activity.this, Game_Activity.class));

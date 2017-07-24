@@ -17,7 +17,7 @@
         android:text="@string/game_over"
         android:textAppearance="@style/button_text"
         android:textColor="@color/White"
-        android:textSize="40dp" />
+        android:textSize="60dp" />
 
 
     <RelativeLayout
@@ -33,7 +33,8 @@
             android:background="@drawable/small_points_bigger"
             android:gravity="center"
             android:text="0 points"
-            android:textSize="18sp"/>
+            android:textSize="18sp"
+            android:textColor="@color/White"/>
 
         <TextView
             android:id="@id/iBest_score_text"
@@ -62,19 +63,20 @@
             android:layout_height="wrap_content">
 
             <RelativeLayout
-                android:id="@+id/iRL_left"
+                android:id="@id/iRL_left"
                 android:layout_width="0.0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.0">
 
                 <TextView
-                    android:id="@+id/iTV_playAgain"
+                    android:id="@id/iTV_playAgain"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:text="play again"
                     android:layout_toLeftOf="@id/iImgBtn_restart"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    android:textColor="@color/White"/>
 
                 <ImageButton
                     android:id="@id/iImgBtn_restart"
@@ -88,7 +90,7 @@
 
 
             <RelativeLayout
-                android:id="@+id/iRL_right"
+                android:id="@id/iRL_right"
                 android:layout_toRightOf="@id/iRL_left"
                 android:layout_width="0.0dp"
                 android:layout_height="wrap_content"
@@ -103,12 +105,14 @@
                     android:onClick="myOnClick" />
 
                 <TextView
+                    android:id="@id/iTV_exit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/iImgBtn_go_main_activity"
                     android:text="exit"
-                    android:textSize="20sp"/>
+                    android:textSize="20sp"
+                    android:textColor="@color/White"/>
             </RelativeLayout>
         </LinearLayout>
 

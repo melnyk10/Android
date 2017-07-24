@@ -49,13 +49,21 @@ public class Game_HashMap {
         return new ArrayList<>(mapOfAllGame.keySet());
     }
 
+    public void setArrayOfKeyHashMap(List<String> arrayOfKeyHashMap) {
+        this.arrayOfKeyHashMap = arrayOfKeyHashMap;
+    }
+
+
+
     public int randomNameOfGame(){
         return (int) (Math.random()*(arrayOfKeyHashMap.size()-1));
     }
 
+
+
     public Map<String, String> getMapOfAllGame() {
         return mapOfAllGame;
-    }
+    } //відпадає
 
     public String getAnswer() {
         return answer;
@@ -65,9 +73,7 @@ public class Game_HashMap {
         return arrayOfKeyHashMap;
     }
 
-    public void setArrayOfKeyHashMap(List<String> arrayOfKeyHashMap) {
-        this.arrayOfKeyHashMap = arrayOfKeyHashMap;
-    }
+
 
     public int getIndexOfArrayOfKey() {
         return indexOfArrayOfKey;

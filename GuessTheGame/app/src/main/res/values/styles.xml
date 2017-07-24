@@ -69,11 +69,13 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:backgroundDimEnabled">false</item>
+        <item name="android:typeface">serif</item>
     </style>
 
     <style name="MyAppTheme" parent="AppTheme">
         <item name="android:windowNoTitle" >true</item>
         <item name="android:windowFullscreen" >true</item>
+        <item name="android:typeface">serif</item>
     </style>
 
 </resources>

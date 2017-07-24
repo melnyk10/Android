@@ -23,8 +23,10 @@ import android.widget.LinearLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 
+import com.forest.guessthegame.DB_Hash_temp;
 import com.forest.guessthegame.Game_HashMap;
 import com.forest.guessthegame.R;
+import com.forest.guessthegame.dbSQLite.DataBase_SQLite;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -110,9 +112,8 @@ public class Game_Activity extends Activity{
         iTS_score.setOutAnimation(outAnimation);
         iTS_score.setFactory(() -> {
             TextView textView = new TextView(Game_Activity.this);
-//            Typeface custom_font = Typeface.createFromAsset(getAssets(), "font/ubuntu_r.ttf");
-//            textView.setTypeface(custom_font);
-            textView.setGravity(Gravity.CENTER);
+            //textView.setBackgroundResource(R.drawable.small_points);
+            textView.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER);
             textView.setShadowLayer(2, 1, 1, Color.BLACK);
             textView.setTextSize(20);
             textView.setTextColor(Color.WHITE);
@@ -140,7 +141,6 @@ public class Game_Activity extends Activity{
 
 
         changeImg();
-
     }
 
 
@@ -219,7 +219,7 @@ public class Game_Activity extends Activity{
     }
 
     private String returnNameOfGame() {
-        return game_hashMap.getMapOfAllGame().get(game_hashMap.getAnswer());
+        return game_hashMap.getMapOfAllGame().get(game_hashMap.getAnswer()); //
     }
 
     private void changeText() {
@@ -250,10 +250,7 @@ public class Game_Activity extends Activity{
     private void changeImg() {
         changeText();
 
-        String picName = returnNameOfGame();
-//        int resID2 = getResources().getIdentifier(picName, "drawable", getPackageName());
-//        mBackgroundImage.setImageResource(resID2);
-
+        String picName = returnNameOfGame(); // getJpgName(short id);
         mBackgroundImage.setImageDrawable(getDrawableFromAsset("pic_of_game/"+picName));
     }
 
@@ -318,4 +315,5 @@ public class Game_Activity extends Activity{
             }
         }.start();
     }
+
 }

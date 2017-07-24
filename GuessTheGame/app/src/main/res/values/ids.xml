@@ -32,6 +32,10 @@
     <item type="id" name="iLinearLayout_best_score_text">false</item>
     <item type="id" name="iBest_score_text">false</item>
     <item type="id" name="iHighScore_game_over_activity">false</item>
+    <item type="id" name="iTV_playAgain">false</item>
+    <item type="id" name="iTV_exit">false</item>
+    <item type="id" name="iRL_left">false</item>
+    <item type="id" name="iRL_right">false</item>
 
 
     <!--main_activity-->
