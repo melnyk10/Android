@@ -205,7 +205,7 @@ public class Game_Activity extends Activity {
         btn_bottom_left.setText("");
         btn_bottom_right.setText("");
 
-        db_gamesInfo.firstStartRightQuestion();
+        db_gamesInfo.getNewIndexForImg();
         //randomSetGameNameTOButtonText();
         fillTextView();
     }

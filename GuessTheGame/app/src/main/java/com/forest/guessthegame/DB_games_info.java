@@ -12,7 +12,9 @@ public class DB_games_info {
     private Context context;
     private DataBase_SQLite dataBase_sqLite;
 
-     public List<Short> listOfIds;
+    public List<Short> listOfIds;
+    private String answer = "";
+    private short indexOfID = 0;
 
     public DB_games_info(Context context) {
         this.context = context;
@@ -20,15 +22,12 @@ public class DB_games_info {
         this.listOfIds = dataBase_sqLite.getListIds();
     }
 
-    private String answer = "";
-    private short indexOfID = 0;
 
-
-    public void firstStartRightQuestion(){
+    public void getNewIndexForImg() {
         indexOfID = listOfIds.get(randomNameOfGame()); // random id from list
         answer = dataBase_sqLite.getEngName(indexOfID); // if get from DB need to add 1+randomNameOfGame()
-        Log.e("Answer", "answer = "+answer);
-        Log.e("index id", "index = "+indexOfID);
+        Log.e("Answer", "answer = " + answer);
+        Log.e("index id", "index = " + indexOfID);
     }
 
 
@@ -36,11 +35,11 @@ public class DB_games_info {
         return answer;
     }
 
-    public short randomNameOfGame(){
-        return (short) (Math.random()*(listOfIds.size())); // [0...21]
+    private short randomNameOfGame() {
+        return (short) (Math.random() * (listOfIds.size())); // [0...21]
     }
 
-    public void reset(){
+    public void reset() {
         listOfIds = new ArrayList<>(dataBase_sqLite.getListIds());
     }
 
@@ -48,22 +47,25 @@ public class DB_games_info {
         return listOfIds;
     }
 
-    public String getNameOfPic(){
+    public String getNameOfPic() {
         return dataBase_sqLite.getJpgName(indexOfID);
     }
-    public String getName(){
+
+    public String getName() {
         return dataBase_sqLite.getEngName(indexOfID);
     }
-    public String getName(short id){
+
+    public String getName(short id) {
         return dataBase_sqLite.getEngName(id);
     }
-    public short getID(){
+
+    public short getID() {
         return indexOfID;
     }
-    public short getYear(){
+
+    public short getYear() {
         return dataBase_sqLite.getYear(indexOfID);
     }
-
 
 
 }
