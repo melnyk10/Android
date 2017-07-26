@@ -23,10 +23,8 @@ import android.widget.LinearLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 
-import com.forest.guessthegame.DB_Hash_temp;
-import com.forest.guessthegame.Game_HashMap;
+import com.forest.guessthegame.DB_games_info;
 import com.forest.guessthegame.R;
-import com.forest.guessthegame.dbSQLite.DataBase_SQLite;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -34,9 +32,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Game_Activity extends Activity{
+public class Game_Activity extends Activity {
 
-    private Game_HashMap game_hashMap = new Game_HashMap();
+    //private Game_HashMap game_hashMap = new Game_HashMap();
+    DB_games_info db_gamesInfo;
 
     private Button btn_top_left = null;
     private Button btn_top_right = null;
@@ -67,8 +66,6 @@ public class Game_Activity extends Activity{
     AlertDialog.Builder builder = null;
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,6 +78,8 @@ public class Game_Activity extends Activity{
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
         //getSupportActionBar().setDisplayShowTitleEnabled(false);
+
+        db_gamesInfo = new DB_games_info(this);
 
         final Animation inAnimation = new AlphaAnimation(0, 1);
         inAnimation.setDuration(700);
@@ -98,7 +97,7 @@ public class Game_Activity extends Activity{
         //highScore_textView = (TextView) findViewById(R.id.iHighScore_game_activity);
 
         mBackgroundImage = (ImageSwitcher) findViewById(R.id.iImage_game_switcher);
-        mBackgroundImage.setFactory(()->{
+        mBackgroundImage.setFactory(() -> {
             ImageView imageView = new ImageView(this);
             imageView.setScaleType(ImageView.ScaleType.FIT_XY);
             imageView.setLayoutParams(new ImageSwitcher.LayoutParams(
@@ -113,7 +112,7 @@ public class Game_Activity extends Activity{
         iTS_score.setFactory(() -> {
             TextView textView = new TextView(Game_Activity.this);
             //textView.setBackgroundResource(R.drawable.small_points);
-            textView.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER);
+            textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER);
             textView.setShadowLayer(2, 1, 1, Color.BLACK);
             textView.setTextSize(20);
             textView.setTextColor(Color.WHITE);
@@ -139,12 +138,11 @@ public class Game_Activity extends Activity{
 
         builder = new AlertDialog.Builder(Game_Activity.this);
 
-
         changeImg();
     }
 
 
-    public void btnClick(View v){
+    public void btnClick(View v) {
         switch (v.getId()) {
             case R.id.iBtn_bottom_left:
                 rightAndWrongAnswers(btn_bottom_left);
@@ -168,12 +166,17 @@ public class Game_Activity extends Activity{
     }
 
     private void rightAndWrongAnswers(Button button) {
+        //тимчасовий if
+        if (db_gamesInfo.getIdsListOfDB().size() < 4) {
+            reset();
+        }
+
         //if wrong answer
-        if (!(button.getText().toString().equals(game_hashMap.getAnswer()))) {
+        if (!(button.getText().toString().equals(db_gamesInfo.getAnswer()))) {
             button.setBackgroundResource(R.drawable.wrong_btn);
 
-            for(Button btn:buttonsList){
-                if(btn.getText().equals(game_hashMap.getAnswer())){
+            for (Button btn : buttonsList) {
+                if (btn.getText().equals(db_gamesInfo.getAnswer())) {
                     btn.setBackgroundResource(R.drawable.correct_btn);
                 }
             }
@@ -187,39 +190,13 @@ public class Game_Activity extends Activity{
             game_over_intent.putExtra(HIGH_SCORE, String.valueOf(highScore));
             startActivity(game_over_intent);
 
-        } else if (button.getText().toString().equals(game_hashMap.getAnswer())) {
+        } else if (button.getText().toString().equals(db_gamesInfo.getAnswer())) {
             timerForRightBtn();
             score += 25;
 
             changeImg();
 
-            //тимчасовий if
-            if (game_hashMap.getNameListOfKeyHashMap().size() < 4) {
-                reset();
-            }
-
-
         }
-    }
-
-    private void fillTextView() {
-        //pic random btn for answer
-        int rand = ((int) (Math.random() * 4));
-        buttonsList.get(rand).setText(game_hashMap.getAnswer());
-        game_hashMap.getNameListOfKeyHashMap().remove(game_hashMap.getIndexOfArrayOfKey());
-
-        //pic random img and remove from HashMap. they not repeat them self
-        Collections.shuffle(game_hashMap.getNameListOfKeyHashMap());
-        for (Button btn : buttonsList) {
-            if (btn.getText().equals("")) {
-                btn.setText(game_hashMap.getNameListOfKeyHashMap().get(0));
-                game_hashMap.getNameListOfKeyHashMap().remove(0);
-            }
-        }
-    }
-
-    private String returnNameOfGame() {
-        return game_hashMap.getMapOfAllGame().get(game_hashMap.getAnswer()); //
     }
 
     private void changeText() {
@@ -228,12 +205,28 @@ public class Game_Activity extends Activity{
         btn_bottom_left.setText("");
         btn_bottom_right.setText("");
 
-        game_hashMap.firstStartRightQuestion();
+        db_gamesInfo.firstStartRightQuestion();
         //randomSetGameNameTOButtonText();
         fillTextView();
     }
 
-    private Drawable getDrawableFromAsset(String strName){
+    private void fillTextView() {
+        //pic random btn for answer
+        int rand = ((int) (Math.random() * 4));
+        buttonsList.get(rand).setText(db_gamesInfo.getAnswer());
+        db_gamesInfo.getIdsListOfDB().remove(Short.valueOf(db_gamesInfo.getID())); // remove Short obj. not index !!
+
+        //pic random img and remove from ArrayList. they not repeat them self
+        Collections.shuffle(db_gamesInfo.getIdsListOfDB());
+        for (Button btn : buttonsList) {
+            if (btn.getText().equals("")) {
+                btn.setText(db_gamesInfo.getName(db_gamesInfo.getIdsListOfDB().get(0)));
+                db_gamesInfo.getIdsListOfDB().remove(0);
+            }
+        }
+    }
+
+    private Drawable getDrawableFromAsset(String strName) {
         AssetManager assetManager = getAssets();
         InputStream inputStream = null;
         try {
@@ -250,8 +243,8 @@ public class Game_Activity extends Activity{
     private void changeImg() {
         changeText();
 
-        String picName = returnNameOfGame(); // getJpgName(short id);
-        mBackgroundImage.setImageDrawable(getDrawableFromAsset("pic_of_game/"+picName));
+        String picName = db_gamesInfo.getNameOfPic(); // getJpgName(short id);
+        mBackgroundImage.setImageDrawable(getDrawableFromAsset("pic_of_game/" + picName));
     }
 
     private void reset() {
@@ -266,54 +259,55 @@ public class Game_Activity extends Activity{
         score = 0;
         iTS_score.setText(String.valueOf(0));
 
-        game_hashMap.setArrayOfKeyHashMap(game_hashMap.copyKeyMapToStringListArray());
+        db_gamesInfo.reset();//game_hashMap.setArrayOfKeyHashMap(game_hashMap.copyKeyMapToStringListArray());
 
         changeImg();
     }
 
-    private void youSure(View v){
-        String question = (v.getId()==R.id.iImgBtn_restart_game) ? "restart game?" : "quit game?";
-            builder.setTitle("Are you sure?")
-                    .setMessage("Do you definitely want to "+question)
-                    .setPositiveButton("yes", (dialog, id) -> {
-                        if(v.getId() == R.id.iImgBtn_restart_game){
-                            highScore_condition();
-                            reset();// якщо ресет то очки не зараховуються ?
-                        }
-                        else if(v.getId() == R.id.iImgBtn_quit_game){
-                            highScore_condition();
-                            game_over_intent.putExtra(SCORE, String.valueOf(score));
-                            game_over_intent.putExtra(HIGH_SCORE, String.valueOf(highScore));
-                            startActivity(game_over_intent);
-                        }
-                    })
-                    .setNegativeButton("no", null)
-                    .show();
+    private void youSure(View v) {
+        String question = (v.getId() == R.id.iImgBtn_restart_game) ? "restart game?" : "quit game?";
+        builder.setTitle("Are you sure?")
+                .setMessage("Do you definitely want to " + question)
+                .setPositiveButton("yes", (dialog, id) -> {
+                    if (v.getId() == R.id.iImgBtn_restart_game) {
+                        highScore_condition();
+                        reset();// якщо ресет то очки не зараховуються ?
+                    } else if (v.getId() == R.id.iImgBtn_quit_game) {
+                        highScore_condition();
+                        game_over_intent.putExtra(SCORE, String.valueOf(score));
+                        game_over_intent.putExtra(HIGH_SCORE, String.valueOf(highScore));
+                        startActivity(game_over_intent);
+                    }
+                })
+                .setNegativeButton("no", null)
+                .show();
     }
 
-    private void highScore_condition(){
+    private void highScore_condition() {
         if (highScore > score) {
             //highScore_textView.setText(String.valueOf(highScore));
         } else {
             highScore = score;
             //highScore_textView.setText(String.valueOf(highScore));
             prefs.edit().putInt(HIGH_SCORE, highScore).apply();
-            Log.e("HighScore", highScore+"");
+            Log.e("HighScore", highScore + "");
         }
     }
 
-    private void timerForRightBtn(){
+    private void timerForRightBtn() {
         Drawable g = iTS_score.getBackground();
         new CountDownTimer(1000, 600) {
             public void onTick(long millisecondsUntilDone) {
                 iTS_score.setText("Right");
                 iTS_score.setBackgroundResource(R.drawable.right);
             }
+
             public void onFinish() {
                 iTS_score.setBackground(g);
                 iTS_score.setText(String.valueOf(score));
             }
         }.start();
     }
+
 
 }
