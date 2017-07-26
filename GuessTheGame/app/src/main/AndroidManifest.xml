@@ -31,7 +31,6 @@
         <activity
             android:name=".activity.Info_app_Activity"
             android:screenOrientation="landscape" />
-
     </application>
 
 </manifest>

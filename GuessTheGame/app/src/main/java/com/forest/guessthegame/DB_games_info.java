@@ -26,8 +26,9 @@ public class DB_games_info {
     public void getNewIndexForImg() {
         indexOfID = listOfIds.get(randomNameOfGame()); // random id from list
         answer = dataBase_sqLite.getEngName(indexOfID); // if get from DB need to add 1+randomNameOfGame()
-        Log.e("Answer", "answer = " + answer);
         Log.e("index id", "index = " + indexOfID);
+        Log.e("Answer", "answer = " + answer);
+        Log.e("Size of list", "size = " +  getIdsListOfDB().size());
     }
 
 
@@ -66,6 +67,5 @@ public class DB_games_info {
     public short getYear() {
         return dataBase_sqLite.getYear(indexOfID);
     }
-
 
 }

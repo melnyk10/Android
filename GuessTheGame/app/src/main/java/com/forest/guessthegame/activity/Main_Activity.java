@@ -12,10 +12,9 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.forest.guessthegame.R;
+
 
 public class Main_Activity extends Activity {
 
@@ -50,8 +49,6 @@ public class Main_Activity extends Activity {
 
         //sharedPreferences = this.getSharedPreferences("audio_off_on", Context.MODE_PRIVATE);
 
-        Toast.makeText(getApplicationContext(), "Act onCreated", Toast.LENGTH_LONG).show();
-
 
         btn_startGame = (Button) findViewById(R.id.iBtn_start_game);
         //btn_changeLanguage = (ImageButton) findViewById(R.id.iImgBtn_changeLanguage);
@@ -60,12 +57,13 @@ public class Main_Activity extends Activity {
 
         mplayer = MediaPlayer.create(this, R.raw.clicks7);
 
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
+
         //sound = sharedPreferences.getBoolean("sound", false);
         //btn_soundSwitcher.setBackgroundResource(sound?R.drawable.btn_sound_on:R.drawable.btn_sound_off);
-        //soundOffOn();
+        soundOffOn();
 
 
-        //setVolumeControlStream(AudioManager.STREAM_MUSIC);
     }
 
     public void btnOnClick(View v){

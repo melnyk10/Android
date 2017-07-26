@@ -166,11 +166,6 @@ public class Game_Activity extends Activity {
     }
 
     private void rightAndWrongAnswers(Button button) {
-        //тимчасовий if
-        if (db_gamesInfo.getIdsListOfDB().size() < 4) {
-            reset();
-        }
-
         //if wrong answer
         if (!(button.getText().toString().equals(db_gamesInfo.getAnswer()))) {
             button.setBackgroundResource(R.drawable.wrong_btn);
@@ -196,6 +191,11 @@ public class Game_Activity extends Activity {
 
             changeImg();
 
+        }
+
+        //тимчасовий if
+        if (db_gamesInfo.getIdsListOfDB().size() < 4) {
+            reset();
         }
     }
 

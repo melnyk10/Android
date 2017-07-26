@@ -1,7 +1,9 @@
 package com.forest.guessthegame.activity;
 
 import android.app.Activity;
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -18,10 +20,11 @@ public class Info_app_Activity extends Activity {
     private Button btnFeedback = null;
 
     private static final String[] arrayOfEmail = {"temp@gmail.com"};
-    private String debugInfo ='\n'+""+'\n'
+    private final String debugInfo ='\n'+""+'\n'
             +"Product (and Model): "+ android.os.Build.PRODUCT + " (" + android.os.Build.MODEL+")"+'\n'
             +"Android version: "+Build.VERSION.RELEASE+", OS API Level: "+android.os.Build.VERSION.SDK_INT+'\n'
             +"Game version: "+gameVersion;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,12 +41,12 @@ public class Info_app_Activity extends Activity {
 
         btnRateApp = (Button) findViewById(R.id.iBtn_rate_app);
         btnFeedback = (Button) findViewById(R.id.iBtn_feedback);
-
     }
 
     public void btnOnClick_infoAct(View v) {
         switch (v.getId()) {
             case R.id.iBtn_rate_app:
+                rateMyApp();
                 break;
             case R.id.iBtn_feedback:
                 composeEmail(arrayOfEmail, "Feedback", debugInfo);
@@ -58,11 +61,26 @@ public class Info_app_Activity extends Activity {
         intent.putExtra(Intent.EXTRA_SUBJECT, subjectOfEmail);
         intent.putExtra(Intent.EXTRA_TEXT, emailBody);
         try {
-            startActivity(Intent.createChooser(intent, "Send mail..."));
+            startActivity(Intent.createChooser(intent, getResources().getString(R.string.sendMail)));
         } catch (android.content.ActivityNotFoundException ex) {
             Toast.makeText(Info_app_Activity.this, "There are no email clients installed.", Toast.LENGTH_SHORT).show();
         }
     }
 
+    private void rateMyApp(){
+        Uri uri = Uri.parse("market://details?id=" + this.getPackageName());
+        Intent goToMarket = new Intent(Intent.ACTION_VIEW, uri);
+        // To count with Play market backstack, After pressing back button,
+        // to taken back to our application, we need to add following flags to intent.
+        goToMarket.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY |
+                Intent.FLAG_ACTIVITY_NEW_DOCUMENT |
+                Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        try {
+            startActivity(goToMarket);
+        } catch (ActivityNotFoundException e) {
+            startActivity(new Intent(Intent.ACTION_VIEW,
+                    Uri.parse("http://play.google.com/store/apps/details?id=" + this.getPackageName())));
+        }
+    }
 }
 
