@@ -23,39 +23,13 @@
         <item name="android:background">@color/black_overlay</item>
     </style>
 
-    <!-- copy -->
-    <style name="text_reg">
-        <item name="android:textColor">#ffffffff</item>
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:shadowColor">#ff000000</item>
-        <item name="android:shadowDx">0.9</item>
-        <item name="android:shadowDy">1.0</item>
-        <item name="android:shadowRadius">0.5</item>
-    </style>
-
-    <style name="text_4_sliding_drawer">
-        <item name="android:textSize">13.0sp</item>
-        <item name="android:textStyle">normal</item>
-        <item name="android:textColor">@color/MiddleGray</item>
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
-        <item name="android:shadowColor">#ffffffff</item>
-        <item name="android:shadowDx">0.9</item>
-        <item name="android:shadowDy">1.0</item>
-        <item name="android:shadowRadius">0.5</item>
-    </style>
-
 
     <style name="button_text">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:alpha">1</item>
-        <item name="android:textColor">@color/Purple</item>
         <item name="android:gravity">center</item>
-        <item name="android:layout_margin">3dp</item>
-        <item name="android:textSize">20dp</item>
-        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+
         <!--<item name="android:shadowColor">@color/Black</item>-->
         <!--<item name="android:shadowDx">0.9</item>-->
         <!--<item name="android:shadowDy">1</item>-->
