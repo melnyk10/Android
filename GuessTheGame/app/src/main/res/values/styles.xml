@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -68,14 +68,17 @@
         <item name="android:windowBackground">@color/Transparent</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen" >true</item>
         <item name="android:backgroundDimEnabled">false</item>
         <item name="android:typeface">serif</item>
+        <item name="android:soundEffectsEnabled">false</item>
     </style>
 
     <style name="MyAppTheme" parent="AppTheme">
         <item name="android:windowNoTitle" >true</item>
         <item name="android:windowFullscreen" >true</item>
         <item name="android:typeface">serif</item>
+        <item name="android:soundEffectsEnabled">false</item>
     </style>
 
 </resources>

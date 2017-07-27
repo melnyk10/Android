@@ -12,7 +12,7 @@
     <RelativeLayout
         android:id="@id/iRelativeLayout_top_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="70dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
 
@@ -23,21 +23,20 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="20dp"
             android:background="@drawable/btn_info"
             android:onClick="btnOnClick"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            />
 
         <ImageButton
             android:id="@id/iImgBtn_sound_switch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"
             android:background="@drawable/btn_sound_on"
             android:onClick="btnOnClick"
-            android:layout_centerVertical="true"/>
+            android:layout_centerVertical="true"
+            />
     </RelativeLayout>
 
 
@@ -67,7 +66,7 @@
     <LinearLayout
         android:id="@id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="70dp"
         android:layout_alignParentBottom="true"
         android:orientation="horizontal">
     </LinearLayout>
