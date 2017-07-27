@@ -34,8 +34,6 @@ import java.util.Collections;
 import java.util.List;
 
 public class Game_Activity extends Activity {
-
-    //private Game_HashMap game_hashMap = new Game_HashMap();
     DB_games_info db_gamesInfo;
 
     private Button btn_top_left = null;
@@ -50,13 +48,12 @@ public class Game_Activity extends Activity {
 
     private TextSwitcher iTS_score = null;
 
-    //private TextView highScore_textView = null;
-
     public static final String HIGH_SCORE = "high_score";
     public static final String SCORE = "score";
 
     private int score = 0;
     private int highScore;
+    int randCorrectBtn = 0;
 
     private List<Button> buttonsList = new ArrayList<>();
 
@@ -176,15 +173,7 @@ public class Game_Activity extends Activity {
         if (!(button.getText().toString().equals(db_gamesInfo.getAnswer()))) {
             button.setBackgroundResource(R.drawable.wrong_btn);
             playSound(wrongSound);
-
-            for (Button btn : buttonsList) {
-                if (btn.getText().equals(db_gamesInfo.getAnswer())) {
-                    btn.setBackgroundResource(R.drawable.correct_btn);
-                }
-            }
-
-//            buttonsList.stream().filter(btn->btn.getText().equals(game_hashMap.getAnswer()))
-//                    .forEach(btn->btn.setBackgroundResource(R.drawable.correct_btn));
+            buttonsList.get(randCorrectBtn).setBackgroundResource(R.drawable.correct_btn);
 
             highScore_condition();
 
@@ -202,10 +191,9 @@ public class Game_Activity extends Activity {
             score += 25;
 
             changeImg();
-
         }
 
-        //тимчасовий if
+        //temp if
         if (db_gamesInfo.getIdsListOfDB().size() < 4) {
             reset();
         }
@@ -218,17 +206,16 @@ public class Game_Activity extends Activity {
         btn_bottom_right.setText("");
 
         db_gamesInfo.getNewIndexForImg();
-        //randomSetGameNameTOButtonText();
         fillTextView();
     }
 
     private void fillTextView() {
-        //pic random btn for answer
-        int rand = ((int) (Math.random() * 4));
-        buttonsList.get(rand).setText(db_gamesInfo.getAnswer());
+        //pic random btn for correct answer
+        randCorrectBtn = ((int) (Math.random() * 4));
+        buttonsList.get(randCorrectBtn).setText(db_gamesInfo.getAnswer());
         db_gamesInfo.getIdsListOfDB().remove(Short.valueOf(db_gamesInfo.getID())); // remove Short obj. not index !!
 
-        //pic random img and remove from ArrayList. they not repeat them self
+        //pic random img and remove from ArrayList. than they don't repeat them self
         Collections.shuffle(db_gamesInfo.getIdsListOfDB());
         for (Button btn : buttonsList) {
             if (btn.getText().equals("")) {
@@ -247,7 +234,6 @@ public class Game_Activity extends Activity {
             e.printStackTrace();
         }
         Drawable d = Drawable.createFromStream(inputStream, null);
-
 
         return d;
     }
@@ -271,7 +257,7 @@ public class Game_Activity extends Activity {
         score = 0;
         iTS_score.setText(String.valueOf(0));
 
-        db_gamesInfo.reset();//game_hashMap.setArrayOfKeyHashMap(game_hashMap.copyKeyMapToStringListArray());
+        db_gamesInfo.reset();
 
         changeImg();
     }
@@ -298,12 +284,9 @@ public class Game_Activity extends Activity {
 
     private void highScore_condition() {
         if (highScore > score) {
-            //highScore_textView.setText(String.valueOf(highScore));
         } else {
             highScore = score;
-            //highScore_textView.setText(String.valueOf(highScore));
             prefs.edit().putInt(HIGH_SCORE, highScore).apply();
-            Log.e("HighScore", highScore + "");
         }
     }
 
