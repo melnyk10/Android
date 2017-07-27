@@ -68,7 +68,6 @@ public class Game_Activity extends Activity {
     private MediaPlayer clickSound;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -182,7 +181,7 @@ public class Game_Activity extends Activity {
             startActivity(game_over_intent);
 
         } else if (button.getText().toString().equals(db_gamesInfo.getAnswer())) {
-            if(correctSound.isPlaying()){
+            if (correctSound.isPlaying()) {
                 correctSound.stop();
                 correctSound = MediaPlayer.create(this, R.raw.correct_answer);
             }
@@ -263,9 +262,8 @@ public class Game_Activity extends Activity {
     }
 
     private void youSure(View v) {
-        String question = (v.getId() == R.id.iImgBtn_restart_game) ? "restart game?" : "quit game?";
-        builder.setTitle("Are you sure?")
-                .setMessage("Do you definitely want to " + question)
+        String question = (v.getId() == R.id.iImgBtn_restart_game) ? "restart" : "quit";
+        builder.setMessage("Do you definitely want to " + question + " the game?")
                 .setPositiveButton("yes", (dialog, id) -> {
                     playSound(clickSound);
                     if (v.getId() == R.id.iImgBtn_restart_game) {
@@ -305,10 +303,11 @@ public class Game_Activity extends Activity {
         }.start();
     }
 
-    private void playSound(MediaPlayer player){
+    private void playSound(MediaPlayer player) {
         player.start();
     }
-    private void pauseSound(MediaPlayer player){
+
+    private void pauseSound(MediaPlayer player) {
         player.stop();
     }
 }
