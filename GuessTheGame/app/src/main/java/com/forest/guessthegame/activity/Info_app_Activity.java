@@ -3,6 +3,7 @@ package com.forest.guessthegame.activity;
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -25,6 +26,9 @@ public class Info_app_Activity extends Activity {
             +"Android version: "+Build.VERSION.RELEASE+", OS API Level: "+android.os.Build.VERSION.SDK_INT+'\n'
             +"Game version: "+gameVersion;
 
+    private MediaPlayer mplayer;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +45,15 @@ public class Info_app_Activity extends Activity {
 
         btnRateApp = (Button) findViewById(R.id.iBtn_rate_app);
         btnFeedback = (Button) findViewById(R.id.iBtn_feedback);
+
+        mplayer = MediaPlayer.create(this, R.raw.clicks7);
     }
 
     public void btnOnClick_infoAct(View v) {
+        playAudio();
         switch (v.getId()) {
             case R.id.iBtn_rate_app:
+                btnRateApp.playSoundEffect(R.raw.clicks7);
                 rateMyApp();
                 break;
             case R.id.iBtn_feedback:
@@ -82,5 +90,7 @@ public class Info_app_Activity extends Activity {
                     Uri.parse("http://play.google.com/store/apps/details?id=" + this.getPackageName())));
         }
     }
+
+    private void playAudio() {mplayer.start();}
 }
 

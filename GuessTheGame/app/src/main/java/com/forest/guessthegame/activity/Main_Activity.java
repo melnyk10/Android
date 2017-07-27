@@ -22,15 +22,15 @@ public class Main_Activity extends Activity {
     //private ImageButton btn_changeLanguage = null;
     private ImageButton btn_aboutApp = null;
     private ImageButton btn_soundSwitcher = null;
-    boolean sound = true;
+    private boolean sound;
 
-    //SharedPreferences sharedPreferences;
 
-    AudioManager audioManager;
+    SharedPreferences sharedPreferences;
+    private AudioManager audioManager;
+    private  MediaPlayer mplayer;
     int streamVolume;
-    MediaPlayer mplayer;
+    int maxVolume;
 
-    public void playAudio() {mplayer.start();}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +44,14 @@ public class Main_Activity extends Activity {
                         | View.SYSTEM_UI_FLAG_FULLSCREEN
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
-        audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
-        streamVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        sharedPreferences = this.getSharedPreferences("audio_off_on", Context.MODE_PRIVATE);
 
-        //sharedPreferences = this.getSharedPreferences("audio_off_on", Context.MODE_PRIVATE);
+
+        audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
+        mplayer = MediaPlayer.create(this, R.raw.clicks7);
+        sound = (audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) == 0)? false:true;
+        maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)-(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)/4);
+        setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
 
         btn_startGame = (Button) findViewById(R.id.iBtn_start_game);
@@ -55,18 +59,13 @@ public class Main_Activity extends Activity {
         btn_aboutApp = (ImageButton) findViewById(R.id.iImgBtn_info_about_game);
         btn_soundSwitcher = (ImageButton) findViewById(R.id.iImgBtn_sound_switch);
 
-        mplayer = MediaPlayer.create(this, R.raw.clicks7);
 
-        setVolumeControlStream(AudioManager.STREAM_MUSIC);
-
-        //sound = sharedPreferences.getBoolean("sound", false);
-        //btn_soundSwitcher.setBackgroundResource(sound?R.drawable.btn_sound_on:R.drawable.btn_sound_off);
         soundOffOn();
-
-
     }
 
     public void btnOnClick(View v){
+        playAudio();
+
         switch (v.getId()) {
             case R.id.iBtn_start_game:
                 startActivity(new Intent(v.getContext(), Game_Activity.class));
@@ -74,32 +73,28 @@ public class Main_Activity extends Activity {
 //                case R.id.iImgBtn_changeLanguage:
 //                    break;
             case R.id.iImgBtn_info_about_game:
-                playAudio();
-
                 startActivity(new Intent(v.getContext(), Info_app_Activity.class));
                 break;
             case R.id.iImgBtn_sound_switch:
-                playAudio();
-
                 soundOffOn();
-
                 break;
         }
+
     }
 
 
     private void soundOffOn(){
         if(sound){
-            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 80, 80);
+            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume, maxVolume);
             btn_soundSwitcher.setBackgroundResource(R.drawable.btn_sound_on);
             sound = false;
-            //sharedPreferences.edit().putBoolean("sound", sound).apply();
+            //sharedPreferences.edit().putBoolean("sound_on_off", sound).apply();
         }else {
             audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
             btn_soundSwitcher.setBackgroundResource(R.drawable.btn_sound_off);
             sound = true;
-            //sharedPreferences.edit().putBoolean("sound", sound).apply();
         }
+        sharedPreferences.edit().putBoolean("sound_on_off", sound).apply();
     }
 
 
@@ -124,5 +119,6 @@ public class Main_Activity extends Activity {
         return false;
     }
 
+    private void playAudio() {mplayer.start();}
 
 }

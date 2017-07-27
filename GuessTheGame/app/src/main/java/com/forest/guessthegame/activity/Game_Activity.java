@@ -8,6 +8,7 @@ import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -65,6 +66,10 @@ public class Game_Activity extends Activity {
 
     AlertDialog.Builder builder = null;
 
+    private MediaPlayer rightSound;
+    private MediaPlayer wrongSound;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +90,10 @@ public class Game_Activity extends Activity {
         inAnimation.setDuration(700);
         final Animation outAnimation = new AlphaAnimation(1, 0);
         outAnimation.setDuration(700);
+
+        rightSound = MediaPlayer.create(this, R.raw.clicks7);
+        wrongSound = MediaPlayer.create(this, R.raw.clicks7);
+
 
         btn_top_left = (Button) findViewById(R.id.iBtn_top_left);
         btn_top_right = (Button) findViewById(R.id.iBtn_top_right);
@@ -170,6 +179,8 @@ public class Game_Activity extends Activity {
         if (!(button.getText().toString().equals(db_gamesInfo.getAnswer()))) {
             button.setBackgroundResource(R.drawable.wrong_btn);
 
+            playSound(wrongSound);
+
             for (Button btn : buttonsList) {
                 if (btn.getText().equals(db_gamesInfo.getAnswer())) {
                     btn.setBackgroundResource(R.drawable.correct_btn);
@@ -186,6 +197,7 @@ public class Game_Activity extends Activity {
             startActivity(game_over_intent);
 
         } else if (button.getText().toString().equals(db_gamesInfo.getAnswer())) {
+            playSound(rightSound);
             timerForRightBtn();
             score += 25;
 
@@ -309,5 +321,7 @@ public class Game_Activity extends Activity {
         }.start();
     }
 
-
+    private void playSound(MediaPlayer player){
+        player.start();
+    }
 }
