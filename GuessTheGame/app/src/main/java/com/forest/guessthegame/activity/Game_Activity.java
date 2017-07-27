@@ -86,7 +86,7 @@ public class Game_Activity extends Activity {
 
         correctSound = MediaPlayer.create(this, R.raw.correct_answer);
         wrongSound = MediaPlayer.create(this, R.raw.wrong_answer);
-        clickSound = MediaPlayer.create(this, R.raw.clickBtn);
+        clickSound = MediaPlayer.create(this, R.raw.btn_click);
 
 
         btn_top_left = (Button) findViewById(R.id.iBtn_top_left);
@@ -170,7 +170,6 @@ public class Game_Activity extends Activity {
                 break;
         }
     }
-
 
     private void rightAndWrongAnswers(Button button) {
         //if wrong answer

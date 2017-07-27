@@ -23,7 +23,7 @@ public class BaseActivity extends Activity {
                         | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         setVolumeControlStream(AudioManager.STREAM_MUSIC);
-        player = MediaPlayer.create(this, R.raw.clickBtn);
+        player = MediaPlayer.create(this, R.raw.btn_click);
     }
 
 
