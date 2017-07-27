@@ -60,7 +60,8 @@
         android:onClick="btnOnClick"
         android:text="@string/start_game"
         android:textAppearance="@style/button_text"
-        android:textColor="@color/White" />
+        android:textColor="@color/White"
+        android:textSize="20sp"/>
 
 
     <LinearLayout

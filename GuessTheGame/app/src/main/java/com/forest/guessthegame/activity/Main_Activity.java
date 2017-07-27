@@ -79,7 +79,6 @@ public class Main_Activity extends BaseActivity {
             audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, maxVolume, maxVolume);
             btn_soundSwitcher.setBackgroundResource(R.drawable.btn_sound_on);
             sound = false;
-            //sharedPreferences.edit().putBoolean("sound_on_off", sound).apply();
         }else {
             audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
             btn_soundSwitcher.setBackgroundResource(R.drawable.btn_sound_off);
@@ -91,21 +90,18 @@ public class Main_Activity extends BaseActivity {
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        //super.onKeyUp(keyCode, event);
         streamVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 
         if(keyCode == KeyEvent.KEYCODE_VOLUME_UP){
             if(streamVolume > 0){
                 btn_soundSwitcher.setBackgroundResource(R.drawable.btn_sound_on);
             }
-            Log.i("Volume", String.valueOf(streamVolume));
             return true;
         }
         else if(keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
             if(streamVolume == 0) {
                 btn_soundSwitcher.setBackgroundResource(R.drawable.btn_sound_off);
             }
-            Log.i("Volume", String.valueOf(streamVolume));
             return true;
         }
         return false;

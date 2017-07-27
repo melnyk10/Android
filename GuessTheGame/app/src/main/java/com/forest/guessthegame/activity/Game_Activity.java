@@ -84,9 +84,9 @@ public class Game_Activity extends Activity {
         final Animation outAnimation = new AlphaAnimation(1, 0);
         outAnimation.setDuration(700);
 
-        correctSound = MediaPlayer.create(this, R.raw.correct_answer1);
-        wrongSound = MediaPlayer.create(this, R.raw.wrong_answer1);
-        clickSound = MediaPlayer.create(this, R.raw.click4);
+        correctSound = MediaPlayer.create(this, R.raw.correct_answer);
+        wrongSound = MediaPlayer.create(this, R.raw.wrong_answer);
+        clickSound = MediaPlayer.create(this, R.raw.clickBtn);
 
 
         btn_top_left = (Button) findViewById(R.id.iBtn_top_left);
@@ -172,13 +172,6 @@ public class Game_Activity extends Activity {
     }
 
 
-    /*
-    mp.reset();
-mp.setDataSource(MEDIA_PATH);
-mp.prepare();
-mp.start();
-     */
-
     private void rightAndWrongAnswers(Button button) {
         //if wrong answer
         if (!(button.getText().toString().equals(db_gamesInfo.getAnswer()))) {
@@ -202,8 +195,8 @@ mp.start();
 
         } else if (button.getText().toString().equals(db_gamesInfo.getAnswer())) {
             if(correctSound.isPlaying()){
-                //correctSound.stop();
-                correctSound.reset();
+                correctSound.stop();
+                correctSound = MediaPlayer.create(this, R.raw.correct_answer);
             }
             playSound(correctSound);
             timerForRightBtn();
