@@ -20,6 +20,7 @@ public class DB_games_info {
         this.context = context;
         this.dataBase_sqLite = new DataBase_SQLite(context);
         this.listOfIds = dataBase_sqLite.getListIds();
+        dataBase_sqLite.onUpgrade(dataBase_sqLite.getReadableDatabase(), 1,1);
     }
 
 

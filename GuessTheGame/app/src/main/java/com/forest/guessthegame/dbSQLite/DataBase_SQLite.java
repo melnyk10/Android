@@ -40,7 +40,7 @@ public class DataBase_SQLite extends SQLiteOpenHelper implements ManageDB {
         db.execSQL("INSERT INTO info_about_game VALUES (8,'Fallout 3',2008,'fallout_3.jpg')");
         db.execSQL("INSERT INTO info_about_game VALUES (9,'GTA: San Andreas',2004,'gta_san_andreas.jpg')");
         db.execSQL("INSERT INTO info_about_game VALUES (10,'Super Mario',1986,'super_mario.png')");
-        db.execSQL("INSERT INTO info_about_game VALUES (11,'Crysis',2007,'super_mario.png')");
+        db.execSQL("INSERT INTO info_about_game VALUES (11,'Crysis',2007,'crysis_1.jpg')");
         db.execSQL("INSERT INTO info_about_game VALUES (12,'Mass Effect 3',2012,'mass_effect_3.jpg')");
         db.execSQL("INSERT INTO info_about_game VALUES (13,'Battlefield 3',2011,'battlefield_3.jpg')");
         db.execSQL("INSERT INTO info_about_game VALUES (14,'Dead Space 3',2013,'dead_space_3.jpg')");
