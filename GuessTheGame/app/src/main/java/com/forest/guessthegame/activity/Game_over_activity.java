@@ -1,27 +1,24 @@
 package com.forest.guessthegame.activity;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.forest.guessthegame.R;
+import com.forest.guessthegame.utils.BaseActivity;
 
 import static com.forest.guessthegame.activity.Game_Activity.HIGH_SCORE;
 import static com.forest.guessthegame.activity.Game_Activity.SCORE;
 
-public class Game_over_activity extends Activity {
+public class Game_over_activity extends BaseActivity {
 
     private TextView score = null;
     private TextView highScore = null;
     private ImageButton img_btn_restart = null;
     private ImageButton img_btn_goMainAct = null;
-
-    private MediaPlayer mplayer;
 
 
     @Override
@@ -41,8 +38,6 @@ public class Game_over_activity extends Activity {
         img_btn_restart = (ImageButton) findViewById(R.id.iImgBtn_restart);
         img_btn_goMainAct = (ImageButton) findViewById(R.id.iImgBtn_go_main_activity);
 
-        mplayer = MediaPlayer.create(this, R.raw.clicks7);
-
         Typeface custom_font = Typeface.createFromAsset(getAssets(), "fonts/ubuntu_m.ttf");
         highScore.setTypeface(custom_font);
 
@@ -57,7 +52,7 @@ public class Game_over_activity extends Activity {
     }
 
     public void myOnClick(View v) {
-        playAudio();
+        playSound();
         switch (v.getId()) {
             case R.id.iImgBtn_restart:
                 startActivity(new Intent(Game_over_activity.this, Game_Activity.class));
@@ -67,6 +62,4 @@ public class Game_over_activity extends Activity {
                 break;
         }
     }
-
-    private void playAudio() {mplayer.start();}
 }

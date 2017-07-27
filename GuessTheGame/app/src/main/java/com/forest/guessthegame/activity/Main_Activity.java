@@ -14,9 +14,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 
 import com.forest.guessthegame.R;
+import com.forest.guessthegame.utils.BaseActivity;
 
 
-public class Main_Activity extends Activity {
+public class Main_Activity extends BaseActivity {
 
     private Button btn_startGame = null;
     //private ImageButton btn_changeLanguage = null;
@@ -27,7 +28,6 @@ public class Main_Activity extends Activity {
 
     SharedPreferences sharedPreferences;
     private AudioManager audioManager;
-    private  MediaPlayer mplayer;
     int streamVolume;
     int maxVolume;
 
@@ -36,22 +36,12 @@ public class Main_Activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
 
         sharedPreferences = this.getSharedPreferences("audio_off_on", Context.MODE_PRIVATE);
 
-
         audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
-        mplayer = MediaPlayer.create(this, R.raw.clicks7);
         sound = (audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) == 0)? false:true;
         maxVolume = audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)-(audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)/4);
-        setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
 
         btn_startGame = (Button) findViewById(R.id.iBtn_start_game);
@@ -60,11 +50,12 @@ public class Main_Activity extends Activity {
         btn_soundSwitcher = (ImageButton) findViewById(R.id.iImgBtn_sound_switch);
 
 
+
         soundOffOn();
     }
 
     public void btnOnClick(View v){
-        playAudio();
+        playSound();
 
         switch (v.getId()) {
             case R.id.iBtn_start_game:
@@ -100,6 +91,7 @@ public class Main_Activity extends Activity {
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
+        //super.onKeyUp(keyCode, event);
         streamVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 
         if(keyCode == KeyEvent.KEYCODE_VOLUME_UP){
@@ -118,7 +110,4 @@ public class Main_Activity extends Activity {
         }
         return false;
     }
-
-    private void playAudio() {mplayer.start();}
-
 }

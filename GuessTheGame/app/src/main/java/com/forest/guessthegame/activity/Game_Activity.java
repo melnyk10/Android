@@ -66,8 +66,9 @@ public class Game_Activity extends Activity {
 
     AlertDialog.Builder builder = null;
 
-    private MediaPlayer rightSound;
+    private MediaPlayer correctSound;
     private MediaPlayer wrongSound;
+    private MediaPlayer clickSound;
 
 
 
@@ -75,14 +76,6 @@ public class Game_Activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_activity);
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-        //getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         db_gamesInfo = new DB_games_info(this);
 
@@ -91,8 +84,9 @@ public class Game_Activity extends Activity {
         final Animation outAnimation = new AlphaAnimation(1, 0);
         outAnimation.setDuration(700);
 
-        rightSound = MediaPlayer.create(this, R.raw.clicks7);
-        wrongSound = MediaPlayer.create(this, R.raw.clicks7);
+        correctSound = MediaPlayer.create(this, R.raw.correct_answer1);
+        wrongSound = MediaPlayer.create(this, R.raw.wrong_answer1);
+        clickSound = MediaPlayer.create(this, R.raw.click4);
 
 
         btn_top_left = (Button) findViewById(R.id.iBtn_top_left);
@@ -167,18 +161,28 @@ public class Game_Activity extends Activity {
                 break;
             case R.id.iImgBtn_restart_game:
                 // забрати спливаючі кнопки блеать
+                playSound(clickSound);
                 youSure(v);
                 break;
             case R.id.iImgBtn_quit_game:
+                playSound(clickSound);
                 youSure(v);
+                break;
         }
     }
+
+
+    /*
+    mp.reset();
+mp.setDataSource(MEDIA_PATH);
+mp.prepare();
+mp.start();
+     */
 
     private void rightAndWrongAnswers(Button button) {
         //if wrong answer
         if (!(button.getText().toString().equals(db_gamesInfo.getAnswer()))) {
             button.setBackgroundResource(R.drawable.wrong_btn);
-
             playSound(wrongSound);
 
             for (Button btn : buttonsList) {
@@ -197,7 +201,11 @@ public class Game_Activity extends Activity {
             startActivity(game_over_intent);
 
         } else if (button.getText().toString().equals(db_gamesInfo.getAnswer())) {
-            playSound(rightSound);
+            if(correctSound.isPlaying()){
+                //correctSound.stop();
+                correctSound.reset();
+            }
+            playSound(correctSound);
             timerForRightBtn();
             score += 25;
 
@@ -281,6 +289,7 @@ public class Game_Activity extends Activity {
         builder.setTitle("Are you sure?")
                 .setMessage("Do you definitely want to " + question)
                 .setPositiveButton("yes", (dialog, id) -> {
+                    playSound(clickSound);
                     if (v.getId() == R.id.iImgBtn_restart_game) {
                         highScore_condition();
                         reset();// якщо ресет то очки не зараховуються ?
@@ -323,5 +332,8 @@ public class Game_Activity extends Activity {
 
     private void playSound(MediaPlayer player){
         player.start();
+    }
+    private void pauseSound(MediaPlayer player){
+        player.stop();
     }
 }

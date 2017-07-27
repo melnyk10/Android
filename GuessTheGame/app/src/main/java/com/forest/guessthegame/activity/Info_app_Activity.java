@@ -1,9 +1,7 @@
 package com.forest.guessthegame.activity;
 
-import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -12,8 +10,9 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.forest.guessthegame.R;
+import com.forest.guessthegame.utils.BaseActivity;
 
-public class Info_app_Activity extends Activity {
+public class Info_app_Activity extends BaseActivity {
 
     static final String gameVersion = "1.0";
 
@@ -26,34 +25,19 @@ public class Info_app_Activity extends Activity {
             +"Android version: "+Build.VERSION.RELEASE+", OS API Level: "+android.os.Build.VERSION.SDK_INT+'\n'
             +"Game version: "+gameVersion;
 
-    private MediaPlayer mplayer;
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.info_app_activity);
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
-
 
         btnRateApp = (Button) findViewById(R.id.iBtn_rate_app);
         btnFeedback = (Button) findViewById(R.id.iBtn_feedback);
-
-        mplayer = MediaPlayer.create(this, R.raw.clicks7);
     }
 
     public void btnOnClick_infoAct(View v) {
-        playAudio();
+        playSound();
         switch (v.getId()) {
             case R.id.iBtn_rate_app:
-                btnRateApp.playSoundEffect(R.raw.clicks7);
                 rateMyApp();
                 break;
             case R.id.iBtn_feedback:
@@ -62,7 +46,7 @@ public class Info_app_Activity extends Activity {
         }
     }
 
-    public void composeEmail(String[] addresses, String subjectOfEmail, String emailBody) {
+    private void composeEmail(String[] addresses, String subjectOfEmail, String emailBody) {
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("message/rfc822");
         intent.putExtra(Intent.EXTRA_EMAIL, addresses);
@@ -90,7 +74,5 @@ public class Info_app_Activity extends Activity {
                     Uri.parse("http://play.google.com/store/apps/details?id=" + this.getPackageName())));
         }
     }
-
-    private void playAudio() {mplayer.start();}
 }
 
