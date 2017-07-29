@@ -26,9 +26,12 @@ import android.widget.TextView;
 
 import com.forest.guessthegame.DB_games_info;
 import com.forest.guessthegame.R;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -50,6 +53,8 @@ public class Game_Activity extends Activity {
 
     public static final String HIGH_SCORE = "high_score";
     public static final String SCORE = "score";
+    public static final String LIST_IDS = "list_of_ids";
+    public static final String RIGHT_ANSWER = "right_answer";
 
     private int score = 0;
     private int highScore;
@@ -66,6 +71,8 @@ public class Game_Activity extends Activity {
     private MediaPlayer correctSound;
     private MediaPlayer wrongSound;
     private MediaPlayer clickSound;
+
+    Gson gson = new Gson();
 
 
     @Override
@@ -309,5 +316,31 @@ public class Game_Activity extends Activity {
 
     private void pauseSound(MediaPlayer player) {
         player.stop();
+    }
+
+    private void save(){
+        String toJson = gson.toJson(db_gamesInfo.getIdsListOfDB());
+        prefs.edit().putString(LIST_IDS, toJson).apply();
+
+        prefs.edit().putInt(SCORE, score).apply(); // save score
+
+        String rightAnswer = db_gamesInfo.getAnswer();
+        prefs.edit().putString(RIGHT_ANSWER, rightAnswer).apply(); // save correct answer
+
+        String btnTopLeft = btn_top_left.getText().toString();
+        String btnTopRight = btn_top_right.getText().toString();
+        String btnBottonLeft = btn_bottom_left.getText().toString();
+        String btnBottonRight = btn_bottom_right.getText().toString();
+        // запхати в JSON і потім foreach присвоїти текст
+        //якщо запхати JSON в базу даних ?
+    }
+
+    private void load(){
+        String fromJson = prefs.getString(LIST_IDS, null);
+        Type type = new TypeToken<List<Short>>() {}.getType();
+        ArrayList<Short> idsList = gson.fromJson(fromJson, type);
+
+        Log.i("JSON", "from db: "+db_gamesInfo.getIdsListOfDB().toString());
+        Log.i("JSON", "from json: "+idsList.toString());
     }
 }
