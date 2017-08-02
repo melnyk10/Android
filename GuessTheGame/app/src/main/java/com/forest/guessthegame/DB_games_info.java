@@ -20,7 +20,7 @@ public class DB_games_info {
     public DB_games_info(Context context) {
         this.context = context;
         this.dataBase_sqLite = new DB_saveTable(context);
-        dataBase_sqLite.onUpgrade(dataBase_sqLite.getReadableDatabase(),1,1);
+        //dataBase_sqLite.onUpgrade(dataBase_sqLite.getReadableDatabase(),1,1);
         this.listOfIds = dataBase_sqLite.getListIds();
     }
 
@@ -112,22 +112,5 @@ public class DB_games_info {
     public void insert(){dataBase_sqLite.insert();}
     public void delete(){dataBase_sqLite.delete();}
     public String printAll(){return dataBase_sqLite.showAll();}
-
-
-
-
-
-
-
-//        db_saveTable.delete();
-//
-//        db_saveTable.saveListOfIds(shorts.toString());
-//        db_saveTable.saveScore(125);
-//        db_saveTable.saveNameOfPicFromDB("Crysis");
-//        db_saveTable.saveBtnText(b1, "btn_text_1");
-//        db_saveTable.saveBtnText(b2, "btn_text_2");
-//        db_saveTable.insert();
-//
-//        Log.i("Show all", db_saveTable.showAll());
 
 }

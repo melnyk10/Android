@@ -1,6 +1,5 @@
 package com.forest.guessthegame.activity;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -23,7 +22,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.forest.guessthegame.DB_games_info;
 import com.forest.guessthegame.R;
@@ -84,12 +82,17 @@ public class Game_Activity extends BaseActivity {
 
     boolean isPause = false;
 
+    List<Short> deletedIds;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_activity);
 
         db_gamesInfo = new DB_games_info(this);
+
+        deletedIds = new ArrayList<>();
+
 
         final Animation inAnimation = new AlphaAnimation(0, 1);
         inAnimation.setDuration(700);
@@ -109,8 +112,6 @@ public class Game_Activity extends BaseActivity {
         imgBtn_restart = (ImageButton) findViewById(R.id.iImgBtn_restart_game);
         imgBtn_quit = (ImageButton) findViewById(R.id.iImgBtn_quit_game);
 
-        //highScore_textView = (TextView) findViewById(R.id.iHighScore_game_activity);
-
         mBackgroundImage = (ImageSwitcher) findViewById(R.id.iImage_game_switcher);
         mBackgroundImage.setFactory(() -> {
             ImageView imageView = new ImageView(this);
@@ -126,7 +127,6 @@ public class Game_Activity extends BaseActivity {
         iTS_score.setOutAnimation(outAnimation);
         iTS_score.setFactory(() -> {
             TextView textView = new TextView(Game_Activity.this);
-            //textView.setBackgroundResource(R.drawable.small_points);
             textView.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER);
             textView.setShadowLayer(2, 1, 1, Color.BLACK);
             textView.setTextSize(20);
@@ -146,16 +146,12 @@ public class Game_Activity extends BaseActivity {
 
         prefs = this.getSharedPreferences("HIGH_SCORE", Context.MODE_PRIVATE);
         highScore = prefs.getInt(HIGH_SCORE, 0);
-        //highScore_textView.setText(String.valueOf(highScore));
-
 
         game_over_intent = new Intent(Game_Activity.this, Game_over_activity.class);
 
         builder = new AlertDialog.Builder(Game_Activity.this);
 
         changeImg();
-
-        //Log.i("saveI", "onCreate: "+savedInstanceState.toString());
     }
 
 
@@ -209,10 +205,13 @@ public class Game_Activity extends BaseActivity {
 
             changeImg();
         }
-
-        //temp if
+        //if player is gud in this, we created new array of deleted ids where never was use
         if (db_gamesInfo.getIdsListOfDB().size() < 4) {
-            reset();
+            db_gamesInfo.setListOfIds(deletedIds);
+            if(db_gamesInfo.getIdsListOfDB().size()==3){
+                deletedIds.clear();
+                reset();
+            }
         }
     }
 
@@ -237,6 +236,9 @@ public class Game_Activity extends BaseActivity {
         for (Button btn : buttonsList) {
             if (btn.getText().equals("")) {
                 btn.setText(db_gamesInfo.getName(db_gamesInfo.getIdsListOfDB().get(0)));
+
+                deletedIds.add(db_gamesInfo.getIdsListOfDB().get(0));
+
                 db_gamesInfo.getIdsListOfDB().remove(0);
             }
         }
