@@ -21,11 +21,9 @@
         </activity>
         <activity
             android:name=".activity.Game_Activity"
-            android:noHistory="true"
             android:screenOrientation="landscape" />
         <activity
             android:name=".activity.Game_over_activity"
-            android:noHistory="true"
             android:screenOrientation="landscape"
             android:theme="@style/Theme.Transparent" />
         <activity
