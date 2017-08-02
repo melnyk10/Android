@@ -6,8 +6,8 @@ public interface ManageDB_saveTable {
     void saveScore(int score);
     int getScore();
 
-    void saveRightAnswer(String answer);
-    String getRightAnswer();
+    void saveNameOfPicFromDB(String answer);
+    String getNameOfPicFromDB();
 
 
     void saveListOfIds(String listOfIds);

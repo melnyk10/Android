@@ -11,12 +11,12 @@ public class DB_saveTable extends DataBase_SQLite implements ManageDB_saveTable 
     private static final String TABLE_SAVE_INFO = "save_info";
     private static final String KEY_ID = "id";
     private static final String KEY_SCORE = "score";
-    private static final String KEY_ANSWER = "answer";
+    private static final String KEY_NAME_OF_PIC = "name_of_pic";
     private static final String KEY_IDS = "list_of_ids";
-    private static final String KEY_BTN_TEXT_1 = "btn_text_1";
-    private static final String KEY_BTN_TEXT_2 = "btn_text_2";
-    private static final String KEY_BTN_TEXT_3 = "btn_text_3";
-    private static final String KEY_BTN_TEXT_4 = "btn_text_4";
+    public static final String KEY_BTN_TEXT_1 = "btn_text_1";
+    public static final String KEY_BTN_TEXT_2 = "btn_text_2";
+    public static final String KEY_BTN_TEXT_3 = "btn_text_3";
+    public static final String KEY_BTN_TEXT_4 = "btn_text_4";
 
     ContentValues values = new ContentValues();
 
@@ -27,14 +27,21 @@ public class DB_saveTable extends DataBase_SQLite implements ManageDB_saveTable 
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        super.onCreate(db);
         String CREATE_SAVE_INFO_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_SAVE_INFO + " ("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_SCORE + " INT,"
-                + KEY_ANSWER + " VARCHAR, " + KEY_IDS + " VARCHAR, " + KEY_BTN_TEXT_1 + " VARCHAR, " + KEY_BTN_TEXT_2 + " VARCHAR, "
+                + KEY_NAME_OF_PIC + " VARCHAR, " + KEY_IDS + " VARCHAR, " + KEY_BTN_TEXT_1 + " VARCHAR, " + KEY_BTN_TEXT_2 + " VARCHAR, "
                 +KEY_BTN_TEXT_3 + " VARCHAR, " +KEY_BTN_TEXT_4 + " VARCHAR" + ")";
 
         db.execSQL(CREATE_SAVE_INFO_TABLE);
     }
 
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        super.onUpgrade(db, oldVersion, newVersion);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_SAVE_INFO);
+        onCreate(db);
+    }
 
     @Override
     public void saveScore(int score) {
@@ -56,21 +63,21 @@ public class DB_saveTable extends DataBase_SQLite implements ManageDB_saveTable 
     }
 
     @Override
-    public void saveRightAnswer(String answer) {
-        values.put(KEY_ANSWER, answer);
+    public void saveNameOfPicFromDB(String nameOfPic) {
+        values.put(KEY_NAME_OF_PIC, nameOfPic);
     }
 
     @Override
-    public String getRightAnswer() {
-        String answer = "";
+    public String getNameOfPicFromDB() {
+        String nameOfPic = "";
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery("SELECT " + KEY_ANSWER + " FROM " + TABLE_SAVE_INFO + " WHERE " + KEY_ID + " = 1", null);
-        int listIdIndex = cursor.getColumnIndex(KEY_ANSWER);
+        Cursor cursor = db.rawQuery("SELECT " + KEY_NAME_OF_PIC + " FROM " + TABLE_SAVE_INFO + " WHERE " + KEY_ID + " = 1", null);
+        int listIdIndex = cursor.getColumnIndex(KEY_NAME_OF_PIC);
         if (cursor.moveToFirst()) {
-            answer = cursor.getString(listIdIndex);
+            nameOfPic = cursor.getString(listIdIndex);
         }
         db.close();
-        return answer;
+        return nameOfPic;
     }
 
     @Override
@@ -120,7 +127,7 @@ public class DB_saveTable extends DataBase_SQLite implements ManageDB_saveTable 
             do {
                 textBuilder.append("id: "+ cursor.getString(0)+"\n"
                         +"score: "+cursor.getString(1)+"\n"
-                        +"answer: "+cursor.getString(2)+"\n"
+                        +"name of pic: "+cursor.getString(2)+"\n"
                         +"all ids: "+cursor.getString(3)+"\n"
                         +"btn_1: "+cursor.getString(4)+"\n"
                         +"btn_2: "+cursor.getString(5)+"\n"

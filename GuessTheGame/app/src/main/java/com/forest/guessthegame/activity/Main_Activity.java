@@ -52,10 +52,6 @@ public class Main_Activity extends BaseActivity {
         btn_startGame = (Button) findViewById(R.id.iBtn_start_game);
         btn_aboutApp = (ImageButton) findViewById(R.id.iImgBtn_info_about_game);
         btn_soundSwitcher = (ImageButton) findViewById(R.id.iImgBtn_sound_switch);
-
-
-
-        //soundOffOn();
     }
 
     public void btnOnClick(View v){

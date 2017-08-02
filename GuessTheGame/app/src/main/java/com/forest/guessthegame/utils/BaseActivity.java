@@ -26,8 +26,6 @@ public class BaseActivity extends Activity {
         player = MediaPlayer.create(this, R.raw.btn_click);
     }
 
-
-
     protected void playSound(){
         player.start();
     }

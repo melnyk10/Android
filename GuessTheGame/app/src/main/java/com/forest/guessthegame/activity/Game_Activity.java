@@ -23,9 +23,11 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.forest.guessthegame.DB_games_info;
 import com.forest.guessthegame.R;
+import com.forest.guessthegame.utils.BaseActivity;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -36,7 +38,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Game_Activity extends Activity {
+import static com.forest.guessthegame.dbSQLite.DB_saveTable.KEY_BTN_TEXT_1;
+import static com.forest.guessthegame.dbSQLite.DB_saveTable.KEY_BTN_TEXT_2;
+import static com.forest.guessthegame.dbSQLite.DB_saveTable.KEY_BTN_TEXT_3;
+import static com.forest.guessthegame.dbSQLite.DB_saveTable.KEY_BTN_TEXT_4;
+
+public class Game_Activity extends BaseActivity {
     DB_games_info db_gamesInfo;
 
     private Button btn_top_left = null;
@@ -73,7 +80,9 @@ public class Game_Activity extends Activity {
     private MediaPlayer clickSound;
 
     Gson gson = new Gson();
+    String picName;
 
+    boolean isPause = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +154,8 @@ public class Game_Activity extends Activity {
         builder = new AlertDialog.Builder(Game_Activity.this);
 
         changeImg();
+
+        //Log.i("saveI", "onCreate: "+savedInstanceState.toString());
     }
 
 
@@ -247,7 +258,7 @@ public class Game_Activity extends Activity {
     private void changeImg() {
         changeText();
 
-        String picName = db_gamesInfo.getNameOfPic(); // getJpgName(short id);
+        picName = db_gamesInfo.getNameOfPic(); // getJpgName(short id);
         mBackgroundImage.setImageDrawable(getDrawableFromAsset("pic_of_game/" + picName));
     }
 
@@ -318,29 +329,115 @@ public class Game_Activity extends Activity {
         player.stop();
     }
 
+//    @Override
+//    protected void onSaveInstanceState(Bundle outState) {
+//        super.onSaveInstanceState(outState);
+//        String toJson = gson.toJson(db_gamesInfo.getIdsListOfDB());
+//
+//        outState.putString("name_of_pic", picName);
+//        outState.putString("listIdsToJSON", toJson);
+//        outState.putInt("score",score);
+//
+//        outState.putString(KEY_BTN_TEXT_1, btn_top_left.getText().toString());
+//        outState.putString(KEY_BTN_TEXT_2, btn_top_right.getText().toString());
+//        outState.putString(KEY_BTN_TEXT_3, btn_bottom_left.getText().toString());
+//        outState.putString(KEY_BTN_TEXT_4, btn_bottom_right.getText().toString());
+//
+//        //Toast.makeText(this, "In onSaveInstance", Toast.LENGTH_LONG).show();
+//    }
+
+//    @Override
+//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+//        super.onRestoreInstanceState(savedInstanceState);
+//        String fromJson = savedInstanceState.getString("listIdsToJSON");
+//        Type type = new TypeToken<List<Short>>() {}.getType();
+//        ArrayList<Short> idsList = gson.fromJson(fromJson, type);
+//
+//        picName = savedInstanceState.getString("name_of_pic");
+//        db_gamesInfo.setListOfIds(idsList);
+//        score = savedInstanceState.getInt("score");
+//
+//        btn_top_left.setText(db_gamesInfo.getBtnText(KEY_BTN_TEXT_1));
+//        btn_top_right.setText(db_gamesInfo.getBtnText(KEY_BTN_TEXT_2));
+//        btn_bottom_left.setText(db_gamesInfo.getBtnText(KEY_BTN_TEXT_3));
+//        btn_bottom_right.setText(db_gamesInfo.getBtnText(KEY_BTN_TEXT_4));
+//
+//        Toast.makeText(this, "In onRestore", Toast.LENGTH_LONG).show();
+//    }
+
+
     private void save(){
+        db_gamesInfo.delete();
+
         String toJson = gson.toJson(db_gamesInfo.getIdsListOfDB());
-        prefs.edit().putString(LIST_IDS, toJson).apply();
 
-        prefs.edit().putInt(SCORE, score).apply(); // save score
+        db_gamesInfo.saveScore(score);
 
-        String rightAnswer = db_gamesInfo.getAnswer();
-        prefs.edit().putString(RIGHT_ANSWER, rightAnswer).apply(); // save correct answer
+        db_gamesInfo.saveBtnText(btn_top_left, KEY_BTN_TEXT_1);
+        db_gamesInfo.saveBtnText(btn_top_right, KEY_BTN_TEXT_2);
+        db_gamesInfo.saveBtnText(btn_bottom_left, KEY_BTN_TEXT_3);
+        db_gamesInfo.saveBtnText(btn_bottom_right, KEY_BTN_TEXT_4);
 
-        String btnTopLeft = btn_top_left.getText().toString();
-        String btnTopRight = btn_top_right.getText().toString();
-        String btnBottonLeft = btn_bottom_left.getText().toString();
-        String btnBottonRight = btn_bottom_right.getText().toString();
-        // запхати в JSON і потім foreach присвоїти текст
-        //якщо запхати JSON в базу даних ?
+        db_gamesInfo.saveNameOfPic();
+
+        db_gamesInfo.saveListOfIDS(toJson);
+
+        db_gamesInfo.insert();
     }
 
     private void load(){
-        String fromJson = prefs.getString(LIST_IDS, null);
+        String fromJson = db_gamesInfo.getListOfIDS();
         Type type = new TypeToken<List<Short>>() {}.getType();
         ArrayList<Short> idsList = gson.fromJson(fromJson, type);
 
-        Log.i("JSON", "from db: "+db_gamesInfo.getIdsListOfDB().toString());
-        Log.i("JSON", "from json: "+idsList.toString());
+
+        score = db_gamesInfo.getScore();
+
+        btn_top_left.setText(db_gamesInfo.getBtnText(KEY_BTN_TEXT_1));
+        btn_top_right.setText(db_gamesInfo.getBtnText(KEY_BTN_TEXT_2));
+        btn_bottom_left.setText(db_gamesInfo.getBtnText(KEY_BTN_TEXT_3));
+        btn_bottom_right.setText(db_gamesInfo.getBtnText(KEY_BTN_TEXT_4));
+
+        picName = db_gamesInfo.getNameOfPicFromDB();
+
+        db_gamesInfo.setListOfIds(idsList);
+
+        Log.i("Print all", "from db: "+db_gamesInfo.printAll());
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.i("status", "onPause");
+        isPause = true;
+        save();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.i("status", "onStop");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.i("status", "onRestart");
+        load();
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.i("status", "onStart");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.i("status", "onResume");
+        //if(isPause){load();}
+        isPause = false;
     }
 }
