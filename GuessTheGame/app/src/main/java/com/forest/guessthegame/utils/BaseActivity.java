@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.forest.guessthegame.R;
@@ -32,4 +33,37 @@ public class BaseActivity extends Activity {
     protected void stopSound(){
         player.stop();
     }
+
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        Log.i("status", "onPause");
+//
+//    }
+//
+//    @Override
+//    protected void onStop() {
+//        super.onStop();
+//        Log.i("status", "onStop");
+//    }
+//
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+//        Log.i("status", "onRestart");
+//    }
+//
+//    @Override
+//    protected void onStart() {
+//        super.onStart();
+//        Log.i("status", "onStart");
+//    }
+//
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        Log.i("status", "onResume");
+//    }
+
+
 }

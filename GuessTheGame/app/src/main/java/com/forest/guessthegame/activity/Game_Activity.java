@@ -80,8 +80,6 @@ public class Game_Activity extends BaseActivity {
     Gson gson = new Gson();
     String picName;
 
-    boolean isPause = false;
-
     List<Short> deletedIds;
 
     @Override
@@ -205,6 +203,7 @@ public class Game_Activity extends BaseActivity {
 
             changeImg();
         }
+
         //if player is gud in this, we created new array of deleted ids where never was use
         if (db_gamesInfo.getIdsListOfDB().size() < 4) {
             db_gamesInfo.setListOfIds(deletedIds);
@@ -331,41 +330,40 @@ public class Game_Activity extends BaseActivity {
         player.stop();
     }
 
-//    @Override
-//    protected void onSaveInstanceState(Bundle outState) {
-//        super.onSaveInstanceState(outState);
-//        String toJson = gson.toJson(db_gamesInfo.getIdsListOfDB());
-//
-//        outState.putString("name_of_pic", picName);
-//        outState.putString("listIdsToJSON", toJson);
-//        outState.putInt("score",score);
-//
-//        outState.putString(KEY_BTN_TEXT_1, btn_top_left.getText().toString());
-//        outState.putString(KEY_BTN_TEXT_2, btn_top_right.getText().toString());
-//        outState.putString(KEY_BTN_TEXT_3, btn_bottom_left.getText().toString());
-//        outState.putString(KEY_BTN_TEXT_4, btn_bottom_right.getText().toString());
-//
-//        //Toast.makeText(this, "In onSaveInstance", Toast.LENGTH_LONG).show();
-//    }
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        String toJson = gson.toJson(db_gamesInfo.getIdsListOfDB());
 
-//    @Override
-//    protected void onRestoreInstanceState(Bundle savedInstanceState) {
-//        super.onRestoreInstanceState(savedInstanceState);
-//        String fromJson = savedInstanceState.getString("listIdsToJSON");
-//        Type type = new TypeToken<List<Short>>() {}.getType();
-//        ArrayList<Short> idsList = gson.fromJson(fromJson, type);
-//
-//        picName = savedInstanceState.getString("name_of_pic");
-//        db_gamesInfo.setListOfIds(idsList);
-//        score = savedInstanceState.getInt("score");
-//
-//        btn_top_left.setText(db_gamesInfo.getBtnText(KEY_BTN_TEXT_1));
-//        btn_top_right.setText(db_gamesInfo.getBtnText(KEY_BTN_TEXT_2));
-//        btn_bottom_left.setText(db_gamesInfo.getBtnText(KEY_BTN_TEXT_3));
-//        btn_bottom_right.setText(db_gamesInfo.getBtnText(KEY_BTN_TEXT_4));
-//
-//        Toast.makeText(this, "In onRestore", Toast.LENGTH_LONG).show();
-//    }
+        outState.putString("name_of_pic", picName);
+        outState.putString("listIdsToJSON", toJson);
+        outState.putInt("score",score);
+
+        outState.putString(KEY_BTN_TEXT_1, btn_top_left.getText().toString());
+        outState.putString(KEY_BTN_TEXT_2, btn_top_right.getText().toString());
+        outState.putString(KEY_BTN_TEXT_3, btn_bottom_left.getText().toString());
+        outState.putString(KEY_BTN_TEXT_4, btn_bottom_right.getText().toString());
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        String fromJson = savedInstanceState.getString("listIdsToJSON");
+        Type type = new TypeToken<List<Short>>() {}.getType();
+        ArrayList<Short> idsList = gson.fromJson(fromJson, type);
+
+        db_gamesInfo.setListOfIds(idsList);
+        picName = savedInstanceState.getString("name_of_pic");
+        mBackgroundImage.setImageDrawable(getDrawableFromAsset("pic_of_game/" + picName));
+        score = savedInstanceState.getInt("score");
+        iTS_score.setText(String.valueOf(score));
+
+        btn_top_left.setText(savedInstanceState.getString(KEY_BTN_TEXT_1));
+        btn_top_right.setText(savedInstanceState.getString(KEY_BTN_TEXT_2));
+        btn_bottom_left.setText(savedInstanceState.getString(KEY_BTN_TEXT_3));
+        btn_bottom_right.setText(savedInstanceState.getString(KEY_BTN_TEXT_4));
+
+    }
 
 
     private void save(){
@@ -385,6 +383,7 @@ public class Game_Activity extends BaseActivity {
         db_gamesInfo.saveListOfIDS(toJson);
 
         db_gamesInfo.insert();
+        db_gamesInfo.printAll();
     }
 
     private void load(){
@@ -405,41 +404,5 @@ public class Game_Activity extends BaseActivity {
         db_gamesInfo.setListOfIds(idsList);
 
         Log.i("Print all", "from db: "+db_gamesInfo.printAll());
-    }
-
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i("status", "onPause");
-        isPause = true;
-        save();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i("status", "onStop");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.i("status", "onRestart");
-        load();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.i("status", "onStart");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.i("status", "onResume");
-        //if(isPause){load();}
-        isPause = false;
     }
 }
