@@ -1,11 +1,9 @@
 package com.forest.guessthegame.activity;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -21,6 +19,7 @@ public class Main_Activity extends BaseActivity {
 
     private static final String STREAM_VOLUME = "stream_volume";
     private static final String SP_SOUND_OFF_ON = "audio_off_on";
+    private static final String SOUND_BOOL = "sound_bool";
 
 
     private Button btn_startGame = null;
@@ -30,9 +29,7 @@ public class Main_Activity extends BaseActivity {
     //audio
     private SharedPreferences sharedPreferences;
     private AudioManager audioManager;
-    private boolean sound;
-    private int streamVolume;
-
+    private boolean sound = false;
 
 
     @Override
@@ -43,15 +40,13 @@ public class Main_Activity extends BaseActivity {
         sharedPreferences = this.getSharedPreferences(SP_SOUND_OFF_ON, Context.MODE_PRIVATE);
 
         audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
-        sound = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) != 0;
-
-        //take stream volume from beginning
-        sharedPreferences.edit().putInt(STREAM_VOLUME, audioManager.getStreamVolume(AudioManager.STREAM_MUSIC)).apply();
+        //sound = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) != 0;
 
 
         btn_startGame = (Button) findViewById(R.id.iBtn_start_game);
         btn_aboutApp = (ImageButton) findViewById(R.id.iImgBtn_info_about_game);
         btn_soundSwitcher = (ImageButton) findViewById(R.id.iImgBtn_sound_switch);
+
     }
 
     public void btnOnClick(View v){
@@ -77,19 +72,18 @@ public class Main_Activity extends BaseActivity {
         if(sound){
             audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volume, volume);
             btn_soundSwitcher.setBackgroundResource(R.drawable.btn_sound_on);
-            sound = false;
+            sound = true;
         }else {
             audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
             btn_soundSwitcher.setBackgroundResource(R.drawable.btn_sound_off);
-            sound = true;
+            sound = false;
         }
-        sharedPreferences.edit().putBoolean("sound_on_off", sound).apply();
     }
 
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        streamVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
+        int streamVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
 
         if(keyCode == KeyEvent.KEYCODE_VOLUME_UP){
             if(streamVolume > 0){
@@ -105,4 +99,31 @@ public class Main_Activity extends BaseActivity {
         }
         return false;
     }
+
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE || audioManager.getRingerMode() == AudioManager.RINGER_MODE_SILENT) {
+//            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
+//            btn_soundSwitcher.setBackgroundResource(R.drawable.btn_sound_off);
+//            sound = false;
+//        }
+//        boolean temp = sharedPreferences.getBoolean(SOUND_BOOL, false);
+//        btn_soundSwitcher.setBackgroundResource(temp?R.drawable.btn_sound_on:R.drawable.btn_sound_off);
+//        Log.i("status", "onResume");
+//    }
+//
+//    @Override
+//    protected void onPause() {
+//        super.onPause();
+//        sharedPreferences.edit().putBoolean(SOUND_BOOL, sound).apply();
+//        Log.i("status", "onPause");
+//    }
+//
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        Log.i("status", "onDestroy");
+//    }
 }

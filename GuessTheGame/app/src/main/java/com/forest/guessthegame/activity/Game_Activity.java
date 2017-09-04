@@ -36,10 +36,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.forest.guessthegame.dbSQLite.DB_saveTable.KEY_BTN_TEXT_1;
-import static com.forest.guessthegame.dbSQLite.DB_saveTable.KEY_BTN_TEXT_2;
-import static com.forest.guessthegame.dbSQLite.DB_saveTable.KEY_BTN_TEXT_3;
-import static com.forest.guessthegame.dbSQLite.DB_saveTable.KEY_BTN_TEXT_4;
+import static com.forest.guessthegame.dbSQLite.impl.DB_saveTable.KEY_BTN_TEXT_1;
+import static com.forest.guessthegame.dbSQLite.impl.DB_saveTable.KEY_BTN_TEXT_2;
+import static com.forest.guessthegame.dbSQLite.impl.DB_saveTable.KEY_BTN_TEXT_3;
+import static com.forest.guessthegame.dbSQLite.impl.DB_saveTable.KEY_BTN_TEXT_4;
 
 public class Game_Activity extends BaseActivity {
     DB_games_info db_gamesInfo;

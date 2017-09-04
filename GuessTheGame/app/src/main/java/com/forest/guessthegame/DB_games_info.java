@@ -4,7 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.widget.Button;
 
-import com.forest.guessthegame.dbSQLite.DB_saveTable;
+import com.forest.guessthegame.dbSQLite.impl.DB_saveTable;
 
 import java.util.ArrayList;
 import java.util.List;

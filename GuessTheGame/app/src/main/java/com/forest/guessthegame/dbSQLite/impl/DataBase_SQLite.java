@@ -1,9 +1,11 @@
-package com.forest.guessthegame.dbSQLite;
+package com.forest.guessthegame.dbSQLite.impl;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.forest.guessthegame.dbSQLite.ManageDB;
 
 import java.util.ArrayList;
 import java.util.List;

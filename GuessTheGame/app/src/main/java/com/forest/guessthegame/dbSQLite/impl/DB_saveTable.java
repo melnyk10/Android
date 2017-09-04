@@ -1,10 +1,12 @@
-package com.forest.guessthegame.dbSQLite;
+package com.forest.guessthegame.dbSQLite.impl;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Button;
+
+import com.forest.guessthegame.dbSQLite.ManageDB_saveTable;
 
 
 public class DB_saveTable extends DataBase_SQLite implements ManageDB_saveTable {
