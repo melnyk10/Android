@@ -1,4 +1,4 @@
-package com.forest.guessthegame;
+package com.forest.guessthegame.service;
 
 import android.content.Context;
 import android.util.Log;
