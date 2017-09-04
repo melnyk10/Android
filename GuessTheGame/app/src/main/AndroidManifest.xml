@@ -12,12 +12,14 @@
         android:theme="@style/MyAppTheme">
         <activity
             android:name=".activity.Main_Activity"
-            android:screenOrientation="landscape">
+            android:screenOrientation="landscape"
+            android:configChanges="orientation|screenSize|keyboardHidden">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
         <activity
             android:name=".activity.Game_Activity"
@@ -27,10 +29,12 @@
         <activity
             android:name=".activity.Game_over_activity"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.Transparent" />
+            android:theme="@style/Theme.Transparent"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
         <activity
             android:name=".activity.Info_app_Activity"
-            android:screenOrientation="landscape" />
+            android:screenOrientation="landscape"
+            android:configChanges="keyboardHidden|orientation|screenSize"/>
     </application>
 
 </manifest>
