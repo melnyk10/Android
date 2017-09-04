@@ -40,7 +40,7 @@ public class Main_Activity extends BaseActivity {
         sharedPreferences = this.getSharedPreferences(SP_SOUND_OFF_ON, Context.MODE_PRIVATE);
 
         audioManager = (AudioManager)getSystemService(Context.AUDIO_SERVICE);
-        //sound = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) != 0;
+        sound = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC) > 0;
 
 
         btn_startGame = (Button) findViewById(R.id.iBtn_start_game);
@@ -69,7 +69,7 @@ public class Main_Activity extends BaseActivity {
 
     private void soundOffOn(){
         int volume = sharedPreferences.getInt(STREAM_VOLUME, audioManager.getStreamMaxVolume(AudioManager.STREAM_MUSIC)/2);
-        if(sound){
+        if(!sound){
             audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, volume, volume);
             btn_soundSwitcher.setBackgroundResource(R.drawable.btn_sound_on);
             sound = true;
@@ -100,30 +100,13 @@ public class Main_Activity extends BaseActivity {
         return false;
     }
 
-
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        if (audioManager.getRingerMode() == AudioManager.RINGER_MODE_VIBRATE || audioManager.getRingerMode() == AudioManager.RINGER_MODE_SILENT) {
-//            audioManager.setStreamVolume(AudioManager.STREAM_MUSIC, 0, 0);
-//            btn_soundSwitcher.setBackgroundResource(R.drawable.btn_sound_off);
-//            sound = false;
-//        }
-//        boolean temp = sharedPreferences.getBoolean(SOUND_BOOL, false);
-//        btn_soundSwitcher.setBackgroundResource(temp?R.drawable.btn_sound_on:R.drawable.btn_sound_off);
-//        Log.i("status", "onResume");
-//    }
-//
-//    @Override
-//    protected void onPause() {
-//        super.onPause();
-//        sharedPreferences.edit().putBoolean(SOUND_BOOL, sound).apply();
-//        Log.i("status", "onPause");
-//    }
-//
-//    @Override
-//    protected void onDestroy() {
-//        super.onDestroy();
-//        Log.i("status", "onDestroy");
-//    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(sound){
+            btn_soundSwitcher.setBackgroundResource(R.drawable.btn_sound_on);
+        }else {
+            btn_soundSwitcher.setBackgroundResource(R.drawable.btn_sound_off);
+        }
+    }
 }
