@@ -55,10 +55,10 @@ public class Game_over_activity extends BaseActivity {
         playSound();
         switch (v.getId()) {
             case R.id.iImgBtn_restart:
-                startActivity(new Intent(Game_over_activity.this, Game_Activity.class));
+                startActivity(new Intent(this, Game_Activity.class));
                 break;
             case R.id.iImgBtn_go_main_activity:
-                startActivity(new Intent(Game_over_activity.this, Main_Activity.class));
+                startActivity(new Intent(this, Main_Activity.class));
                 break;
         }
     }
