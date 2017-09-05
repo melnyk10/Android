@@ -258,9 +258,13 @@ public class Game_Activity extends BaseActivity {
 
     private void changeImg() {
         changeText();
-
         picName = db_gamesInfo.getNameOfPic(); // getJpgName(short id);
-        mBackgroundImage.setImageDrawable(getDrawableFromAsset("pic_of_game/" + picName));
+        Drawable pic = getDrawableFromAsset("pic_of_game/" + picName);
+        if(pic == null){
+            changeImg();
+        }else {
+            mBackgroundImage.setImageDrawable(pic);
+        }
     }
 
     private void reset() {
