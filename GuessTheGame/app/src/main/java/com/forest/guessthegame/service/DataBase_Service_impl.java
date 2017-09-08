@@ -8,7 +8,7 @@ import com.forest.guessthegame.dbSQLite.impl.DataBase_SQLite;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataBase_Service_impl {
+public class DataBase_Service_impl implements DataBase_Service {
     private Context context;
     private DataBase_SQLite dataBase_sqLite;
 
@@ -33,14 +33,23 @@ public class DataBase_Service_impl {
     }
 
 
-    public String getAnswer() {
-        return answer;
-    }
-
     private short randomNameOfGame() {
         return (short) (Math.random() * (listOfIds.size())); // [0...21]
     }
 
+    public String getAnswer() {
+        return answer;
+    }
+
+    public short getID() {
+        return indexOfID;
+    }
+
+    public void setListOfIds(List<Short> listOfIds) {
+        this.listOfIds = listOfIds;
+    }
+
+    @Override
     public void reset() {
         listOfIds = new ArrayList<>(dataBase_sqLite.getListIds());
     }
@@ -49,28 +58,25 @@ public class DataBase_Service_impl {
         return listOfIds;
     }
 
-    public String getNameOfPic() {
+    @Override
+    public String getPicturesName() {
         return dataBase_sqLite.getJpgName(indexOfID);
     }
 
-    public String getName() {
+    @Override
+    public String getGamesName() {
         return dataBase_sqLite.getEngName(indexOfID);
     }
 
-    public String getName(short id) {
+    @Override
+    public String getGamesNameById(short id) {
         return dataBase_sqLite.getEngName(id);
     }
 
-    public short getID() {
-        return indexOfID;
-    }
-
-    public short getYear() {
+    @Override
+    public short getYearOfGame() {
         return dataBase_sqLite.getYear(indexOfID);
     }
 
-    public void setListOfIds(List<Short> listOfIds) {
-        this.listOfIds = listOfIds;
-    }
 
 }
