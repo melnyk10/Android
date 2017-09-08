@@ -10,7 +10,6 @@ import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
@@ -23,7 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 
-import com.forest.guessthegame.service.DB_games_info;
+import com.forest.guessthegame.service.DataBase_Service_impl;
 import com.forest.guessthegame.R;
 import com.forest.guessthegame.utils.BaseActivity;
 import com.google.gson.Gson;
@@ -37,7 +36,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class Game_Activity extends BaseActivity {
-    DB_games_info db_gamesInfo;
+    DataBase_Service_impl db_gamesInfo;
 
     private Button btn_top_left = null;
     private Button btn_top_right = null;
@@ -87,7 +86,7 @@ public class Game_Activity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.game_activity);
 
-        db_gamesInfo = new DB_games_info(this);
+        db_gamesInfo = new DataBase_Service_impl(this);
 
         deletedIds = new ArrayList<>();
 

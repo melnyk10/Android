@@ -8,7 +8,7 @@ import com.forest.guessthegame.dbSQLite.impl.DataBase_SQLite;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DB_games_info {
+public class DataBase_Service_impl {
     private Context context;
     private DataBase_SQLite dataBase_sqLite;
 
@@ -16,7 +16,7 @@ public class DB_games_info {
     private String answer = "";
     private short indexOfID = 0;
 
-    public DB_games_info(Context context) {
+    public DataBase_Service_impl(Context context) {
         this.context = context;
         this.dataBase_sqLite = new DataBase_SQLite(context);
         //dataBase_sqLite.onUpgrade(dataBase_sqLite.getReadableDatabase(),1,1);
