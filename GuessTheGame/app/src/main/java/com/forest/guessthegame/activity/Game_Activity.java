@@ -55,6 +55,12 @@ public class Game_Activity extends BaseActivity {
     public static final String LIST_IDS = "list_of_ids";
     public static final String RIGHT_ANSWER = "right_answer";
 
+    public static final String KEY_BTN_TEXT_1 = "btn_text_1";
+    public static final String KEY_BTN_TEXT_2 = "btn_text_2";
+    public static final String KEY_BTN_TEXT_3 = "btn_text_3";
+    public static final String KEY_BTN_TEXT_4 = "btn_text_4";
+    public static final String PATH_TO_ASSETS_OF_PIC = "pic_of_game/";
+
     private int score = 0;
     private int highScore;
     int randCorrectBtn = 0;
@@ -76,10 +82,6 @@ public class Game_Activity extends BaseActivity {
 
     List<Short> deletedIds;
 
-    public static final String KEY_BTN_TEXT_1 = "btn_text_1";
-    public static final String KEY_BTN_TEXT_2 = "btn_text_2";
-    public static final String KEY_BTN_TEXT_3 = "btn_text_3";
-    public static final String KEY_BTN_TEXT_4 = "btn_text_4";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -214,10 +216,10 @@ public class Game_Activity extends BaseActivity {
     }
 
     private void changeText() {
-        btn_top_left.setText("");
-        btn_top_right.setText("");
-        btn_bottom_left.setText("");
-        btn_bottom_right.setText("");
+        for(Button btn:buttonsList){
+            btn.setText("");
+        }
+        //buttonsList.forEach(button -> button.setText(""));
 
         db_gamesInfo.getNewIndexForImg();
         fillTextView();
@@ -240,6 +242,11 @@ public class Game_Activity extends BaseActivity {
                 db_gamesInfo.getIdsListOfDB().remove(0);
             }
         }
+//        buttonsList.stream().filter(button -> button.getText().equals("")).forEach(button -> {
+//            button.setText(db_gamesInfo.getGamesNameById(db_gamesInfo.getIdsListOfDB().get(0)));
+//            deletedIds.add(db_gamesInfo.getIdsListOfDB().get(0));
+//            db_gamesInfo.getIdsListOfDB().remove(0);
+//        });
     }
 
     private Drawable getDrawableFromAsset(String strName) {
@@ -258,7 +265,7 @@ public class Game_Activity extends BaseActivity {
     private void changeImg() {
         changeText();
         picName = db_gamesInfo.getPicturesName();
-        Drawable pic = getDrawableFromAsset("pic_of_game/" + picName);
+        Drawable pic = getDrawableFromAsset(PATH_TO_ASSETS_OF_PIC + picName);
         if(pic == null){
             changeImg();
         }else {
@@ -340,7 +347,7 @@ public class Game_Activity extends BaseActivity {
 
         outState.putString("name_of_pic", picName);
         outState.putString("listIdsToJSON", toJson);
-        outState.putInt("score",score);
+        outState.putInt(SCORE, score);
 
         outState.putString(KEY_BTN_TEXT_1, btn_top_left.getText().toString());
         outState.putString(KEY_BTN_TEXT_2, btn_top_right.getText().toString());
@@ -357,8 +364,8 @@ public class Game_Activity extends BaseActivity {
 
         db_gamesInfo.setListOfIds(idsList);
         picName = savedInstanceState.getString("name_of_pic");
-        mBackgroundImage.setImageDrawable(getDrawableFromAsset("pic_of_game/" + picName));
-        score = savedInstanceState.getInt("score");
+        mBackgroundImage.setImageDrawable(getDrawableFromAsset(PATH_TO_ASSETS_OF_PIC + picName));
+        score = savedInstanceState.getInt(SCORE);
         iTS_score.setText(String.valueOf(score));
 
         btn_top_left.setText(savedInstanceState.getString(KEY_BTN_TEXT_1));
