@@ -36,11 +36,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import static com.forest.guessthegame.dbSQLite.impl.DB_saveTable.KEY_BTN_TEXT_1;
-import static com.forest.guessthegame.dbSQLite.impl.DB_saveTable.KEY_BTN_TEXT_2;
-import static com.forest.guessthegame.dbSQLite.impl.DB_saveTable.KEY_BTN_TEXT_3;
-import static com.forest.guessthegame.dbSQLite.impl.DB_saveTable.KEY_BTN_TEXT_4;
-
 public class Game_Activity extends BaseActivity {
     DB_games_info db_gamesInfo;
 
@@ -81,6 +76,11 @@ public class Game_Activity extends BaseActivity {
     String picName;
 
     List<Short> deletedIds;
+
+    public static final String KEY_BTN_TEXT_1 = "btn_text_1";
+    public static final String KEY_BTN_TEXT_2 = "btn_text_2";
+    public static final String KEY_BTN_TEXT_3 = "btn_text_3";
+    public static final String KEY_BTN_TEXT_4 = "btn_text_4";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
