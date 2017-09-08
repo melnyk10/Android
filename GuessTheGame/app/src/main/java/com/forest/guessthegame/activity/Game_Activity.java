@@ -233,7 +233,7 @@ public class Game_Activity extends BaseActivity {
         Collections.shuffle(db_gamesInfo.getIdsListOfDB());
         for (Button btn : buttonsList) {
             if (btn.getText().equals("")) {
-                btn.setText(db_gamesInfo.getName(db_gamesInfo.getIdsListOfDB().get(0)));
+                btn.setText(db_gamesInfo.getGamesNameById(db_gamesInfo.getIdsListOfDB().get(0)));
 
                 deletedIds.add(db_gamesInfo.getIdsListOfDB().get(0));
 
@@ -257,7 +257,7 @@ public class Game_Activity extends BaseActivity {
 
     private void changeImg() {
         changeText();
-        picName = db_gamesInfo.getNameOfPic(); // getJpgName(short id);
+        picName = db_gamesInfo.getPicturesName();
         Drawable pic = getDrawableFromAsset("pic_of_game/" + picName);
         if(pic == null){
             changeImg();
