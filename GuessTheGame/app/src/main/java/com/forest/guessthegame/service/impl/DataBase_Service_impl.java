@@ -3,7 +3,7 @@ package com.forest.guessthegame.service.impl;
 import android.content.Context;
 import android.util.Log;
 
-import com.forest.guessthegame.dbSQLite.impl.DataBase_SQLite;
+import com.forest.guessthegame.dbSQLite.impl.DB_of_games;
 import com.forest.guessthegame.service.DataBase_Service;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class DataBase_Service_impl implements DataBase_Service {
     private Context context;
-    private DataBase_SQLite dataBase_sqLite;
+    private DB_of_games DBofgames;
 
     public List<Short> listOfIds;
     private String answer = "";
@@ -19,15 +19,15 @@ public class DataBase_Service_impl implements DataBase_Service {
 
     public DataBase_Service_impl(Context context) {
         this.context = context;
-        this.dataBase_sqLite = new DataBase_SQLite(context);
-        //dataBase_sqLite.onUpgrade(dataBase_sqLite.getReadableDatabase(),1,1);
-        this.listOfIds = dataBase_sqLite.getListIds();
+        this.DBofgames = new DB_of_games(context);
+        //DBofgames.onUpgrade(DBofgames.getReadableDatabase(),1,1);
+        this.listOfIds = DBofgames.getListIds();
     }
 
 
     public void getNewIndexForImg() {
         indexOfID = listOfIds.get(randomNameOfGame()); // random id from list
-        answer = dataBase_sqLite.getEngName(indexOfID); // if get from DB need to add 1+randomNameOfGame()
+        answer = DBofgames.getEngName(indexOfID); // if get from DB need to add 1+randomNameOfGame()
         Log.e("index id", "index = " + indexOfID);
         Log.e("Answer", "answer = " + answer);
         Log.e("Size of list", "size = " +  getIdsListOfDB().size());
@@ -52,7 +52,7 @@ public class DataBase_Service_impl implements DataBase_Service {
 
     @Override
     public void reset() {
-        listOfIds = new ArrayList<>(dataBase_sqLite.getListIds());
+        listOfIds = new ArrayList<>(DBofgames.getListIds());
     }
 
     public List<Short> getIdsListOfDB() {
@@ -61,22 +61,22 @@ public class DataBase_Service_impl implements DataBase_Service {
 
     @Override
     public String getPicturesName() {
-        return dataBase_sqLite.getJpgName(indexOfID);
+        return DBofgames.getJpgName(indexOfID);
     }
 
     @Override
     public String getGamesName() {
-        return dataBase_sqLite.getEngName(indexOfID);
+        return DBofgames.getEngName(indexOfID);
     }
 
     @Override
     public String getGamesNameById(short id) {
-        return dataBase_sqLite.getEngName(id);
+        return DBofgames.getEngName(id);
     }
 
     @Override
     public short getYearOfGame() {
-        return dataBase_sqLite.getYear(indexOfID);
+        return DBofgames.getYear(indexOfID);
     }
 
 

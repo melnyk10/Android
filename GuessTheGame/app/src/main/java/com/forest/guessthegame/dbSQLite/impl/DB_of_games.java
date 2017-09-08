@@ -10,7 +10,7 @@ import com.forest.guessthegame.dbSQLite.ManageDB;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataBase_SQLite extends SQLiteOpenHelper implements ManageDB {
+public class DB_of_games extends SQLiteOpenHelper implements ManageDB {
     private static final int DATABASE_VERSION = 1;
     private static final String DATABASE_NAME = "guessthegame";
     private static final String TABLE_GAMES_INFO = "info_about_game";
@@ -20,7 +20,7 @@ public class DataBase_SQLite extends SQLiteOpenHelper implements ManageDB {
     private static final String KEY_IMG_NAME = "img_name";
 
 
-    public DataBase_SQLite(Context context) {
+    public DB_of_games(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
