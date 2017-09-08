@@ -368,45 +368,4 @@ public class Game_Activity extends BaseActivity {
         btn_bottom_right.setText(savedInstanceState.getString(KEY_BTN_TEXT_4));
 
     }
-
-
-    private void save(){
-        db_gamesInfo.delete();
-
-        String toJson = gson.toJson(db_gamesInfo.getIdsListOfDB());
-
-        db_gamesInfo.saveScore(score);
-
-        db_gamesInfo.saveBtnText(btn_top_left, KEY_BTN_TEXT_1);
-        db_gamesInfo.saveBtnText(btn_top_right, KEY_BTN_TEXT_2);
-        db_gamesInfo.saveBtnText(btn_bottom_left, KEY_BTN_TEXT_3);
-        db_gamesInfo.saveBtnText(btn_bottom_right, KEY_BTN_TEXT_4);
-
-        db_gamesInfo.saveNameOfPic();
-
-        db_gamesInfo.saveListOfIDS(toJson);
-
-        db_gamesInfo.insert();
-        db_gamesInfo.printAll();
-    }
-
-    private void load(){
-        String fromJson = db_gamesInfo.getListOfIDS();
-        Type type = new TypeToken<List<Short>>() {}.getType();
-        ArrayList<Short> idsList = gson.fromJson(fromJson, type);
-
-
-        score = db_gamesInfo.getScore();
-
-        btn_top_left.setText(db_gamesInfo.getBtnText(KEY_BTN_TEXT_1));
-        btn_top_right.setText(db_gamesInfo.getBtnText(KEY_BTN_TEXT_2));
-        btn_bottom_left.setText(db_gamesInfo.getBtnText(KEY_BTN_TEXT_3));
-        btn_bottom_right.setText(db_gamesInfo.getBtnText(KEY_BTN_TEXT_4));
-
-        picName = db_gamesInfo.getNameOfPicFromDB();
-
-        db_gamesInfo.setListOfIds(idsList);
-
-        Log.i("Print all", "from db: "+db_gamesInfo.printAll());
-    }
 }
