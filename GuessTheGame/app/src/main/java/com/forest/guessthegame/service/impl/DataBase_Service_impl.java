@@ -1,9 +1,10 @@
-package com.forest.guessthegame.service;
+package com.forest.guessthegame.service.impl;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.forest.guessthegame.dbSQLite.impl.DataBase_SQLite;
+import com.forest.guessthegame.service.DataBase_Service;
 
 import java.util.ArrayList;
 import java.util.List;

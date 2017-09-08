@@ -22,7 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.TextSwitcher;
 import android.widget.TextView;
 
-import com.forest.guessthegame.service.DataBase_Service_impl;
+import com.forest.guessthegame.service.impl.DataBase_Service_impl;
 import com.forest.guessthegame.R;
 import com.forest.guessthegame.utils.BaseActivity;
 import com.google.gson.Gson;
